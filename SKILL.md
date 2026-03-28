@@ -47,6 +47,7 @@ Use the cron tool to create:
 - schedule: { kind: "cron", expr: "0 4 * * *", tz: "<user timezone>" }
 - payload: { kind: "agentTurn", message: <content of references/dream-prompt.md> }
 - sessionTarget: "isolated"
+- delivery: { mode: "announce" }
 - name: "auto-memory-dream"
 ```
 
@@ -152,26 +153,60 @@ After each dream cycle, the agent optionally pushes a summary to the user's chan
 
 Notification level is set in `memory/index.json` at `config.notificationLevel` and can be changed any time by asking "Set dream notifications to [silent/summary/full]".
 
+**Important:** Notifications work via the cron job's `delivery` config. Set `delivery: { mode: "announce" }` on the cron job so the dream cycle's final reply is automatically pushed to the user's channel. The agent simply replies with the notification text — no explicit `message` tool call needed.
+
 ### 📊 Memory Health Dashboard
 
 Trigger phrases: "Show memory dashboard", "Generate memory dashboard", "Memory health report"
 
 When triggered, the agent:
 1. Reads `memory/index.json` and `memory/dream-log.md`
-2. Builds a complete data JSON from live memory state
+2. Builds a data JSON object (schema below)
 3. Reads the dashboard template from `references/dashboard-template.html`
-4. Injects the data into the template
-5. Writes the populated dashboard to `memory/dashboard.html`
+4. Replaces `__DREAM_DATA_PLACEHOLDER__` with the JSON
+5. Writes the result to `memory/dashboard.html`
 6. Informs the user the file is ready (and opens it if possible)
 
-The dashboard features (dark theme, MyClaw gold #D4AF37):
-- Health score gauge (large, prominent)
-- 5-metric cards (freshness, coverage, coherence, efficiency, reachability)
-- Memory distribution donut chart (entries per layer)
-- Importance histogram
-- Dream history line chart (last 30 cycles)
-- Recent changes table
-- Top suggestions + stale entries list
+#### Dashboard Data Schema
+
+Build this JSON from `memory/index.json` (idx) and `memory/dream-log.md` (log):
+
+```json
+{
+  "generatedAt": "<current ISO timestamp>",
+  "instanceName": "idx.config.instanceName",
+  "health": {
+    "score": "idx.stats.healthScore",
+    "freshness": "idx.stats.healthMetrics.freshness",
+    "coverage": "idx.stats.healthMetrics.coverage",
+    "coherence": "idx.stats.healthMetrics.coherence",
+    "efficiency": "idx.stats.healthMetrics.efficiency",
+    "reachability": "idx.stats.healthMetrics.reachability"
+  },
+  "layers": {
+    "longterm": { "entries": "<count entries where target starts with MEMORY.md>", "lines": "<wc -l MEMORY.md>" },
+    "episodic": { "files": "<count files in memory/episodes/>", "totalEntries": "<count entries where target starts with memory/episodes/>" },
+    "procedural": { "entries": "<count entries where target starts with memory/procedures>" },
+    "archive": { "entries": "<count entries where archived=true>" }
+  },
+  "importanceDistribution": [
+    { "range": "0.0-0.2", "count": "<bucket entries by importance>" },
+    { "range": "0.2-0.4", "count": "..." },
+    { "range": "0.4-0.6", "count": "..." },
+    { "range": "0.6-0.8", "count": "..." },
+    { "range": "0.8-1.0", "count": "..." }
+  ],
+  "healthHistory": "idx.stats.healthHistory (last 30 entries)",
+  "recentChanges": "<parse latest dream report from log: extract [New]/[Updated]/[Archived] items>",
+  "insights": "idx.stats.insights",
+  "suggestions": "<parse latest dream report from log: extract Suggestions section items>",
+  "staleEntries": "<filter entries where (today - lastReferenced) > 60 and importance < 0.4, sorted by daysSinceReferenced desc, limit 10>",
+  "memoryGraph": {
+    "nodes": "<for each non-archived entry: {id, label: summary (truncated), importance, layer: longterm|episodic|procedural}>",
+    "edges": "<for each entry.related pair: {from, to}>"
+  }
+}
+```
 
 ### 🔄 Cross-Instance Memory Migration
 
@@ -212,7 +247,7 @@ reachability = avg(connected_component_size / total_entries) for all components
 
 Updated 5-metric health formula:
 ```
-health = freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15
+health = (freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15) × 100
 ```
 
 ## User Marker System
@@ -264,4 +299,5 @@ Users can tag entries in daily logs or MEMORY.md to influence dream behavior:
 - `references/scoring.md` — Importance scoring algorithm, forgetting curve, health score formula (5 metrics)
 - `references/dashboard-template.html` — HTML dashboard template (data injected at runtime)
 - `references/migration-cross-instance.md` — Cross-instance memory bundle export/import protocol
-- `references/migration-v2-to-v3.md` — Upgrade guide from v1→v2→v3 cognitive architecture
+- `references/migration-v1-to-v2.md` — Legacy v1→v2 upgrade guide (preserved for v1 users)
+- `references/migration-v2-to-v3.md` — Upgrade guide covering v1→v2→v3 and v2→v3 paths
