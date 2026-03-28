@@ -29,11 +29,73 @@
 
 ---
 
+## 🦞 Part of the MyClaw.ai Ecosystem
+
+<table>
+<tr>
+<td width="140" align="center">
+  <a href="https://myclaw.ai"><img src="https://img.shields.io/badge/🦞-MyClaw.ai-D4AF37?style=for-the-badge" alt="MyClaw.ai" /></a>
+</td>
+<td>
+
+**[MyClaw.ai](https://myclaw.ai)** is the AI personal assistant platform everyone's obsessed with — a fully-featured AI agent running 24/7 on your own dedicated server. Not a chatbot. Not a wrapper. A real agent with full code control, internet access, cron jobs, file systems, databases, and tool integrations. Think of it as hiring a brilliant assistant who never sleeps, never forgets*, and can actually *do things*.
+
+<sub>*With Auto-Dream installed, they literally never forget.</sub>
+
+</td>
+</tr>
+</table>
+
+### Why MyClaw Changes Everything
+
+Most AI tools give you a chat window. MyClaw gives you a **server**.
+
+Every MyClaw instance runs [OpenClaw](https://github.com/openclaw/openclaw) — the open-source AI agent runtime — on dedicated infrastructure. Your agent has:
+
+- 🖥️ **A full Linux server** — not a sandbox, not a container, a real machine
+- 🌐 **Unrestricted internet** — browse, scrape, call APIs, send messages
+- ⏰ **Cron & background tasks** — your agent works while you sleep
+- 📁 **Persistent file system** — workspace, memory, configs, all yours
+- 🧩 **Skill ecosystem** — install new abilities from [ClawHub](https://myclaw.ai/skills) in one command
+- 🔌 **Channel integrations** — Telegram, Discord, Slack, WhatsApp, and more
+- 🔒 **Your data, your server** — no shared infrastructure, no data mining
+
+This is why Auto-Dream exists. Because when your AI agent has a persistent server, persistent files, and persistent relationships with you — **memory isn't a nice-to-have. It's the foundation of intelligence.**
+
+### The MyClaw Open Skills Ecosystem
+
+Auto-Dream is one skill in a growing ecosystem. Every skill is an installable package that teaches your agent a new capability:
+
+| Skill | What It Does |
+|-------|-------------|
+| 🌀 **[Auto-Dream](https://github.com/LeoYeAI/openclaw-auto-dream)** | Cognitive memory — this project |
+| 🛡️ **[Guardian](https://github.com/LeoYeAI/openclaw-guardian)** | Self-healing watchdog — auto-monitor, auto-repair, auto-rollback |
+| 🕷️ **[Ultra Scraping](https://github.com/LeoYeAI/openclaw-ultra-scraping)** | Adaptive web scraping that bypasses anti-bot and survives redesigns |
+| 🎬 **[Slides](https://github.com/LeoYeAI/openclaw-slides)** | Stunning HTML presentations with 12 style presets and animations |
+| 📦 **[Backup](https://github.com/LeoYeAI/openclaw-backup)** | One-click backup & restore for entire instances |
+| 💬 **[Ask Lenny](https://github.com/LeoYeAI/ask-lenny)** | Product & growth wisdom from 289+ real founder conversations |
+| 📚 **[Master Skills](https://github.com/LeoYeAI/openclaw-master-skills)** | Curated collection of 339+ community skills |
+| 📈 **[Marketing Skills](https://github.com/LeoYeAI/openclaw-marketing-skills)** | 33 battle-tested marketing skills |
+
+Install any skill with one command: `clawhub install <skill-name>`
+
+Or just tell your agent: *"Install Auto-Dream"* — and it handles the rest.
+
+> 🌐 **Get started:** [myclaw.ai](https://myclaw.ai) — Your OpenClaw, ready for you. Run instantly. Cancel anytime.
+
+---
+
 ## The Problem
 
 Every AI agent forgets. Session ends, context gone. Files pile up. What was that decision from two weeks ago? Which workflow worked last time? Your agent has amnesia — functional, but forgetting everything the moment it sleeps.
 
 **Auto-Dream fixes this.** Like the human brain consolidating memories during sleep, Auto-Dream runs periodic "dream cycles" that scan, extract, organize, score, link, and prune your agent's knowledge — automatically, safely, and intelligently.
+
+### Why This Matters for MyClaw Users
+
+Your MyClaw agent runs 24/7. It handles your projects, tracks your decisions, remembers your preferences, manages your workflows. Over weeks and months, it accumulates thousands of daily log entries. Without Auto-Dream, that knowledge sits in raw files — unsorted, unscored, disconnected. Your agent has the data but can't *think* about it.
+
+Auto-Dream transforms your agent from a tool that executes commands into a partner that **understands context, learns from history, and connects the dots you didn't see**.
 
 ## Why This Is Different
 
@@ -160,7 +222,7 @@ Generate it: *"Show memory dashboard"*
 
 ### 🔄 Cross-Instance Migration
 
-Move memories between OpenClaw instances:
+Move memories between MyClaw instances:
 
 ```
 "Export memory bundle"    →  memory/export-2026-03-28.json
@@ -168,7 +230,7 @@ Move memories between OpenClaw instances:
 "Export only procedures"  →  selective layer export
 ```
 
-Portable JSON bundle format with full metadata, conflict resolution, and pre-import backup.
+Portable JSON bundle format with full metadata, conflict resolution, and pre-import backup. Perfect for users managing multiple MyClaw instances or upgrading to a new server.
 
 ### 🔮 Dream Insights
 
@@ -183,11 +245,15 @@ After each cycle, 1–3 non-obvious observations:
 
 ### Install
 
+**Via ClawHub (recommended):**
 ```bash
 clawhub install openclaw-auto-dream
 ```
 
-Or clone manually:
+**Via your MyClaw agent (easiest):**
+> Just tell your agent: *"Install Auto-Dream"* — it handles everything.
+
+**Manual:**
 ```bash
 git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
   ~/.openclaw/workspace/skills/openclaw-auto-dream
@@ -263,7 +329,7 @@ All upgrades are non-destructive. Your data is always preserved.
 
 ## How It Works Under the Hood
 
-Auto-Dream leverages OpenClaw's native primitives:
+Auto-Dream leverages OpenClaw's native primitives — the same infrastructure that powers every MyClaw instance:
 
 | Primitive | Role |
 |-----------|------|
@@ -274,15 +340,29 @@ Auto-Dream leverages OpenClaw's native primitives:
 
 No external dependencies. No API keys. No databases. Just files and intelligence.
 
+---
+
 ## About MyClaw.ai
 
-**[MyClaw.ai](https://myclaw.ai)** is the AI personal assistant platform that gives every user a dedicated server with full code control, networking, and tool capabilities. Auto-Dream is part of the [MyClaw open skills ecosystem](https://myclaw.ai/skills) — where agents learn new abilities through installable skill packages.
+<table>
+<tr>
+<td>
 
-Every MyClaw instance runs OpenClaw. Every instance can dream.
+**[MyClaw.ai](https://myclaw.ai)** is the AI personal assistant platform that gives every user a dedicated server running [OpenClaw](https://github.com/openclaw/openclaw) — with full code control, unrestricted internet, cron jobs, and a growing ecosystem of installable skills.
+
+14,000+ instances running. $40M+ ARR. The fastest-growing AI agent platform.
+
+Your OpenClaw, ready for you. Run instantly. Cancel anytime.
+
+🌐 **[myclaw.ai](https://myclaw.ai)** · 🐦 **[@MyClaw_Official](https://x.com/MyClaw_Official)** · 💬 **[r/myclaw](https://reddit.com/r/myclaw)**
+
+</td>
+</tr>
+</table>
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [MyClaw.ai](https://myclaw.ai)
 
 ---
 

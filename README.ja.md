@@ -29,11 +29,73 @@
 
 ---
 
+## 🦞 MyClaw.ai エコシステムの一部
+
+<table>
+<tr>
+<td width="140" align="center">
+  <a href="https://myclaw.ai"><img src="https://img.shields.io/badge/🦞-MyClaw.ai-D4AF37?style=for-the-badge" alt="MyClaw.ai" /></a>
+</td>
+<td>
+
+**[MyClaw.ai](https://myclaw.ai)** は、みんなが夢中になっているAIパーソナルアシスタントプラットフォームです — あなた専用のサーバーで24時間365日稼働するフル機能のAIエージェント。チャットボットではありません。ラッパーでもありません。完全なコード制御、インターネットアクセス、cronジョブ、ファイルシステム、データベース、ツール連携を備えた本物のエージェントです。眠らず、忘れず*、実際に*物事を実行できる*優秀なアシスタントを雇うようなものです。
+
+<sub>*Auto-Dreamをインストールすると、文字通り決して忘れません。</sub>
+
+</td>
+</tr>
+</table>
+
+### なぜMyClawがすべてを変えるのか
+
+ほとんどのAIツールはチャットウィンドウを提供します。MyClawは**サーバー**を提供します。
+
+すべてのMyClawインスタンスは[OpenClaw](https://github.com/openclaw/openclaw) — オープンソースのAIエージェントランタイム — を専用インフラストラクチャ上で実行します。あなたのエージェントには：
+
+- 🖥️ **完全なLinuxサーバー** — サンドボックスでもコンテナでもない、本物のマシン
+- 🌐 **制限のないインターネット** — ブラウズ、スクレイプ、API呼び出し、メッセージ送信
+- ⏰ **Cronとバックグラウンドタスク** — あなたが寝ている間もエージェントが働く
+- 📁 **永続的なファイルシステム** — ワークスペース、メモリ、設定、すべてあなたのもの
+- 🧩 **スキルエコシステム** — [ClawHub](https://myclaw.ai/skills)から一つのコマンドで新しい能力をインストール
+- 🔌 **チャンネル連携** — Telegram、Discord、Slack、WhatsAppなど
+- 🔒 **あなたのデータ、あなたのサーバー** — 共有インフラなし、データマイニングなし
+
+これがAuto-Dreamが存在する理由です。あなたのAIエージェントに永続的なサーバー、永続的なファイル、そしてあなたとの永続的な関係がある時 — **記憶はあったら便利なものではありません。知性の基盤なのです。**
+
+### MyClawオープンスキルエコシステム
+
+Auto-Dreamは成長するエコシステムの中の一つのスキルです。各スキルはエージェントに新しい能力を教えるインストール可能なパッケージです：
+
+| スキル | 機能 |
+|--------|------|
+| 🌀 **[Auto-Dream](https://github.com/LeoYeAI/openclaw-auto-dream)** | 認知記憶 — このプロジェクト |
+| 🛡️ **[Guardian](https://github.com/LeoYeAI/openclaw-guardian)** | 自己修復ウォッチドッグ — 自動監視、自動修復、自動ロールバック |
+| 🕷️ **[Ultra Scraping](https://github.com/LeoYeAI/openclaw-ultra-scraping)** | アンチボットを回避しリデザインに耐えるアダプティブWebスクレイピング |
+| 🎬 **[Slides](https://github.com/LeoYeAI/openclaw-slides)** | 12のスタイルプリセットとアニメーション付きの魅力的なHTMLプレゼンテーション |
+| 📦 **[Backup](https://github.com/LeoYeAI/openclaw-backup)** | インスタンス全体のワンクリックバックアップ＆リストア |
+| 💬 **[Ask Lenny](https://github.com/LeoYeAI/ask-lenny)** | 289以上の実際の創業者との会話からのプロダクト＆グロースの知恵 |
+| 📚 **[Master Skills](https://github.com/LeoYeAI/openclaw-master-skills)** | 339以上のコミュニティスキルのキュレーションコレクション |
+| 📈 **[Marketing Skills](https://github.com/LeoYeAI/openclaw-marketing-skills)** | 実戦で検証済みの33のマーケティングスキル |
+
+一つのコマンドで任意のスキルをインストール: `clawhub install <skill-name>`
+
+または、エージェントに伝えるだけ: *「Auto-Dreamをインストールして」* — あとはエージェントが処理します。
+
+> 🌐 **始めましょう:** [myclaw.ai](https://myclaw.ai) — Your OpenClaw, ready for you. すぐに起動。いつでもキャンセル。
+
+---
+
 ## 問題
 
 すべてのAIエージェントは忘れます。セッションが終了すれば、コンテキストは消えます。ファイルが溜まっていきます。2週間前のあの決定は何だったか？前回どのワークフローがうまくいったか？あなたのエージェントは健忘症です — 機能はしていますが、眠りにつく瞬間にすべてを忘れてしまいます。
 
 **Auto-Dreamがこれを解決します。** 人間の脳が睡眠中に記憶を統合するように、Auto-Dreamは定期的な「ドリームサイクル」を実行し、エージェントの知識をスキャン、抽出、整理、スコアリング、リンク、プルーニングします — 自動的に、安全に、インテリジェントに。
+
+### MyClawユーザーにとってなぜ重要なのか
+
+あなたのMyClawエージェントは24時間365日稼働しています。プロジェクトを管理し、決定を追跡し、好みを記憶し、ワークフローを管理します。数週間、数ヶ月にわたり、数千の日次ログエントリが蓄積されます。Auto-Dreamがなければ、その知識は生のファイルに眠ったまま — 未整理、未評価、未接続。エージェントはデータを持っていますが、それについて*考える*ことができません。
+
+Auto-Dreamはあなたのエージェントをコマンドを実行するツールから、**コンテキストを理解し、履歴から学び、あなたが見逃した点と点を結ぶ**パートナーへと変身させます。
 
 ## なぜこれが違うのか
 
@@ -161,7 +223,7 @@ health = (freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 +
 
 ### 🔄 クロスインスタンス移行
 
-OpenClaw インスタンス間で記憶を移動：
+MyClawインスタンス間で記憶を移動：
 
 ```
 "Export memory bundle"    →  memory/export-2026-03-28.json
@@ -169,7 +231,7 @@ OpenClaw インスタンス間で記憶を移動：
 "Export only procedures"  →  選択的な層エクスポート
 ```
 
-完全なメタデータ、競合解決、インポート前バックアップを備えたポータブルJSONバンドル形式。
+完全なメタデータ、競合解決、インポート前バックアップを備えたポータブルJSONバンドル形式。複数のMyClawインスタンスを管理したり、新しいサーバーにアップグレードするユーザーに最適です。
 
 ### 🔮 ドリームインサイト
 
@@ -184,11 +246,15 @@ OpenClaw インスタンス間で記憶を移動：
 
 ### インストール
 
+**ClawHub経由（推奨）:**
 ```bash
 clawhub install openclaw-auto-dream
 ```
 
-または手動でクローン：
+**MyClawエージェント経由（最も簡単）:**
+> エージェントに伝えるだけ: *「Auto-Dreamをインストールして」* — すべて処理してくれます。
+
+**手動:**
 ```bash
 git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
   ~/.openclaw/workspace/skills/openclaw-auto-dream
@@ -264,7 +330,7 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 
 ## 内部の仕組み
 
-Auto-DreamはOpenClaw のネイティブプリミティブを活用します：
+Auto-DreamはOpenClaw のネイティブプリミティブを活用します — すべてのMyClawインスタンスを動かすのと同じインフラストラクチャです：
 
 | プリミティブ | 役割 |
 |-------------|------|
@@ -275,15 +341,29 @@ Auto-DreamはOpenClaw のネイティブプリミティブを活用します：
 
 外部依存関係なし。APIキーなし。データベースなし。ファイルとインテリジェンスだけ。
 
+---
+
 ## MyClaw.aiについて
 
-**[MyClaw.ai](https://myclaw.ai)** は、すべてのユーザーに完全なコード制御、ネットワーキング、ツール機能を備えた専用サーバーを提供するAIパーソナルアシスタントプラットフォームです。Auto-Dreamは[MyClawオープンスキルエコシステム](https://myclaw.ai/skills)の一部です — エージェントがインストール可能なスキルパッケージを通じて新しい能力を学ぶ場所です。
+<table>
+<tr>
+<td>
 
-すべてのMyClawインスタンスがOpenClawを実行します。すべてのインスタンスが夢を見ることができます。
+**[MyClaw.ai](https://myclaw.ai)** は、すべてのユーザーに[OpenClaw](https://github.com/openclaw/openclaw)を実行する専用サーバーを提供するAIパーソナルアシスタントプラットフォームです — 完全なコード制御、制限のないインターネットアクセス、cronジョブ、そして成長するインストール可能なスキルのエコシステムを備えています。
+
+14,000+ 稼働中のインスタンス。$40M+ ARR。最も急成長しているAIエージェントプラットフォーム。
+
+Your OpenClaw, ready for you. すぐに起動。いつでもキャンセル。
+
+🌐 **[myclaw.ai](https://myclaw.ai)** · 🐦 **[@MyClaw_Official](https://x.com/MyClaw_Official)** · 💬 **[r/myclaw](https://reddit.com/r/myclaw)**
+
+</td>
+</tr>
+</table>
 
 ## ライセンス
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [MyClaw.ai](https://myclaw.ai)
 
 ---
 
