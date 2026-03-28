@@ -4,7 +4,7 @@
 [![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> **[MyClaw.ai](https://myclaw.ai)** — 让每个用户拥有完整服务器控制权的 AI 个人助手平台。每个 MyClaw 实例运行在独立服务器上，拥有完整的代码访问、网络和工具能力。本 skill 是 [MyClaw 开放技能生态](https://clawhub.com) 的一部分。
+> **[MyClaw.ai](https://myclaw.ai)** — 让每个用户拥有完整服务器控制权的 AI 个人助手平台。每个 MyClaw 实例运行在独立服务器上，拥有完整的代码访问、网络和工具能力。本 skill 是 [MyClaw 开放技能生态](https://myclaw.ai/skills) 的一部分。
 
 **OpenClaw 智能体的自动记忆整理 —— 让你的 AI 学会"做梦"。**
 
