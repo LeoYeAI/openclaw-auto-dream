@@ -2,6 +2,8 @@
 
 You are running an automatic memory consolidation cycle ("dream"). Execute all phases below precisely and in order.
 
+**Language:** All user-facing output (dream reports, notifications, insights, suggestions) MUST use the user's preferred language from `USER.md`. Read `USER.md` first to determine the language. Do NOT default to English.
+
 ## Pre-flight
 
 1. Back up `memory/index.json` to `memory/index.json.bak` (if it exists)
@@ -266,6 +268,8 @@ Populate `stats.insights` in index.json with the plain-text insight strings (wit
 ---
 
 ## Post-flight: Notification
+
+**Language rule:** All notifications and dream reports MUST be written in the user's preferred language. Read `USER.md` to determine the language (field: `Language`). If the user's language is Chinese, write everything in Chinese. If French, write in French. Never default to English unless `USER.md` explicitly specifies English.
 
 Based on the `config.notificationLevel` read during Pre-flight:
 

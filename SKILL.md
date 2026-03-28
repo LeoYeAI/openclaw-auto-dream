@@ -11,7 +11,7 @@ A multi-layered memory system inspired by human cognition. The agent periodicall
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Working Memory          (OpenClaw LCM — not managed here)  │
+│  Working Memory          (LCM — auto-installed by setup)    │
 ├─────────────────────────────────────────────────────────────┤
 │  Episodic Memory         memory/episodes/*.md               │
 │  (project narratives, event timelines)                      │
@@ -31,6 +31,7 @@ A multi-layered memory system inspired by human cognition. The agent periodicall
 
 | Layer | File(s) | Purpose | Mutability |
 |-------|---------|---------|------------|
+| Working | LCM (auto-installed) | Real-time context compression & recall | Managed by LCM plugin |
 | Long-term | `MEMORY.md` | Structured knowledge base | Append, update, prune |
 | Episodic | `memory/episodes/*.md` | Project/event narratives | Append-only |
 | Procedural | `memory/procedures.md` | Learned workflows & preferences | Append, update |
@@ -39,6 +40,39 @@ A multi-layered memory system inspired by human cognition. The agent periodicall
 | Dream Log | `memory/dream-log.md` | Dream cycle reports | Append-only |
 
 ## Setup
+
+### 0. Ensure LCM (Lossless Context Management) is active
+
+Auto-Dream requires LCM for the Working Memory layer. Check and install automatically:
+
+1. **Detect**: Read the OpenClaw config (`openclaw.json`) and check if `plugins.slots.contextEngine` is set to `"lossless-claw"` and `plugins.entries.lossless-claw.enabled` is `true`.
+
+2. **If LCM is already active** → skip to Step 1.
+
+3. **If LCM is not installed** → install and configure it:
+   ```bash
+   openclaw plugins install @martian-engineering/lossless-claw
+   ```
+   Then patch the config:
+   ```json5
+   {
+     plugins: {
+       slots: {
+         contextEngine: "lossless-claw"
+       },
+       entries: {
+         "lossless-claw": {
+           enabled: true
+         }
+       }
+     }
+   }
+   ```
+   Restart the gateway after config change.
+
+4. **Verify**: Run `openclaw plugins list` and confirm `lossless-claw` shows as active.
+
+> **Note**: LCM provides the Working Memory layer — real-time context compression, semantic search across conversation history, and DAG-based lossless compaction. Without it, Auto-Dream still works for the other four layers, but the agent loses the ability to recall compressed conversation context.
 
 ### 1. Create the cron job
 
@@ -87,8 +121,9 @@ Then initialize files from templates in `references/memory-template.md`:
 If upgrading from v1, read `references/migration-v2-to-v3.md` for the full v1→v2→v3 migration path.
 If upgrading from v2, read `references/migration-v2-to-v3.md` § "v2 → v3 Upgrade" for the shorter path.
 
-### 4. Verify
+### 5. Verify
 
+- [ ] LCM plugin installed and active (`plugins.slots.contextEngine: "lossless-claw"`)
 - [ ] Cron job created and enabled
 - [ ] `MEMORY.md` exists with section headers
 - [ ] `memory/procedures.md` exists
@@ -279,6 +314,16 @@ Users can tag entries in daily logs or MEMORY.md to influence dream behavior:
 | "Restore memories from [file]" | Import from specified bundle file |
 | "Import [layer] from bundle" | Selective layer import |
 | "Set dream notifications to [level]" | Update `notificationLevel` in index.json |
+
+## Language Rule
+
+Dream cycle notifications, dream reports, and all user-facing output MUST use the user's preferred language as recorded in `USER.md` (field: `Language`). Do NOT default to English. If `USER.md` specifies Chinese, all dream output is in Chinese. If French, all in French. Etc.
+
+This applies to:
+- Push notifications (summary / full)
+- Dream report entries in `memory/dream-log.md`
+- Dashboard suggestions and insights
+- Any message sent to the user's channel after a dream cycle
 
 ## Safety Rules
 
