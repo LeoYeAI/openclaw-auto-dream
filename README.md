@@ -6,9 +6,9 @@
 
 > **[MyClaw.ai](https://myclaw.ai)** — Your AI personal assistant with full server control. Every MyClaw instance runs on a dedicated server with complete code access, networking, and tool capabilities. This skill is part of the [MyClaw open skills ecosystem](https://myclaw.ai/skills).
 
-**Automatic memory consolidation for OpenClaw agents — like sleep for your AI.**
+**Cognitive memory architecture for OpenClaw agents — like sleep for your AI, but smarter.**
 
-An OpenClaw agent skill that automatically reviews daily memory logs, extracts valuable insights, and consolidates them into structured long-term memory. Inspired by how the human brain consolidates memories during sleep — your agent periodically "dreams" to organize what it knows.
+Not just memory cleanup — a full cognitive system. Inspired by how the human brain organizes knowledge across multiple memory systems, Auto-Dream gives your agent episodic memory, procedural memory, a knowledge graph with importance scoring, and intelligent forgetting curves.
 
 ---
 
@@ -16,25 +16,37 @@ An OpenClaw agent skill that automatically reviews daily memory logs, extracts v
 
 ---
 
-Inspired by how human brains consolidate memories during sleep, Auto-Dream periodically runs a "dream cycle" that reviews your agent's daily logs, extracts valuable insights, and consolidates them into long-term memory.
+## 🧠 Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Working Memory          (OpenClaw LCM — built-in)          │
+├─────────────────────────────────────────────────────────────┤
+│  Episodic Memory         memory/episodes/*.md               │
+│  (project narratives, event timelines)                      │
+├─────────────────────────────────────────────────────────────┤
+│  Long-term Memory        MEMORY.md                          │
+│  (structured knowledge: facts, decisions, people, strategy) │
+├─────────────────────────────────────────────────────────────┤
+│  Procedural Memory       memory/procedures.md               │
+│  (how-to: user prefs, workflows, tool patterns)             │
+├─────────────────────────────────────────────────────────────┤
+│  Memory Index            memory/index.json                  │
+│  (metadata, importance scores, relations, health stats)     │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## ✨ Features
 
-```
-Daily logs (memory/YYYY-MM-DD.md)  ──► Dream cycle ──► MEMORY.md (curated)
-        raw, append-only                  │                 structured, pruned
-                                          │
-                                          ├─ Extract: pull valuable insights
-                                          ├─ Merge: integrate into MEMORY.md
-                                          ├─ Deduplicate: remove redundancy
-                                          └─ Prune: archive stale entries
-```
-
-- **🔍 Scan** — Reviews the last 7 days of daily memory logs
-- **🧠 Extract** — Identifies decisions, lessons, people, projects, and open threads
-- **🔗 Merge** — Integrates into structured MEMORY.md sections with deduplication
-- **✂️ Prune** — Archives stale entries, merges similar ones, keeps memory lean
-- **🔒 Safe** — Never deletes source logs, backs up before major changes
+- **🏗️ Multi-Layer Memory** — Long-term facts, episodic narratives, procedural how-tos, all separately organized
+- **🔄 Three-Phase Dream Cycle** — Collect → Consolidate → Evaluate, runs automatically via cron
+- **📊 Importance Scoring** — Every memory entry scored by recency, reference frequency, and user markers
+- **📉 Forgetting Curves** — Low-importance, stale entries gracefully archived (never deleted)
+- **🏥 Health Scoring** — 0–100 memory health score with freshness, coverage, coherence, and efficiency metrics
+- **🔗 Knowledge Graph** — Entries linked by relations, tracked in `memory/index.json`
+- **🏷️ User Markers** — `⚠️ PERMANENT`, `🔥 HIGH`, `📌 PIN`, `<!-- important -->` for fine-grained control
+- **📋 Dream Reports** — Every cycle generates a report with stats, health score, changes, and suggestions
+- **🔒 Safe** — Never deletes source logs, backs up before major changes, episodes are append-only
 
 ## 📦 Installation
 
@@ -72,25 +84,39 @@ Just tell your agent:
 
 ### Dream Cycle Output
 
-After each cycle, a summary is logged to `memory/dream-log.md`:
+After each cycle, a report is logged to `memory/dream-log.md`:
 
 ```markdown
-## 2026-03-28 04:00 UTC
-- Files scanned: 7
-- New entries added: 3
-- Entries updated: 5
-- Entries pruned: 2
-- MEMORY.md size: 245 lines
+## 🌀 Dream Report — 2026-03-28 04:00 UTC
+
+### 📊 Stats
+- Scanned: 7 files | New: 3 | Updated: 5 | Pruned: 2
+- MEMORY.md: 245 lines | Episodes: 4 | Procedures: 12 entries
+
+### 🧠 Health: 78/100
+- Freshness: 85% | Coverage: 70% | Coherence: 65% | Efficiency: 90%
+
+### 📝 Changes
+- [New] Product roadmap decision for Q2
+- [Updated] Team headcount increased to 35
+- [Archived] Old API key reference (superseded)
+
+### 💡 Suggestions
+- "Coherence is moderate — consider linking related project entries"
+- "No episode for Dit.ai yet — consider creating one"
 ```
 
 ## 🛡️ Safety
 
-- **Never deletes daily log files** — they are the immutable source of truth
-- **Never removes `⚠️ PERMANENT` entries** in MEMORY.md
+- **Never deletes daily log files** — immutable source of truth
+- **Never removes `⚠️ PERMANENT` entries**
+- **Episodes are append-only** — narrative history is preserved
 - **Auto-backup** before changes exceeding 30% of MEMORY.md
+- **Index backup** before each dream cycle
 - **Diff reporting** when pruning more than 5 entries
+- **Secrets policy** — only consolidates secrets already in MEMORY.md
 
-## 🏗️ Architecture
+## 🏗️ How It Works
 
 Auto-Dream leverages OpenClaw's built-in primitives:
 
@@ -98,8 +124,35 @@ Auto-Dream leverages OpenClaw's built-in primitives:
 |-----------|------|
 | **Cron** | Schedules recurring dream cycles |
 | **Isolated Sessions** | Runs consolidation without polluting main chat |
-| **File System** | Reads/writes memory Markdown files |
+| **File System** | Reads/writes memory files across all layers |
 | **LCM** | Provides context compression for long histories |
+
+### Three-Phase Dream Cycle
+
+1. **Collect** — Scan daily logs (last 7 days), detect priority markers, extract insights by category
+2. **Consolidate** — Route to correct memory layer, semantic dedup, assign IDs, link relations
+3. **Evaluate** — Score importance, apply forgetting curve, calculate health, generate report
+
+### Importance Scoring
+
+```
+importance = base_weight × recency_factor × reference_boost
+```
+
+- **base_weight**: 1.0 (default), 2.0 (🔥 HIGH), always 1.0 (⚠️ PERMANENT)
+- **recency_factor**: decays from 1.0 to 0.1 over 180 days
+- **reference_boost**: logarithmic boost from cross-references
+
+### Forgetting Curve
+
+Entries are archived (never deleted) when:
+- Last referenced >90 days ago
+- Importance score <0.3
+- Not marked PERMANENT or PIN
+
+## 📦 Upgrading from v1
+
+If you have an existing Auto-Dream v1 installation, see the [migration guide](references/migration-v1-to-v2.md) for step-by-step upgrade instructions. The upgrade is non-destructive — all existing data is preserved.
 
 ## 📄 License
 
