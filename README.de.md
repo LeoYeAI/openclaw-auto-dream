@@ -1,37 +1,294 @@
-# openclaw-auto-dream
+<p align="center">
+  <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
+  <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
+  <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+</p>
 
-[![Powered by MyClaw.ai](https://img.shields.io/badge/Powered%20by-MyClaw.ai-gold?style=flat-square)](https://myclaw.ai)
-[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+<h1 align="center">🌀 OpenClaw Auto-Dream</h1>
 
-> **[MyClaw.ai](https://myclaw.ai)** — Your AI personal assistant with full server control. Every MyClaw instance runs on a dedicated server with complete code access, networking, and tool capabilities. This skill is part of the [MyClaw open skills ecosystem](https://myclaw.ai/skills).
+<p align="center">
+  <strong>Ihre KI erinnert sich nicht nur. Sie träumt.</strong>
+</p>
 
-**Automatische Gedächtniskonsolidierung für OpenClaw-Agenten — wie Schlaf für Ihre KI.**
+<p align="center">
+  Eine kognitive Gedächtnisarchitektur, die OpenClaw-Agenten die Fähigkeit gibt, zu schlafen, zu träumen und klüger aufzuwachen.<br/>
+  Fünf Gedächtnisschichten. Wichtigkeitsbewertung. Vergessenskurven. Wissensgraphen. Gesundheits-Dashboards.<br/>
+  <em>Keine Dateiverwaltung — Neurowissenschaft.</em>
+</p>
 
-Inspiriert von der Art und Weise, wie das menschliche Gehirn Erinnerungen im Schlaf konsolidiert, führt Auto-Dream regelmäßig einen „Traumzyklus" durch, der die täglichen Protokolle Ihres Agenten überprüft, wertvolle Erkenntnisse extrahiert und sie im Langzeitgedächtnis zusammenführt.
+<p align="center">
+  <a href="https://myclaw.ai">MyClaw.ai</a> · <a href="https://clawhub.ai/skills/openclaw-auto-dream">ClawHub</a> · <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
+</p>
 
 ---
 
-🌐 **Languages:** [English](README.md) · [中文](README.zh-CN.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Italiano](README.it.md) · [Español](README.es.md)
+<p align="center">
+  🌐 <a href="README.md">English</a> · <a href="README.zh-CN.md">中文</a> · <a href="README.fr.md">Français</a> · Deutsch · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.it.md">Italiano</a> · <a href="README.es.md">Español</a>
+</p>
 
 ---
 
-## ✨ Funktionen
+## Das Problem
 
-- **🔍 Scannen** — Überprüft die Speicherprotokolle der letzten 7 Tage
-- **🧠 Extraktion** — Identifiziert Entscheidungen, Erkenntnisse, Personen, Projekte und offene Aufgaben
-- **🔗 Zusammenführen** — Integriert in strukturierte MEMORY.md-Abschnitte mit Deduplizierung
-- **✂️ Bereinigung** — Archiviert veraltete Einträge, fasst ähnliche zusammen
-- **🔒 Sicherheit** — Löscht niemals Quellprotokolle, erstellt Backups vor größeren Änderungen
+Jeder KI-Agent vergisst. Sitzung beendet, Kontext weg. Dateien häufen sich an. Was war die Entscheidung von vor zwei Wochen? Welcher Workflow hat letztes Mal funktioniert? Ihr Agent hat Amnesie — funktional, aber vergisst alles in dem Moment, in dem er einschläft.
 
-## 📦 Installation
+**Auto-Dream behebt das.** Wie das menschliche Gehirn während des Schlafs Erinnerungen konsolidiert, führt Auto-Dream periodische „Traumzyklen" durch, die das Wissen Ihres Agenten scannen, extrahieren, organisieren, bewerten, verknüpfen und bereinigen — automatisch, sicher und intelligent.
+
+## Warum Dies Anders Ist
+
+| Funktion | Claude Code CLAUDE.md | Typische Gedächtnis-Plugins | **Auto-Dream** |
+|----------|----------------------|----------------------------|----------------|
+| Gedächtnisschichten | 1 flache Datei | 1 Datei oder Key-Value | **5 kognitive Schichten** |
+| Bewertung | ❌ | ❌ | **Wichtigkeit × Aktualität × Referenzen** |
+| Vergessen | Manuelles Aufräumen | Löschen oder nichts | **Graduelle Abnahme + Archivierung** |
+| Wissensgraph | ❌ | ❌ | **Verknüpfte Einträge + Erreichbarkeit** |
+| Gesundheitsüberwachung | ❌ | ❌ | **5-Metriken-Score + Trendverfolgung** |
+| Instanzübergreifend | ❌ | ❌ | **Export/Import/Merge-Bundles** |
+| Dashboard | ❌ | ❌ | **Interaktives HTML mit Diagrammen** |
+
+## Architektur
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   ┌─────────────┐   ┌──────────────┐   ┌───────────────────┐   │
+│   │   SAMMELN    │──▶│ KONSOLIDIEREN│──▶│    BEWERTEN       │   │
+│   │             │   │              │   │                   │   │
+│   │ 7 Tage      │   │ Schichten    │   │ Wichtigkeit       │   │
+│   │  scannen    │   │  zuordnen    │   │  bewerten         │   │
+│   │ Markierungen│   │ Semant. Dedup│   │ Vergessenskurve   │   │
+│   │  erkennen   │   │ IDs vergeben │   │ Gesundheitsmetr.  │   │
+│   │ Insights    │   │ Relationen   │   │ Insights          │   │
+│   │  extrahieren│   │  verknüpfen  │   │  generieren       │   │
+│   └─────────────┘   └──────────────┘   └───────────────────┘   │
+│                                                                  │
+│                      ☽ Traumzyklus ☾                             │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+     ┌──────────────┐ ┌─────────────┐ ┌──────────────┐
+     │  📊 Dashboard │ │ 🔔 Benachr. │ │ 📝 Traumlog  │
+     │  HTML+Diagr. │ │ Push an Chat│ │ Bericht      │
+     │              │ │             │ │  anhängen    │
+     └──────────────┘ └─────────────┘ └──────────────┘
+```
+
+### Fünf Gedächtnisschichten
+
+| Schicht | Speicherung | Was hierhin gehört |
+|---------|-------------|-------------------|
+| **Arbeits-** | OpenClaw LCM (integriert) | Aktiver Gesprächskontext |
+| **Episodisch** | `memory/episodes/*.md` | Projektnarrative, Ereignischronologien, Handlungsbögen |
+| **Langzeit** | `MEMORY.md` | Fakten, Entscheidungen, Personen, Meilensteine, Strategie |
+| **Prozedural** | `memory/procedures.md` | Workflows, Präferenzen, Tool-Muster, Abkürzungen |
+| **Index** | `memory/index.json` | Metadaten, Wichtigkeitsscores, Relationen, Gesundheitsstats |
+
+## Funktionen
+
+### 🧠 Kognitiver Traumzyklus
+
+Läuft automatisch per cron (Standard: täglich um 4 Uhr morgens). Drei Phasen:
+
+1. **Sammeln** — Scannt nicht konsolidierte Tagesprotokolle (letzte 7 Tage), erkennt Prioritätsmarkierungen (`⚠️ PERMANENT`, `🔥 HIGH`, `📌 PIN`, `<!-- important -->`), extrahiert Entscheidungen / Personen / Fakten / Projekte / Erkenntnisse / Prozeduren / offene Fäden
+
+2. **Konsolidieren** — Leitet jeden Insight an die richtige Gedächtnisschicht weiter, führt semantische Deduplizierung durch, vergibt eindeutige IDs (`mem_NNN`), erstellt Relationsverknüpfungen zwischen verbundenen Einträgen
+
+3. **Bewerten** — Bewertet die Wichtigkeit mit `base_weight × recency × reference_boost / 8.0`, wendet Vergessenskurven an (>90 Tage + geringe Wichtigkeit → archiviert, nie gelöscht), berechnet den 5-Metriken-Gesundheitsscore, generiert 1–3 nicht offensichtliche Beobachtungen, erstellt den Traumbericht, sendet die Benachrichtigung
+
+### 📊 Wichtigkeitsbewertung
+
+Jeder Eintrag erhält bei jedem Traumzyklus einen Score:
+
+```
+importance = (base_weight × recency_factor × reference_boost) / 8.0
+```
+
+- **Aktualität**: `max(0.1, 1.0 - days/180)` — graduelle Abnahme über 6 Monate
+- **Referenzen**: `log₂(count + 1)` — logarithmischer Boost für häufig referenzierte Einträge
+- **Markierungen**: `🔥 HIGH` verdoppelt das Basisgewicht; `⚠️ PERMANENT` ergibt immer 1.0
+
+### 📉 Intelligentes Vergessen
+
+Erinnerungen werden nicht gelöscht — sie werden elegant archiviert:
+- Der Eintrag muss >90 Tage unreferenziert sein UND Wichtigkeit < 0.3 haben
+- Komprimiert zu einer einzeiligen Zusammenfassung in `memory/archive.md`
+- Original-ID bleibt für Relationsverfolgung erhalten
+- `⚠️ PERMANENT`- und `📌 PIN`-Einträge sind immun
+
+### 🕸️ Wissensgraph
+
+Einträge werden durch semantische Relationen verknüpft. Die Erreichbarkeitsmetrik misst die Graphkonnektivität:
+- Union-Find-Algorithmus über alle Eintragsrelationen
+- Erkennt isolierte Wissenscluster
+- Schlägt Querverweise zur Verbesserung der Kohärenz vor
+
+### 🩺 Gesundheitsscore (5 Metriken)
+
+```
+health = (freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15) × 100
+```
+
+| Metrik | Was sie misst |
+|--------|---------------|
+| **Frische** | % der Einträge, die in den letzten 30 Tagen referenziert wurden |
+| **Abdeckung** | % der Wissenskategorien, die in den letzten 14 Tagen aktualisiert wurden |
+| **Kohärenz** | % der Einträge mit mindestens einer Relationsverknüpfung |
+| **Effizienz** | Wie kompakt MEMORY.md bleibt (umgekehrt proportional zur Zeilenzahl) |
+| **Erreichbarkeit** | Wie gut der Gedächtnisgraph vernetzt ist |
+
+### 🔔 Push-Benachrichtigungen
+
+Traumergebnisse werden automatisch in Ihren Chat geliefert:
+
+| Stufe | Was Sie erhalten |
+|-------|-----------------|
+| `silent` | Nichts — nur in dream-log.md protokolliert |
+| `summary` | `🌀 Gesundheit: 82/100 \| +5 neu, ~3 aktualisiert, -1 archiviert \| 💡 Top-Insight` |
+| `full` | Vollständiger Traumbericht mit allen Abschnitten |
+
+### 📊 Interaktives Dashboard
+
+Ein HTML-Dashboard ohne Abhängigkeiten mit:
+- Animierter Gesundheitsanzeige (0–100)
+- 5 Metrikkarten mit Farbcodierung
+- Donut-Diagramm der Gedächtnisverteilung
+- Wichtigkeitshistogramm
+- Liniendiagramm des Gesundheitstrends (letzte 30 Zyklen)
+- Kraftgerichtete Wissensgraph-Visualisierung
+- Aktuelle Änderungen, Insights, Vorschläge, veraltete Einträge
+
+Generierung: *„Gedächtnis-Dashboard anzeigen"*
+
+### 🔄 Instanzübergreifende Migration
+
+Verschieben Sie Erinnerungen zwischen OpenClaw-Instanzen:
+
+```
+"Export memory bundle"    →  memory/export-2026-03-28.json
+"Import memory bundle"    →  Merge mit vorhandenen (neuere gewinnt)
+"Export only procedures"  →  selektiver Schicht-Export
+```
+
+Portables JSON-Bundle-Format mit vollständigen Metadaten, Konfliktlösung und Pre-Import-Backup.
+
+### 🔮 Traum-Insights
+
+Nach jedem Zyklus 1–3 nicht offensichtliche Beobachtungen:
+- **Musterverbindungen** — *„Die Strategie von Projekt X spiegelt wider, was bei Projekt Y funktioniert hat"*
+- **Zeitliche Trends** — *„Strategische Entscheidungen häufen sich montags — wöchentliche Planung erkannt"*
+- **Lückenerkennung** — *„Keine Erkenntnisse für die letzten 4 Projekte erfasst — Retrospektiven überfällig"*
+- **Trendwarnungen** — *„Gesundheit über 3 Zyklen rückläufig: 85→79→72 — veraltete Einträge sammeln sich an"*
+- **Dichteanalyse** — *„mem_042 von 8 Einträgen referenziert, hat aber keine ausgehenden Verknüpfungen"*
+
+## Schnellstart
+
+### Installation
 
 ```bash
 clawhub install openclaw-auto-dream
 ```
 
-## 📄 Lizenz
+Oder manuell klonen:
+```bash
+git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
+  ~/.openclaw/workspace/skills/openclaw-auto-dream
+```
 
-MIT
+### Einrichtung
+
+Sagen Sie Ihrem Agenten: **„Auto-Dream einrichten"**
+
+Der Agent wird:
+1. Einen cron-Job erstellen (Standard: täglich um 4 Uhr morgens in Ihrer Zeitzone)
+2. `memory/index.json` mit dem v3.0-Schema initialisieren
+3. Ihre bevorzugte Benachrichtigungsstufe abfragen
+4. Den ersten Traumzyklus ausführen
+
+### Manueller Auslöser
+
+- *„Gedächtnispflege ausführen"*
+- *„Meine Erinnerungen konsolidieren"*
+- *„Jetzt träumen"*
+
+### Dashboard
+
+- *„Gedächtnis-Dashboard anzeigen"*
+- *„Gedächtnis-Dashboard generieren"*
+
+## Beispiel eines Traumberichts
+
+```markdown
+## 🌀 Traumbericht — 2026-03-28 04:00 UTC
+
+### 📊 Statistiken
+- Gescannt: 7 Dateien | Neu: 5 | Aktualisiert: 3 | Bereinigt: 1
+- MEMORY.md: 142 Zeilen | Episoden: 2 | Prozeduren: 8 Einträge
+
+### 🧠 Gesundheit: 76/100
+- Frische: 72% | Abdeckung: 80% | Kohärenz: 55% | Effizienz: 90% | Erreichbarkeit: 40%
+
+### 🔮 Insights
+- [Muster] Die Wachstumskurve von MyClaw spiegelt das frühe Shopify wider — deren Series-A-Playbook in Betracht ziehen
+- [Lücke] Keine Episodendatei für die Infrastrukturmigration — 12 zusammenhängende Einträge über Tagesprotokolle verstreut
+
+### 📝 Änderungen
+- [Neu] mem_089 — Produkt-Roadmap-Entscheidung: Mobile SDK priorisieren
+- [Aktualisiert] mem_042 — Teamgröße aktualisiert: 30 → 35
+- [Archiviert] mem_015 — Alter Staging-API-Endpoint (vor 95 Tagen abgelöst)
+
+### 💡 Vorschläge
+- Kohärenz bei 55% — mem_089 mit verwandten Projekteinträgen verknüpfen
+- Erreichbarkeit bei 0.40 — 3 isolierte Gedächtniscluster erkannt; Querverweise hinzufügen
+```
+
+## Sicherheit
+
+| Regel | Warum |
+|-------|-------|
+| Niemals Tagesprotokolle löschen | Unveränderliche Quelle der Wahrheit |
+| Niemals `⚠️ PERMANENT` entfernen | Benutzerschutz ist absolut |
+| Episoden sind nur-anhängend | Narrative Geschichte wird für immer bewahrt |
+| Auto-Backup bei >30% Änderung | Verhindert versehentliche Beschädigung |
+| Index-Backup bei jedem Zyklus | Immer wiederherstellbar |
+| Geheimnis-Richtlinie | Konsolidiert nur bereits vorhandene Geheimnisse |
+
+## Upgrade
+
+| Von | Nach | Anleitung |
+|-----|------|-----------|
+| v1.x | v2.x | [migration-v1-to-v2.md](references/migration-v1-to-v2.md) |
+| v2.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) |
+| v1.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) (enthält direkten Pfad) |
+
+Alle Upgrades sind nicht-destruktiv. Ihre Daten werden immer bewahrt.
+
+## So Funktioniert Es Unter der Haube
+
+Auto-Dream nutzt die nativen Primitiven von OpenClaw:
+
+| Primitive | Rolle |
+|-----------|-------|
+| **Cron** | Plant Traumzyklen in konfigurierbaren Intervallen |
+| **Isolierte Sitzungen** | Führt Konsolidierung ohne Verschmutzung des Hauptchat-Verlaufs durch |
+| **Dateisystem** | Liest/schreibt Gedächtnisdateien über alle fünf Schichten |
+| **LCM** | Bietet Arbeitsgedächtniskompression für lange Gespräche |
+
+Keine externen Abhängigkeiten. Keine API-Schlüssel. Keine Datenbanken. Nur Dateien und Intelligenz.
+
+## Über MyClaw.ai
+
+**[MyClaw.ai](https://myclaw.ai)** ist die KI-Assistenzplattform, die jedem Benutzer einen dedizierten Server mit voller Code-Kontrolle, Netzwerk- und Tool-Fähigkeiten bietet. Auto-Dream ist Teil des [offenen MyClaw-Skill-Ökosystems](https://myclaw.ai/skills) — wo Agenten durch installierbare Skill-Pakete neue Fähigkeiten erlernen.
+
+Jede MyClaw-Instanz führt OpenClaw aus. Jede Instanz kann träumen.
+
+## Lizenz
+
+[MIT](LICENSE)
 
 ---
+
+<p align="center">
+  <em>„Das Gehirn hört nicht auf zu arbeiten, wenn Sie schlafen. Es beginnt seine wichtigste Arbeit."</em>
+</p>

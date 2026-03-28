@@ -1,230 +1,291 @@
-# openclaw-auto-dream
+<p align="center">
+  <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
+  <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
+  <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+</p>
 
-[![Powered by MyClaw.ai](https://img.shields.io/badge/Powered%20by-MyClaw.ai-gold?style=flat-square)](https://myclaw.ai)
-[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+<h1 align="center">🌀 OpenClaw Auto-Dream</h1>
 
-> **[MyClaw.ai](https://myclaw.ai)** — Your AI personal assistant with full server control. Every MyClaw instance runs on a dedicated server with complete code access, networking, and tool capabilities. This skill is part of the [MyClaw open skills ecosystem](https://myclaw.ai/skills).
+<p align="center">
+  <strong>Your AI doesn't just remember. It dreams.</strong>
+</p>
 
-**Cognitive memory architecture for OpenClaw agents — like sleep for your AI, but smarter.**
+<p align="center">
+  A cognitive memory architecture that gives OpenClaw agents the ability to sleep, dream, and wake up smarter.<br/>
+  Five memory layers. Importance scoring. Forgetting curves. Knowledge graphs. Health dashboards.<br/>
+  <em>Not file management — neuroscience.</em>
+</p>
 
-Not just memory cleanup — a full cognitive system. Inspired by how the human brain organizes knowledge across multiple memory systems, Auto-Dream gives your agent episodic memory, procedural memory, a knowledge graph with importance scoring, and intelligent forgetting curves.
+<p align="center">
+  <a href="https://myclaw.ai">MyClaw.ai</a> · <a href="https://clawhub.ai/skills/openclaw-auto-dream">ClawHub</a> · <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
+</p>
 
 ---
 
-🌐 **Languages:** [中文](README.zh-CN.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Italiano](README.it.md) · [Español](README.es.md)
+<p align="center">
+  🌐 <a href="README.zh-CN.md">中文</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.it.md">Italiano</a> · <a href="README.es.md">Español</a>
+</p>
 
 ---
 
-## 🧠 Architecture
+## The Problem
+
+Every AI agent forgets. Session ends, context gone. Files pile up. What was that decision from two weeks ago? Which workflow worked last time? Your agent has amnesia — functional, but forgetting everything the moment it sleeps.
+
+**Auto-Dream fixes this.** Like the human brain consolidating memories during sleep, Auto-Dream runs periodic "dream cycles" that scan, extract, organize, score, link, and prune your agent's knowledge — automatically, safely, and intelligently.
+
+## Why This Is Different
+
+| Feature | Claude Code CLAUDE.md | Typical Memory Plugins | **Auto-Dream** |
+|---------|----------------------|----------------------|----------------|
+| Memory layers | 1 flat file | 1 file or key-value | **5 cognitive layers** |
+| Scoring | ❌ | ❌ | **Importance × Recency × References** |
+| Forgetting | Manual cleanup | Delete or nothing | **Gradual decay + archival** |
+| Knowledge graph | ❌ | ❌ | **Linked entries + reachability** |
+| Health monitoring | ❌ | ❌ | **5-metric score + trend tracking** |
+| Cross-instance | ❌ | ❌ | **Export/import/merge bundles** |
+| Dashboard | ❌ | ❌ | **Interactive HTML with charts** |
+
+## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  Working Memory          (OpenClaw LCM — built-in)          │
-├─────────────────────────────────────────────────────────────┤
-│  Episodic Memory         memory/episodes/*.md               │
-│  (project narratives, event timelines)                      │
-├─────────────────────────────────────────────────────────────┤
-│  Long-term Memory        MEMORY.md                          │
-│  (structured knowledge: facts, decisions, people, strategy) │
-├─────────────────────────────────────────────────────────────┤
-│  Procedural Memory       memory/procedures.md               │
-│  (how-to: user prefs, workflows, tool patterns)             │
-├─────────────────────────────────────────────────────────────┤
-│  Memory Index            memory/index.json                  │
-│  (metadata, importance scores, relations, health stats)     │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   ┌─────────────┐   ┌──────────────┐   ┌───────────────────┐   │
+│   │   COLLECT    │──▶│ CONSOLIDATE  │──▶│     EVALUATE      │   │
+│   │             │   │              │   │                   │   │
+│   │ Scan 7 days │   │ Route layers │   │ Score importance  │   │
+│   │ Flag markers│   │ Semantic dedup│   │ Forgetting curve  │   │
+│   │ Extract     │   │ Assign IDs   │   │ Health metrics    │   │
+│   │  insights   │   │ Link relations│  │ Generate insights │   │
+│   └─────────────┘   └──────────────┘   └───────────────────┘   │
+│                                                                  │
+│                      ☽ Dream Cycle ☾                             │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+     ┌──────────────┐ ┌─────────────┐ ┌──────────────┐
+     │  📊 Dashboard │ │ 🔔 Notify   │ │ 📝 Dream Log │
+     │  HTML + Charts│ │ Push to chat│ │ Append report│
+     └──────────────┘ └─────────────┘ └──────────────┘
 ```
 
-## ✨ Features
+### Five Memory Layers
 
-### Core (v2.0)
-- **🏗️ Multi-Layer Memory** — Long-term facts, episodic narratives, procedural how-tos, all separately organized
-- **🔄 Three-Phase Dream Cycle** — Collect → Consolidate → Evaluate, runs automatically via cron
-- **📊 Importance Scoring** — Every memory entry scored by recency, reference frequency, and user markers
-- **📉 Forgetting Curves** — Low-importance, stale entries gracefully archived (never deleted)
-- **🔗 Knowledge Graph** — Entries linked by relations, tracked in `memory/index.json`
-- **🏷️ User Markers** — `⚠️ PERMANENT`, `🔥 HIGH`, `📌 PIN`, `<!-- important -->` for fine-grained control
-- **🔒 Safe** — Never deletes source logs, backs up before major changes, episodes are append-only
+| Layer | Storage | What Goes Here |
+|-------|---------|---------------|
+| **Working** | OpenClaw LCM (built-in) | Active conversation context |
+| **Episodic** | `memory/episodes/*.md` | Project narratives, event timelines, story arcs |
+| **Long-term** | `MEMORY.md` | Facts, decisions, people, milestones, strategy |
+| **Procedural** | `memory/procedures.md` | Workflows, preferences, tool patterns, shortcuts |
+| **Index** | `memory/index.json` | Metadata, importance scores, relations, health stats |
 
-### New in v3.0
-- **🔔 Push Notifications** — Dream cycle results delivered to your chat (`silent` / `summary` / `full` modes)
-- **📊 Interactive Health Dashboard** — Beautiful dark-themed HTML dashboard with Canvas charts, force-directed memory graph, health trends, and importance distributions
-- **🔄 Cross-Instance Memory Migration** — Export/import portable JSON bundles to move, clone, or merge memory between instances
-- **🔮 Dream Insights** — AI-generated non-obvious observations: pattern connections, temporal trends, gap detection
-- **🕸️ Reachability Score** — New graph metric measuring how well-connected your memory entries are (5-metric health formula)
+## Features
 
-## 📦 Installation
+### 🧠 Cognitive Dream Cycle
 
-### Via ClawHub (recommended)
+Runs automatically via cron (default: 4 AM daily). Three phases:
+
+1. **Collect** — Scans unconsolidated daily logs (last 7 days), detects priority markers (`⚠️ PERMANENT`, `🔥 HIGH`, `📌 PIN`, `<!-- important -->`), extracts decisions / people / facts / projects / lessons / procedures / open threads
+
+2. **Consolidate** — Routes each insight to the correct memory layer, performs semantic deduplication, assigns unique IDs (`mem_NNN`), creates relation links between connected entries
+
+3. **Evaluate** — Scores importance using `base_weight × recency × reference_boost / 8.0`, applies forgetting curves (>90 days + low importance → archived, never deleted), calculates 5-metric health score, generates 1–3 non-obvious insights, writes dream report, sends notification
+
+### 📊 Importance Scoring
+
+Every entry gets a score on every dream cycle:
+
+```
+importance = (base_weight × recency_factor × reference_boost) / 8.0
+```
+
+- **Recency**: `max(0.1, 1.0 - days/180)` — gradual decay over 6 months
+- **References**: `log₂(count + 1)` — logarithmic boost for frequently-referenced entries
+- **Markers**: `🔥 HIGH` doubles base weight; `⚠️ PERMANENT` always scores 1.0
+
+### 📉 Intelligent Forgetting
+
+Memories aren't deleted — they're gracefully archived:
+- Entry must be >90 days unreferenced AND importance < 0.3
+- Compressed to a one-line summary in `memory/archive.md`
+- Original ID preserved for relation tracking
+- `⚠️ PERMANENT` and `📌 PIN` entries are immune
+
+### 🕸️ Knowledge Graph
+
+Entries are linked by semantic relations. The reachability metric measures graph connectivity:
+- Union-find algorithm across all entry relations
+- Detects isolated knowledge clusters
+- Suggests cross-references to improve coherence
+
+### 🩺 Health Score (5 Metrics)
+
+```
+health = (freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15) × 100
+```
+
+| Metric | What It Measures |
+|--------|-----------------|
+| **Freshness** | % of entries referenced in last 30 days |
+| **Coverage** | % of knowledge categories updated in last 14 days |
+| **Coherence** | % of entries with at least one relation link |
+| **Efficiency** | How concise MEMORY.md stays (inversely proportional to line count) |
+| **Reachability** | How well-connected the memory graph is |
+
+### 🔔 Push Notifications
+
+Dream results delivered to your chat automatically:
+
+| Level | What You Get |
+|-------|-------------|
+| `silent` | Nothing — logged to dream-log.md only |
+| `summary` | `🌀 Health: 82/100 \| +5 new, ~3 updated, -1 archived \| 💡 Top insight` |
+| `full` | Complete dream report with all sections |
+
+### 📊 Interactive Dashboard
+
+A zero-dependency HTML dashboard with:
+- Animated health gauge (0–100)
+- 5 metric cards with color-coded status
+- Memory distribution donut chart
+- Importance histogram
+- Health trend line chart (last 30 cycles)
+- Force-directed knowledge graph visualization
+- Recent changes, insights, suggestions, stale entries
+
+Generate it: *"Show memory dashboard"*
+
+### 🔄 Cross-Instance Migration
+
+Move memories between OpenClaw instances:
+
+```
+"Export memory bundle"    →  memory/export-2026-03-28.json
+"Import memory bundle"    →  merges with existing (newer wins)
+"Export only procedures"  →  selective layer export
+```
+
+Portable JSON bundle format with full metadata, conflict resolution, and pre-import backup.
+
+### 🔮 Dream Insights
+
+After each cycle, 1–3 non-obvious observations:
+- **Pattern connections** — *"Project X's strategy mirrors what worked for Project Y"*
+- **Temporal trends** — *"Strategic decisions cluster on Mondays — weekly planning detected"*
+- **Gap detection** — *"No lessons recorded for last 4 projects — retrospectives overdue"*
+- **Trend alerts** — *"Health declining 3 cycles: 85→79→72 — stale entries accumulating"*
+- **Density analysis** — *"mem_042 referenced by 8 entries but has no outbound links"*
+
+## Quick Start
+
+### Install
 
 ```bash
 clawhub install openclaw-auto-dream
 ```
 
-### Manual
-
-Clone this repo into your OpenClaw skills directory:
-
+Or clone manually:
 ```bash
-git clone https://github.com/LeoYeAI/openclaw-auto-dream.git ~/.openclaw/workspace/skills/openclaw-auto-dream
+git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
+  ~/.openclaw/workspace/skills/openclaw-auto-dream
 ```
 
-## 🚀 Usage
+### Setup
 
-### Automatic (Cron)
+Tell your agent: **"Set up Auto-Dream"**
 
-The skill sets up a daily cron job that runs in an isolated session:
-
-- Default schedule: **4:00 AM daily** (configurable)
-- Runs as an isolated agent session — no interference with your main chat
-- Tracks processed files to avoid re-consolidation
+The agent will:
+1. Create a cron job (default: daily at 4 AM in your timezone)
+2. Initialize `memory/index.json` with v3.0 schema
+3. Ask your preferred notification level
+4. Run the first dream cycle
 
 ### Manual Trigger
 
-Just tell your agent:
+- *"Run memory maintenance"*
+- *"Consolidate my memories"*
+- *"Dream now"*
 
-- "Run memory maintenance"
-- "Consolidate my memories"
-- "Dream now"
+### Dashboard
 
-### Dream Cycle Output
+- *"Show memory dashboard"*
+- *"Generate memory dashboard"*
 
-After each cycle, a report is logged to `memory/dream-log.md`:
+## Dream Report Example
 
 ```markdown
 ## 🌀 Dream Report — 2026-03-28 04:00 UTC
 
 ### 📊 Stats
-- Scanned: 7 files | New: 3 | Updated: 5 | Pruned: 2
-- MEMORY.md: 245 lines | Episodes: 4 | Procedures: 12 entries
+- Scanned: 7 files | New: 5 | Updated: 3 | Pruned: 1
+- MEMORY.md: 142 lines | Episodes: 2 | Procedures: 8 entries
 
-### 🧠 Health: 78/100
-- Freshness: 85% | Coverage: 70% | Coherence: 65% | Efficiency: 90% | Reachability: 55%
+### 🧠 Health: 76/100
+- Freshness: 72% | Coverage: 80% | Coherence: 55% | Efficiency: 90% | Reachability: 40%
 
 ### 🔮 Insights
-- [Pattern] MyClaw growth mirrors early Shopify trajectory
-- [Gap] No episode file for Dit.ai — significant history in daily logs
+- [Pattern] MyClaw growth trajectory mirrors early Shopify — consider their Series A playbook
+- [Gap] No episode file for infrastructure migration — 12 related entries scattered across daily logs
 
 ### 📝 Changes
-- [New] Product roadmap decision for Q2
-- [Updated] Team headcount increased to 35
-- [Archived] Old API key reference (superseded)
+- [New] mem_089 — Product roadmap decision: prioritize mobile SDK
+- [Updated] mem_042 — Team headcount updated: 30 → 35
+- [Archived] mem_015 — Old staging API endpoint (superseded 95 days ago)
 
 ### 💡 Suggestions
-- "Coherence is moderate — consider linking related project entries"
-- "Reachability at 0.55 — 3 isolated memory clusters detected"
+- Coherence at 55% — link mem_089 to related project entries
+- Reachability at 0.40 — 3 isolated memory clusters detected; add cross-references
 ```
 
-### 🔔 Push Notifications
+## Safety
 
-Configure notification level during setup:
+| Rule | Why |
+|------|-----|
+| Never delete daily logs | Immutable source of truth |
+| Never remove `⚠️ PERMANENT` | User protection is absolute |
+| Episodes are append-only | Narrative history preserved forever |
+| Auto-backup on >30% change | Prevents accidental corruption |
+| Index backup every cycle | Always recoverable |
+| Secrets policy | Only consolidates secrets already present |
 
-| Level | Behavior |
-|-------|----------|
-| `silent` | Log to dream-log.md only |
-| `summary` | Push a 3-line summary: health score + counts + top insight |
-| `full` | Push the entire dream report to your chat |
-
-Example summary notification:
-```
-🌀 Dream complete — Health: 78/100 | +3 new, ~5 updated, -2 archived
-🔮 Insight: MyClaw growth mirrors early Shopify trajectory
-```
-
-### 📊 Health Dashboard
-
-Generate an interactive HTML dashboard:
-```
-"Show memory dashboard" or "Generate memory dashboard"
-```
-
-The dashboard includes:
-- Animated health score gauge
-- 5 metric cards (freshness, coverage, coherence, efficiency, reachability)
-- Memory distribution donut chart
-- Importance histogram
-- Health trend line chart
-- Interactive force-directed memory graph
-- Dream insights, recent changes, suggestions, and stale entries
-
-### 🔄 Cross-Instance Migration
-
-**Export:**
-```
-"Export memory bundle" or "Pack memories for migration"
-```
-Creates `memory/export-YYYY-MM-DD.json` — a portable snapshot of all memory layers.
-
-**Import:**
-```
-"Import memory bundle" or "Restore memories from export-2026-03-28.json"
-```
-Merges imported data with existing memory, with conflict resolution (newer wins).
-
-**Selective:**
-```
-"Export only procedures" or "Import episodes from bundle"
-```
-
-## 🛡️ Safety
-
-- **Never deletes daily log files** — immutable source of truth
-- **Never removes `⚠️ PERMANENT` entries**
-- **Episodes are append-only** — narrative history is preserved
-- **Auto-backup** before changes exceeding 30% of MEMORY.md
-- **Index backup** before each dream cycle
-- **Diff reporting** when pruning more than 5 entries
-- **Secrets policy** — only consolidates secrets already in MEMORY.md
-
-## 🏗️ How It Works
-
-Auto-Dream leverages OpenClaw's built-in primitives:
-
-| Primitive | Role |
-|-----------|------|
-| **Cron** | Schedules recurring dream cycles |
-| **Isolated Sessions** | Runs consolidation without polluting main chat |
-| **File System** | Reads/writes memory files across all layers |
-| **LCM** | Provides context compression for long histories |
-
-### Three-Phase Dream Cycle
-
-1. **Collect** — Scan daily logs (last 7 days), detect priority markers, extract insights by category
-2. **Consolidate** — Route to correct memory layer, semantic dedup, assign IDs, link relations
-3. **Evaluate** — Score importance, apply forgetting curve, calculate health, generate report
-
-### Health Scoring (5 metrics in v3.0)
-
-```
-health = freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15
-```
-
-- **Freshness**: % of entries referenced in last 30 days
-- **Coverage**: % of knowledge categories updated in last 14 days
-- **Coherence**: % of entries with at least one relation link
-- **Efficiency**: inversely proportional to MEMORY.md line count
-- **Reachability** *(new)*: how well-connected the memory graph is (connected component analysis)
-
-### Forgetting Curve
-
-Entries are archived (never deleted) when:
-- Last referenced >90 days ago
-- Importance score <0.3
-- Not marked PERMANENT or PIN
-
-## 📦 Upgrading
+## Upgrading
 
 | From | To | Guide |
 |------|----|-------|
 | v1.x | v2.x | [migration-v1-to-v2.md](references/migration-v1-to-v2.md) |
 | v2.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) |
-| v1.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) (includes direct v1→v3 path) |
+| v1.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) (includes direct path) |
 
-All upgrades are non-destructive — existing data is preserved.
+All upgrades are non-destructive. Your data is always preserved.
 
-## 📄 License
+## How It Works Under the Hood
 
-MIT
+Auto-Dream leverages OpenClaw's native primitives:
+
+| Primitive | Role |
+|-----------|------|
+| **Cron** | Schedules dream cycles at configurable intervals |
+| **Isolated Sessions** | Runs consolidation without polluting main chat history |
+| **File System** | Reads/writes memory files across all five layers |
+| **LCM** | Provides working memory compression for long conversations |
+
+No external dependencies. No API keys. No databases. Just files and intelligence.
+
+## About MyClaw.ai
+
+**[MyClaw.ai](https://myclaw.ai)** is the AI personal assistant platform that gives every user a dedicated server with full code control, networking, and tool capabilities. Auto-Dream is part of the [MyClaw open skills ecosystem](https://myclaw.ai/skills) — where agents learn new abilities through installable skill packages.
+
+Every MyClaw instance runs OpenClaw. Every instance can dream.
+
+## License
+
+[MIT](LICENSE)
 
 ---
+
+<p align="center">
+  <em>"The brain doesn't stop working when you sleep. It starts its most important work."</em>
+</p>

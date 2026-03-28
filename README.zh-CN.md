@@ -1,97 +1,246 @@
-# openclaw-auto-dream
+<p align="center">
+  <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge" alt="Powered by MyClaw.ai" />
+  <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
+  <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+</p>
 
-[![Powered by MyClaw.ai](https://img.shields.io/badge/Powered%20by-MyClaw.ai-gold?style=flat-square)](https://myclaw.ai)
-[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+<h1 align="center">🌀 OpenClaw Auto-Dream</h1>
 
-> **[MyClaw.ai](https://myclaw.ai)** — 让每个用户拥有完整服务器控制权的 AI 个人助手平台。每个 MyClaw 实例运行在独立服务器上，拥有完整的代码访问、网络和工具能力。本 skill 是 [MyClaw 开放技能生态](https://myclaw.ai/skills) 的一部分。
+<p align="center">
+  <strong>你的 AI 不只是记住。它会做梦。</strong>
+</p>
 
-**OpenClaw 智能体的自动记忆整理 —— 让你的 AI 学会"做梦"。**
+<p align="center">
+  一套认知记忆架构，让 OpenClaw 智能体学会睡眠、做梦、然后更聪明地醒来。<br/>
+  五层记忆系统。重要性评分。遗忘曲线。知识图谱。健康仪表板。<br/>
+  <em>这不是文件管理——这是认知科学。</em>
+</p>
 
-一个 OpenClaw 智能体技能，自动审查每日记忆日志、提取有价值的洞察，并整合到结构化的长期记忆中。灵感来自人类大脑在睡眠中整理记忆的机制——你的智能体会定期"做梦"来整理它所知道的一切。
+<p align="center">
+  <a href="https://myclaw.ai">MyClaw.ai</a> · <a href="https://clawhub.ai/skills/openclaw-auto-dream">ClawHub</a> · <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
+</p>
 
 ---
 
-🌐 **Languages:** [English](README.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Italiano](README.it.md) · [Español](README.es.md)
+<p align="center">
+  🌐 <a href="README.md">English</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.it.md">Italiano</a> · <a href="README.es.md">Español</a>
+</p>
 
 ---
 
-灵感来自人类大脑在睡眠中整理记忆的机制。Auto-Dream 会定期执行"做梦周期"，审查智能体的每日日志，提取有价值的洞察，并整合到长期记忆中。
+## 问题
 
-## ✨ 功能
+每个 AI 智能体都会遗忘。会话结束，上下文消失。文件堆积如山。两周前的决策是什么？上次哪个工作流有效？你的智能体患有失忆症——能用，但每次睡着都忘光。
+
+**Auto-Dream 解决这个问题。** 就像人类大脑在睡眠时整合记忆一样，Auto-Dream 运行周期性的"做梦循环"——扫描、提取、组织、评分、关联、修剪——全自动、安全、智能。
+
+## 凭什么不一样
+
+| 特性 | Claude Code CLAUDE.md | 普通记忆插件 | **Auto-Dream** |
+|------|----------------------|-------------|----------------|
+| 记忆层级 | 1 个扁平文件 | 1 个文件或 KV | **5 层认知架构** |
+| 评分机制 | ❌ | ❌ | **重要性 × 时效性 × 引用频率** |
+| 遗忘机制 | 手动清理 | 删除或不管 | **渐进衰减 + 归档保留** |
+| 知识图谱 | ❌ | ❌ | **条目关联 + 可达性分析** |
+| 健康监控 | ❌ | ❌ | **5 维评分 + 趋势追踪** |
+| 跨实例迁移 | ❌ | ❌ | **导出/导入/合并记忆包** |
+| 可视化仪表板 | ❌ | ❌ | **交互式 HTML 图表** |
+
+## 架构
 
 ```
-每日日志 (memory/YYYY-MM-DD.md)  ──► 做梦周期 ──► MEMORY.md（长期记忆）
-        原始数据，只追加                │                 结构化，精简
-                                       │
-                                       ├─ 提取：拉取有价值的洞察
-                                       ├─ 合并：整合到 MEMORY.md
-                                       ├─ 去重：消除冗余内容
-                                       └─ 修剪：归档过期条目
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   ┌─────────────┐   ┌──────────────┐   ┌───────────────────┐   │
+│   │    收集      │──▶│    整合       │──▶│      评估         │   │
+│   │             │   │              │   │                   │   │
+│   │ 扫描7天日志  │   │ 路由到对应层  │   │ 重要性评分        │   │
+│   │ 检测标记    │   │ 语义去重      │   │ 遗忘曲线          │   │
+│   │ 提取洞察    │   │ 分配ID       │   │ 健康指标          │   │
+│   │            │   │ 建立关联      │   │ 生成洞察          │   │
+│   └─────────────┘   └──────────────┘   └───────────────────┘   │
+│                                                                  │
+│                       ☽ 做梦循环 ☾                               │
+└──────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+     ┌──────────────┐ ┌─────────────┐ ┌──────────────┐
+     │  📊 仪表板    │ │ 🔔 通知推送  │ │ 📝 梦境日志  │
+     │  HTML + 图表  │ │ 推送到聊天   │ │ 追加报告     │
+     └──────────────┘ └─────────────┘ └──────────────┘
 ```
 
-- **🔍 扫描** — 审查最近 7 天的每日记忆日志
-- **🧠 提取** — 识别决策、经验教训、人物、项目和待办事项
-- **🔗 合并** — 整合到结构化的 MEMORY.md 分区，自动去重
-- **✂️ 修剪** — 归档过期条目，合并相似内容，保持记忆精简
-- **🔒 安全** — 永不删除原始日志，重大变更前自动备份
+### 五层记忆系统
 
-## 📦 安装
+| 层级 | 存储位置 | 内容 |
+|------|---------|------|
+| **工作记忆** | OpenClaw LCM（内置） | 当前对话上下文 |
+| **情景记忆** | `memory/episodes/*.md` | 项目叙事、事件时间线、故事弧 |
+| **长期记忆** | `MEMORY.md` | 事实、决策、人物、里程碑、战略 |
+| **程序记忆** | `memory/procedures.md` | 工作流、偏好、工具用法、快捷方式 |
+| **记忆索引** | `memory/index.json` | 元数据、重要性评分、关联关系、健康统计 |
 
-### 通过 ClawHub（推荐）
+## 核心功能
+
+### 🧠 认知做梦循环
+
+通过 cron 自动运行（默认：每天凌晨 4 点）。三个阶段：
+
+1. **收集** — 扫描未处理的每日日志（最近 7 天），检测优先级标记（`⚠️ PERMANENT`、`🔥 HIGH`、`📌 PIN`、`<!-- important -->`），提取决策/人物/事实/项目/经验/流程/待办
+
+2. **整合** — 将每条洞察路由到正确的记忆层，执行语义去重，分配唯一 ID（`mem_NNN`），在相关条目间建立关联
+
+3. **评估** — 计算重要性评分，应用遗忘曲线，计算 5 维健康分数，生成 1–3 条非显而易见的洞察，写入梦境报告，发送通知
+
+### 📊 重要性评分
+
+每个条目在每次循环中获得评分：
+
+```
+importance = (base_weight × recency_factor × reference_boost) / 8.0
+```
+
+- **时效性**：`max(0.1, 1.0 - 天数/180)` — 6 个月内渐进衰减
+- **引用频率**：`log₂(count + 1)` — 对数增长，高频引用获得加成
+- **标记加权**：`🔥 HIGH` 基础权重翻倍；`⚠️ PERMANENT` 始终为 1.0
+
+### 📉 智能遗忘
+
+记忆永远不会被删除——只会被优雅地归档：
+- 条目必须 >90 天未引用 且 重要性 < 0.3
+- 压缩为一行摘要存入 `memory/archive.md`
+- 保留原始 ID 用于关系追踪
+- `⚠️ PERMANENT` 和 `📌 PIN` 条目完全免疫
+
+### 🕸️ 知识图谱
+
+条目通过语义关联互相链接。可达性指标衡量图谱连通性：
+- 基于 Union-Find 算法的连通分量分析
+- 检测孤立的知识簇
+- 自动建议交叉引用以提高连贯性
+
+### 🩺 健康评分（5 维指标）
+
+```
+health = (新鲜度×0.25 + 覆盖度×0.25 + 连贯度×0.2 + 效率×0.15 + 可达性×0.15) × 100
+```
+
+| 指标 | 含义 |
+|------|------|
+| **新鲜度** | 最近 30 天内被引用的条目占比 |
+| **覆盖度** | 最近 14 天内有更新的知识类别占比 |
+| **连贯度** | 至少有一个关联链接的条目占比 |
+| **效率** | MEMORY.md 的精简程度（与行数成反比） |
+| **可达性** | 记忆图谱的连通程度 |
+
+### 🔔 推送通知
+
+梦境结果自动推送到你的聊天频道：
+
+| 级别 | 你会收到什么 |
+|------|------------|
+| `silent` | 无推送——仅写入 dream-log.md |
+| `summary` | `🌀 健康度: 82/100 \| +5 新 ~3 更新 -1 归档 \| 💡 顶级洞察` |
+| `full` | 完整的梦境报告，包含所有章节 |
+
+### 📊 交互式仪表板
+
+零依赖的 HTML 仪表板，包含：
+- 动画健康度仪表盘（0–100）
+- 5 维指标卡片，带颜色状态
+- 记忆分布环形图
+- 重要性分布柱状图
+- 健康趋势折线图（最近 30 个周期）
+- 力导向知识图谱可视化
+- 近期变更、洞察、建议、过期条目
+
+生成命令：*"显示记忆仪表板"*
+
+### 🔄 跨实例迁移
+
+在 OpenClaw 实例间迁移记忆：
+
+```
+"导出记忆包"      →  memory/export-2026-03-28.json
+"导入记忆包"      →  与现有记忆合并（较新者胜出）
+"只导出程序记忆"   →  选择性导出单个层级
+```
+
+便携 JSON 包格式，包含完整元数据、冲突解决、导入前自动备份。
+
+### 🔮 梦境洞察
+
+每次循环后，生成 1–3 条非显而易见的观察：
+- **模式关联** — *"项目 X 的增长策略与项目 Y 的成功路径惊人相似"*
+- **时间趋势** — *"战略决策集中在周一做出——检测到每周规划模式"*
+- **盲区检测** — *"最近 4 个项目没有记录经验教训——可能需要做复盘"*
+- **趋势预警** — *"健康度连续 3 个周期下降: 85→79→72——过期条目在累积"*
+
+## 快速开始
+
+### 安装
 
 ```bash
 clawhub install openclaw-auto-dream
 ```
 
-### 手动安装
-
-克隆到 OpenClaw skills 目录：
-
+或手动克隆：
 ```bash
-git clone https://github.com/LeoYeAI/openclaw-auto-dream.git ~/.openclaw/workspace/skills/openclaw-auto-dream
+git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
+  ~/.openclaw/workspace/skills/openclaw-auto-dream
 ```
 
-## 🚀 使用
+### 设置
 
-### 自动模式（定时任务）
+告诉你的智能体：**"设置 Auto-Dream"**
 
-Skill 会创建一个每日定时任务，在隔离会话中运行：
-
-- 默认：**每天凌晨 4:00**（可配置）
-- 隔离 session 运行，不干扰主聊天
-- 追踪已处理文件，避免重复整理
+智能体会自动：
+1. 创建 cron 定时任务（默认：你所在时区的每天凌晨 4 点）
+2. 初始化 `memory/index.json`（v3.0 schema）
+3. 询问你偏好的通知级别
+4. 运行首次做梦循环
 
 ### 手动触发
 
-直接对你的 Agent 说：
+- *"整理记忆"*
+- *"做个梦"*
+- *"Run memory maintenance"*
 
-- "整理一下记忆"
-- "做个梦"
-- "Run memory maintenance"
+## 安全机制
 
-### 做梦周期输出
+| 规则 | 原因 |
+|------|------|
+| 永不删除每日日志 | 不可变的事实来源 |
+| 永不移除 `⚠️ PERMANENT` | 用户保护是绝对的 |
+| 情景记忆只追加不修改 | 叙事历史永久保留 |
+| 变更超过 30% 自动备份 | 防止意外损坏 |
+| 每次循环备份索引 | 始终可恢复 |
+| 密钥策略 | 仅整合已有密钥，不创建新条目 |
 
-每次周期结束后，摘要记录到 `memory/dream-log.md`：
+## 升级指南
 
-```markdown
-## 2026-03-28 04:00 UTC
-- 扫描文件数: 7
-- 新增条目: 3
-- 更新条目: 5
-- 修剪条目: 2
-- MEMORY.md 大小: 245 行
-```
+| 从 | 到 | 指南 |
+|----|----|------|
+| v1.x | v2.x | [migration-v1-to-v2.md](references/migration-v1-to-v2.md) |
+| v2.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) |
+| v1.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md)（含直达路径） |
 
-## 🛡️ 安全机制
+所有升级非破坏性。你的数据始终被保留。
 
-- **永不删除每日日志文件** — 它们是不可变的事实来源
-- **永不移除 `⚠️ PERMANENT` 标记的条目**
-- 变更超过 MEMORY.md 30% 时**自动备份**
-- 修剪超过 5 条时**报告差异**
+## 关于 MyClaw.ai
 
-## 📄 许可证
+**[MyClaw.ai](https://myclaw.ai)** 是一个 AI 个人助手平台，让每个用户拥有一台完整的独立服务器，具备完全的代码控制、网络访问和工具调用能力。Auto-Dream 是 [MyClaw 开放技能生态](https://myclaw.ai/skills) 的一部分——智能体通过安装技能包学习新能力。
 
-MIT
+每一台 MyClaw 实例运行 OpenClaw。每一台都可以做梦。
+
+## 许可证
+
+[MIT](LICENSE)
 
 ---
+
+<p align="center">
+  <em>"大脑在你睡着时并没有停止工作。它开始了最重要的工作。"</em>
+</p>
