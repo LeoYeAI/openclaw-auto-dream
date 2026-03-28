@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Memory Health Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f1a;--card:#1a1a2e;--card-hover:#1e1e35;--gold:#D4AF37;--teal:#4ECDC4;--purple:#A855F7;--red:#FF6B6B;--green:#51CF66;--text:#e0e0e0;--text-dim:#8888aa;--border:#2a2a4a}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:24px 16px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+header h1{font-size:28px;color:#fff;letter-spacing:-0.5px}
+header .meta{text-align:right;color:var(--text-dim);font-size:13px}
+header .badge{display:inline-block;background:linear-gradient(135deg,#D4AF3733,#D4AF3711);border:1px solid var(--gold);color:var(--gold);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.grid{display:grid;gap:20px}
+.grid-1{grid-template-columns:1fr}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--card);border-radius:14px;padding:20px;border:1px solid var(--border);transition:all .2s}
+.card:hover{border-color:#3a3a5a;background:var(--card-hover)}
+.card h3{font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;padding:20px 0}
+.gauge-label{font-size:48px;font-weight:700;margin-top:16px}
+.gauge-sub{color:var(--text-dim);font-size:14px}
+.metric-card{text-align:center}
+.metric-card .value{font-size:28px;font-weight:700;margin:8px 0 4px}
+.metric-card .bar{height:6px;border-radius:3px;background:#2a2a4a;margin-top:8px;overflow:hidden}
+.metric-card .bar-fill{height:100%;border-radius:3px;transition:width 1.5s ease}
+.insight-card{border-color:var(--gold);background:linear-gradient(135deg,#D4AF3708,var(--card))}
+.insight-item{padding:12px 16px;border-left:3px solid var(--gold);margin-bottom:12px;background:#D4AF3706;border-radius:0 8px 8px 0;font-size:14px}
+.insight-item::before{content:'💡 ';font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+table th{text-align:left;color:var(--text-dim);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+table td{padding:10px 12px;border-bottom:1px solid #1f1f35}
+table tr:hover td{background:#1f1f35}
+.type-new{color:var(--green)}
+.type-updated{color:var(--teal)}
+.type-archived{color:var(--text-dim)}
+.suggestion-item{padding:10px 14px;margin-bottom:8px;background:#D4AF3709;border-radius:8px;font-size:13px;border-left:3px solid var(--gold)}
+.stale-item{padding:10px 14px;margin-bottom:8px;background:#FF6B6B09;border-radius:8px;font-size:13px;border-left:3px solid var(--red);display:flex;justify-content:space-between;align-items:center}
+.stale-item .days{color:var(--red);font-weight:600;font-size:12px;white-space:nowrap;margin-left:12px}
+.imp-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.graph-container{position:relative;width:100%;height:400px;border-radius:8px;overflow:hidden}
+.graph-container canvas{width:100%;height:100%}
+footer{text-align:center;padding:32px 0 16px;color:var(--text-dim);font-size:12px}
+footer a{color:var(--gold);text-decoration:none}
+@media(max-width:768px){
+.grid-2,.grid-5{grid-template-columns:1fr 1fr}
+.grid-5{grid-template-columns:repeat(3,1fr)}
+header h1{font-size:22px}
+.gauge-label{font-size:36px}
+.graph-container{height:300px}
+}
+@media(max-width:480px){
+.grid-2{grid-template-columns:1fr}
+.grid-5{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<header>
+<div>
+<h1>🧠 Memory Health Dashboard</h1>
+<div style="color:var(--text-dim);font-size:14px;margin-top:4px" id="subtitle"></div>
+</div>
+<div class="meta">
+<div class="badge">Powered by MyClaw.ai</div>
+<div style="margin-top:6px" id="gentime"></div>
+</div>
+</header>
+
+<!-- Health Overview -->
+<div class="grid grid-1" style="margin-bottom:20px">
+<div class="card gauge-wrap">
+<canvas id="gaugeCanvas" width="220" height="130"></canvas>
+<div class="gauge-label" id="healthScore">0</div>
+<div class="gauge-sub">Memory Health Score</div>
+</div>
+</div>
+
+<div class="grid grid-5" style="margin-bottom:20px" id="metricsRow"></div>
+
+<!-- Distribution + Importance -->
+<div class="grid grid-2" style="margin-bottom:20px">
+<div class="card">
+<h3>📊 Memory Distribution</h3>
+<canvas id="donutCanvas" width="300" height="220"></canvas>
+<div id="donutLegend" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;justify-content:center;font-size:13px"></div>
+</div>
+<div class="card">
+<h3>📈 Importance Distribution</h3>
+<canvas id="barCanvas" width="300" height="260"></canvas>
+</div>
+</div>
+
+<!-- Health Trend -->
+<div class="grid grid-1" style="margin-bottom:20px">
+<div class="card">
+<h3>📉 Health Score Trend</h3>
+<canvas id="trendCanvas" width="800" height="200"></canvas>
+</div>
+</div>
+
+<!-- Insights -->
+<div class="grid grid-1" style="margin-bottom:20px" id="insightsSection"></div>
+
+<!-- Recent Changes -->
+<div class="grid grid-1" style="margin-bottom:20px">
+<div class="card">
+<h3>🔄 Recent Changes</h3>
+<table><thead><tr><th>Type</th><th>ID</th><th>Summary</th></tr></thead><tbody id="changesBody"></tbody></table>
+</div>
+</div>
+
+<!-- Suggestions + Stale -->
+<div class="grid grid-2" style="margin-bottom:20px">
+<div class="card">
+<h3>💡 Suggestions</h3>
+<div id="suggestionsWrap"></div>
+</div>
+<div class="card">
+<h3>⏰ Stale Entries</h3>
+<div id="staleWrap"></div>
+</div>
+</div>
+
+<!-- Memory Graph -->
+<div class="grid grid-1" style="margin-bottom:20px" id="graphSection">
+<div class="card">
+<h3>🕸️ Memory Graph</h3>
+<div class="graph-container"><canvas id="graphCanvas"></canvas></div>
+</div>
+</div>
+
+<footer>
+<a href="https://myclaw.ai">Powered by MyClaw.ai</a> — openclaw-auto-dream v3.0<br>
+<span style="font-size:11px">Generated by Auto-Dream cognitive memory system</span>
+</footer>
+</div>
+
+<script>
+// DATA INJECTION POINT
+const DREAM_DATA = __DREAM_DATA_PLACEHOLDER__;
+
+// Fallback sample
+const SAMPLE={generatedAt:"2026-03-28T04:00:00Z",instanceName:"Sample Agent",health:{score:78,freshness:.85,coverage:.7,coherence:.65,efficiency:.9,reachability:.55},layers:{longterm:{entries:45,lines:250},episodic:{files:4,totalEntries:28},procedural:{entries:12},archive:{entries:8}},importanceDistribution:[{range:"0.0-0.2",count:5},{range:"0.2-0.4",count:12},{range:"0.4-0.6",count:18},{range:"0.6-0.8",count:15},{range:"0.8-1.0",count:10}],healthHistory:[{date:"2026-03-20",score:72},{date:"2026-03-21",score:75},{date:"2026-03-22",score:73},{date:"2026-03-23",score:76},{date:"2026-03-24",score:78},{date:"2026-03-25",score:77},{date:"2026-03-26",score:79},{date:"2026-03-27",score:78},{date:"2026-03-28",score:78}],recentChanges:[{type:"new",id:"mem_089",summary:"Product roadmap decision"},{type:"updated",id:"mem_042",summary:"ARR updated"},{type:"archived",id:"mem_015",summary:"Old key"}],insights:["Growth mirrors early Shopify trajectory","Three projects share open-source-first pattern","Health trending upward for 5 cycles"],suggestions:["Link 12 isolated entries","Create Dit.ai episode","Review 3 stale procedures"],staleEntries:[{id:"mem_003",summary:"Early API testing",daysSinceReferenced:95,importance:.18}],memoryGraph:{nodes:[{id:"mem_042",label:"MyClaw ARR",importance:.92,layer:"longterm"},{id:"mem_051",label:"Dit.ai",importance:.85,layer:"longterm"},{id:"mem_089",label:"Q2 Roadmap",importance:.78,layer:"longterm"},{id:"mem_060",label:"Deploy Flow",importance:.7,layer:"procedural"},{id:"mem_070",label:"Launch",importance:.88,layer:"episodic"}],edges:[{from:"mem_042",to:"mem_089"},{from:"mem_042",to:"mem_051"},{from:"mem_051",to:"mem_089"},{from:"mem_070",to:"mem_042"},{from:"mem_060",to:"mem_070"}]}};
+
+const D=(typeof DREAM_DATA!=='undefined'&&DREAM_DATA&&DREAM_DATA.health)?DREAM_DATA:SAMPLE;
+
+// Helpers
+function color(v){return v>=.7?'#51CF66':v>=.4?'#D4AF37':'#FF6B6B'}
+function colorHex(v){return color(v/100)}
+const dpr=window.devicePixelRatio||1;
+function hiDpi(canvas,w,h){canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';const c=canvas.getContext('2d');c.scale(dpr,dpr);return c}
+
+// Header
+document.getElementById('subtitle').textContent=D.instanceName||'';
+document.getElementById('gentime').textContent=D.generatedAt?new Date(D.generatedAt).toLocaleString():'';
+
+// Health Gauge
+(function(){
+const cv=document.getElementById('gaugeCanvas');
+const ctx=hiDpi(cv,220,130);
+const cx=110,cy=110,r=85;
+const score=D.health.score;
+const sc=colorHex(score);
+let anim=0;
+function draw(){
+anim=Math.min(anim+2,score);
+ctx.clearRect(0,0,220,130);
+// bg arc
+ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI,0);ctx.lineWidth=16;ctx.strokeStyle='#2a2a4a';ctx.lineCap='round';ctx.stroke();
+// value arc
+const pct=anim/100;
+ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI,-Math.PI+Math.PI*pct);ctx.lineWidth=16;ctx.strokeStyle=sc;ctx.lineCap='round';ctx.stroke();
+// glow
+ctx.shadowColor=sc;ctx.shadowBlur=20;ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI,-Math.PI+Math.PI*pct);ctx.lineWidth=4;ctx.strokeStyle=sc;ctx.stroke();ctx.shadowBlur=0;
+if(anim<score)requestAnimationFrame(draw);
+document.getElementById('healthScore').textContent=Math.round(anim);
+document.getElementById('healthScore').style.color=sc;
+}
+draw();
+})();
+
+// Metric cards
+(function(){
+const metrics=[
+{label:'Freshness',value:D.health.freshness,icon:'🌱'},
+{label:'Coverage',value:D.health.coverage,icon:'📋'},
+{label:'Coherence',value:D.health.coherence,icon:'🔗'},
+{label:'Efficiency',value:D.health.efficiency,icon:'⚡'},
+{label:'Reachability',value:D.health.reachability,icon:'🕸️'}
+];
+const row=document.getElementById('metricsRow');
+metrics.forEach(m=>{
+const pct=Math.round(m.value*100);
+const c=color(m.value);
+row.innerHTML+=`<div class="card metric-card"><div style="font-size:20px">${m.icon}</div><div class="value" style="color:${c}">${pct}%</div><div style="color:var(--text-dim);font-size:12px">${m.label}</div><div class="bar"><div class="bar-fill" style="width:${pct}%;background:${c}"></div></div></div>`;
+});
+})();
+
+// Donut
+(function(){
+const cv=document.getElementById('donutCanvas');
+const ctx=hiDpi(cv,300,220);
+const cx=150,cy=110,r=80,w=30;
+const layers=[
+{label:'Long-term',count:D.layers.longterm.entries,color:'#D4AF37'},
+{label:'Episodic',count:D.layers.episodic.totalEntries||D.layers.episodic.files||0,color:'#4ECDC4'},
+{label:'Procedural',count:D.layers.procedural.entries,color:'#A855F7'},
+{label:'Archive',count:D.layers.archive.entries,color:'#555577'}
+];
+const total=layers.reduce((s,l)=>s+l.count,0);
+let start=-Math.PI/2;
+layers.forEach(l=>{
+const angle=(l.count/total)*Math.PI*2;
+ctx.beginPath();ctx.arc(cx,cy,r,start,start+angle);ctx.arc(cx,cy,r-w,start+angle,start,true);ctx.closePath();ctx.fillStyle=l.color;ctx.fill();
+start+=angle;
+});
+ctx.fillStyle='#fff';ctx.font='bold 24px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+ctx.fillText(total,cx,cy-6);ctx.font='12px system-ui';ctx.fillStyle='#8888aa';ctx.fillText('entries',cx,cy+14);
+const leg=document.getElementById('donutLegend');
+layers.forEach(l=>{leg.innerHTML+=`<span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${l.color};margin-right:4px"></span>${l.label}: ${l.count}</span>`;});
+})();
+
+// Importance bars
+(function(){
+const cv=document.getElementById('barCanvas');
+const ctx=hiDpi(cv,300,260);
+const dist=D.importanceDistribution||[];
+const maxC=Math.max(...dist.map(d=>d.count),1);
+const colors=['#FF6B6B','#FF9F43','#D4AF37','#4ECDC4','#51CF66'];
+const bh=30,gap=12,left=70,top=20,bw=180;
+dist.forEach((d,i)=>{
+const y=top+i*(bh+gap);
+ctx.fillStyle='#8888aa';ctx.font='12px system-ui';ctx.textAlign='right';ctx.textBaseline='middle';
+ctx.fillText(d.range,left-8,y+bh/2);
+const w=(d.count/maxC)*bw;
+ctx.fillStyle='#2a2a4a';ctx.beginPath();ctx.roundRect(left,y,bw,bh,6);ctx.fill();
+ctx.fillStyle=colors[i]||'#D4AF37';ctx.beginPath();ctx.roundRect(left,y,w,bh,6);ctx.fill();
+ctx.fillStyle='#fff';ctx.font='bold 13px system-ui';ctx.textAlign='left';
+ctx.fillText(d.count,left+w+8,y+bh/2);
+});
+})();
+
+// Health trend
+(function(){
+const cv=document.getElementById('trendCanvas');
+const rect=cv.parentElement.getBoundingClientRect();
+const W=Math.max(rect.width-40,400),H=200;
+const ctx=hiDpi(cv,W,H);
+const hist=D.healthHistory||[];
+if(!hist.length)return;
+const pad={l:40,r:20,t:20,b:30};
+const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
+// grid
+ctx.strokeStyle='#2a2a4a';ctx.lineWidth=1;
+for(let i=0;i<=4;i++){
+const y=pad.t+ph*(1-i/4);
+ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+ctx.fillStyle='#555577';ctx.font='11px system-ui';ctx.textAlign='right';ctx.fillText(Math.round(i*25),pad.l-6,y+4);
+}
+// area + line
+const pts=hist.map((h,i)=>({x:pad.l+i/(hist.length-1)*pw,y:pad.t+ph*(1-h.score/100)}));
+// area
+const grad=ctx.createLinearGradient(0,pad.t,0,H-pad.b);
+grad.addColorStop(0,'#4ECDC433');grad.addColorStop(1,'#4ECDC400');
+ctx.beginPath();ctx.moveTo(pts[0].x,H-pad.b);
+pts.forEach(p=>ctx.lineTo(p.x,p.y));
+ctx.lineTo(pts[pts.length-1].x,H-pad.b);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+// line
+ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
+ctx.strokeStyle='#4ECDC4';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+// dots
+pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#4ECDC4';ctx.fill();ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();});
+// x labels
+ctx.fillStyle='#555577';ctx.font='11px system-ui';ctx.textAlign='center';
+hist.forEach((h,i)=>{if(i%Math.max(1,Math.floor(hist.length/6))===0||i===hist.length-1){ctx.fillText(h.date.slice(5),pts[i].x,H-pad.b+16);}});
+})();
+
+// Insights
+(function(){
+const sec=document.getElementById('insightsSection');
+if(!D.insights||!D.insights.length){sec.style.display='none';return;}
+let html='<div class="card insight-card"><h3>🔮 Dream Insights</h3>';
+D.insights.forEach(i=>{html+=`<div class="insight-item">${i}</div>`;});
+html+='</div>';sec.innerHTML=html;
+})();
+
+// Recent changes
+(function(){
+const tb=document.getElementById('changesBody');
+const icons={new:'✨',updated:'🔄',archived:'📦'};
+const cls={new:'type-new',updated:'type-updated',archived:'type-archived'};
+(D.recentChanges||[]).forEach(c=>{
+tb.innerHTML+=`<tr><td class="${cls[c.type]||''}">${icons[c.type]||''} ${c.type}</td><td style="color:var(--teal);font-family:monospace;font-size:13px">${c.id}</td><td>${c.summary}</td></tr>`;
+});
+})();
+
+// Suggestions
+(function(){
+const w=document.getElementById('suggestionsWrap');
+(D.suggestions||[]).forEach(s=>{w.innerHTML+=`<div class="suggestion-item">⚠️ ${s}</div>`;});
+if(!D.suggestions||!D.suggestions.length)w.innerHTML='<div style="color:var(--text-dim)">No suggestions — memory is in good shape!</div>';
+})();
+
+// Stale entries
+(function(){
+const w=document.getElementById('staleWrap');
+(D.staleEntries||[]).forEach(s=>{
+const c=s.importance<.2?'var(--red)':'var(--gold)';
+w.innerHTML+=`<div class="stale-item"><div>⏰ <strong>${s.id}</strong> — ${s.summary}<br><span class="imp-badge" style="background:${c}22;color:${c}">imp: ${s.importance.toFixed(2)}</span></div><div class="days">${s.daysSinceReferenced}d ago</div></div>`;
+});
+if(!D.staleEntries||!D.staleEntries.length)w.innerHTML='<div style="color:var(--text-dim)">No stale entries detected.</div>';
+})();
+
+// Memory Graph (force-directed)
+(function(){
+const sec=document.getElementById('graphSection');
+const g=D.memoryGraph;
+if(!g||!g.nodes||!g.nodes.length){sec.style.display='none';return;}
+const cv=document.getElementById('graphCanvas');
+const rect=cv.parentElement.getBoundingClientRect();
+const W=Math.max(rect.width,300),H=400;
+const ctx=hiDpi(cv,W,H);
+const layerColors={longterm:'#D4AF37',episodic:'#4ECDC4',procedural:'#A855F7',archive:'#555577'};
+// init positions
+const nodes=g.nodes.map((n,i)=>({...n,x:W/2+Math.cos(i*2.4)*120+Math.random()*40,y:H/2+Math.sin(i*2.4)*100+Math.random()*40,vx:0,vy:0}));
+const nodeMap={};nodes.forEach(n=>nodeMap[n.id]=n);
+const edges=(g.edges||[]).filter(e=>nodeMap[e.from]&&nodeMap[e.to]);
+let hover=null;
+
+function simulate(){
+// repulsion
+for(let i=0;i<nodes.length;i++){
+for(let j=i+1;j<nodes.length;j++){
+let dx=nodes[j].x-nodes[i].x,dy=nodes[j].y-nodes[i].y;
+let dist=Math.sqrt(dx*dx+dy*dy)||1;
+let force=800/(dist*dist);
+let fx=dx/dist*force,fy=dy/dist*force;
+nodes[i].vx-=fx;nodes[i].vy-=fy;nodes[j].vx+=fx;nodes[j].vy+=fy;
+}}
+// attraction (springs)
+edges.forEach(e=>{
+const a=nodeMap[e.from],b=nodeMap[e.to];
+let dx=b.x-a.x,dy=b.y-a.y;
+let dist=Math.sqrt(dx*dx+dy*dy)||1;
+let force=(dist-120)*.02;
+let fx=dx/dist*force,fy=dy/dist*force;
+a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+});
+// center gravity
+nodes.forEach(n=>{
+n.vx+=(W/2-n.x)*.005;n.vy+=(H/2-n.y)*.005;
+n.vx*=.85;n.vy*=.85;
+n.x+=n.vx;n.y+=n.vy;
+n.x=Math.max(40,Math.min(W-40,n.x));
+n.y=Math.max(40,Math.min(H-40,n.y));
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,W,H);
+// edges
+edges.forEach(e=>{
+const a=nodeMap[e.from],b=nodeMap[e.to];
+ctx.beginPath();ctx.moveTo(a.x,a.y);
+const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-20;
+ctx.quadraticCurveTo(mx,my,b.x,b.y);
+ctx.strokeStyle='#3a3a5a';ctx.lineWidth=1.5;ctx.stroke();
+});
+// nodes
+nodes.forEach(n=>{
+const r=12+n.importance*16;
+const c=layerColors[n.layer]||'#888';
+// glow
+ctx.shadowColor=c;ctx.shadowBlur=hover===n?20:8;
+ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fillStyle=c+'44';ctx.fill();
+ctx.beginPath();ctx.arc(n.x,n.y,r*.7,0,Math.PI*2);ctx.fillStyle=c;ctx.fill();
+ctx.shadowBlur=0;
+// label
+if(hover===n){
+ctx.fillStyle='#fff';ctx.font='bold 12px system-ui';ctx.textAlign='center';
+ctx.fillText(n.label+' ('+n.importance.toFixed(2)+')',n.x,n.y-r-8);
+}
+});
+}
+
+// mouse
+cv.addEventListener('mousemove',e=>{
+const rect=cv.getBoundingClientRect();
+const mx=(e.clientX-rect.left),my=(e.clientY-rect.top);
+hover=null;
+nodes.forEach(n=>{
+const r=12+n.importance*16;
+if(Math.hypot(mx-n.x,my-n.y)<r)hover=n;
+});
+cv.style.cursor=hover?'pointer':'default';
+});
+
+let frame=0;
+function loop(){
+if(frame<200)simulate();
+draw();frame++;
+requestAnimationFrame(loop);
+}
+loop();
+})();
+</script>
+</body>
+</html>

@@ -38,15 +38,21 @@ Not just memory cleanup — a full cognitive system. Inspired by how the human b
 
 ## ✨ Features
 
+### Core (v2.0)
 - **🏗️ Multi-Layer Memory** — Long-term facts, episodic narratives, procedural how-tos, all separately organized
 - **🔄 Three-Phase Dream Cycle** — Collect → Consolidate → Evaluate, runs automatically via cron
 - **📊 Importance Scoring** — Every memory entry scored by recency, reference frequency, and user markers
 - **📉 Forgetting Curves** — Low-importance, stale entries gracefully archived (never deleted)
-- **🏥 Health Scoring** — 0–100 memory health score with freshness, coverage, coherence, and efficiency metrics
 - **🔗 Knowledge Graph** — Entries linked by relations, tracked in `memory/index.json`
 - **🏷️ User Markers** — `⚠️ PERMANENT`, `🔥 HIGH`, `📌 PIN`, `<!-- important -->` for fine-grained control
-- **📋 Dream Reports** — Every cycle generates a report with stats, health score, changes, and suggestions
 - **🔒 Safe** — Never deletes source logs, backs up before major changes, episodes are append-only
+
+### New in v3.0
+- **🔔 Push Notifications** — Dream cycle results delivered to your chat (`silent` / `summary` / `full` modes)
+- **📊 Interactive Health Dashboard** — Beautiful dark-themed HTML dashboard with Canvas charts, force-directed memory graph, health trends, and importance distributions
+- **🔄 Cross-Instance Memory Migration** — Export/import portable JSON bundles to move, clone, or merge memory between instances
+- **🔮 Dream Insights** — AI-generated non-obvious observations: pattern connections, temporal trends, gap detection
+- **🕸️ Reachability Score** — New graph metric measuring how well-connected your memory entries are (5-metric health formula)
 
 ## 📦 Installation
 
@@ -94,7 +100,11 @@ After each cycle, a report is logged to `memory/dream-log.md`:
 - MEMORY.md: 245 lines | Episodes: 4 | Procedures: 12 entries
 
 ### 🧠 Health: 78/100
-- Freshness: 85% | Coverage: 70% | Coherence: 65% | Efficiency: 90%
+- Freshness: 85% | Coverage: 70% | Coherence: 65% | Efficiency: 90% | Reachability: 55%
+
+### 🔮 Insights
+- [Pattern] MyClaw growth mirrors early Shopify trajectory
+- [Gap] No episode file for Dit.ai — significant history in daily logs
 
 ### 📝 Changes
 - [New] Product roadmap decision for Q2
@@ -103,7 +113,58 @@ After each cycle, a report is logged to `memory/dream-log.md`:
 
 ### 💡 Suggestions
 - "Coherence is moderate — consider linking related project entries"
-- "No episode for Dit.ai yet — consider creating one"
+- "Reachability at 0.55 — 3 isolated memory clusters detected"
+```
+
+### 🔔 Push Notifications
+
+Configure notification level during setup:
+
+| Level | Behavior |
+|-------|----------|
+| `silent` | Log to dream-log.md only |
+| `summary` | Push a 3-line summary: health score + counts + top insight |
+| `full` | Push the entire dream report to your chat |
+
+Example summary notification:
+```
+🌀 Dream complete — Health: 78/100 | +3 new, ~5 updated, -2 archived
+🔮 Insight: MyClaw growth mirrors early Shopify trajectory
+```
+
+### 📊 Health Dashboard
+
+Generate an interactive HTML dashboard:
+```
+"Show memory dashboard" or "Generate memory dashboard"
+```
+
+The dashboard includes:
+- Animated health score gauge
+- 5 metric cards (freshness, coverage, coherence, efficiency, reachability)
+- Memory distribution donut chart
+- Importance histogram
+- Health trend line chart
+- Interactive force-directed memory graph
+- Dream insights, recent changes, suggestions, and stale entries
+
+### 🔄 Cross-Instance Migration
+
+**Export:**
+```
+"Export memory bundle" or "Pack memories for migration"
+```
+Creates `memory/export-YYYY-MM-DD.json` — a portable snapshot of all memory layers.
+
+**Import:**
+```
+"Import memory bundle" or "Restore memories from export-2026-03-28.json"
+```
+Merges imported data with existing memory, with conflict resolution (newer wins).
+
+**Selective:**
+```
+"Export only procedures" or "Import episodes from bundle"
 ```
 
 ## 🛡️ Safety
@@ -133,15 +194,17 @@ Auto-Dream leverages OpenClaw's built-in primitives:
 2. **Consolidate** — Route to correct memory layer, semantic dedup, assign IDs, link relations
 3. **Evaluate** — Score importance, apply forgetting curve, calculate health, generate report
 
-### Importance Scoring
+### Health Scoring (5 metrics in v3.0)
 
 ```
-importance = base_weight × recency_factor × reference_boost
+health = freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15
 ```
 
-- **base_weight**: 1.0 (default), 2.0 (🔥 HIGH), always 1.0 (⚠️ PERMANENT)
-- **recency_factor**: decays from 1.0 to 0.1 over 180 days
-- **reference_boost**: logarithmic boost from cross-references
+- **Freshness**: % of entries referenced in last 30 days
+- **Coverage**: % of knowledge categories updated in last 14 days
+- **Coherence**: % of entries with at least one relation link
+- **Efficiency**: inversely proportional to MEMORY.md line count
+- **Reachability** *(new)*: how well-connected the memory graph is (connected component analysis)
 
 ### Forgetting Curve
 
@@ -150,9 +213,15 @@ Entries are archived (never deleted) when:
 - Importance score <0.3
 - Not marked PERMANENT or PIN
 
-## 📦 Upgrading from v1
+## 📦 Upgrading
 
-If you have an existing Auto-Dream v1 installation, see the [migration guide](references/migration-v1-to-v2.md) for step-by-step upgrade instructions. The upgrade is non-destructive — all existing data is preserved.
+| From | To | Guide |
+|------|----|-------|
+| v1.x | v2.x | [migration-v1-to-v2.md](references/migration-v1-to-v2.md) |
+| v2.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) |
+| v1.x | v3.0 | [migration-v2-to-v3.md](references/migration-v2-to-v3.md) (includes direct v1→v3 path) |
+
+All upgrades are non-destructive — existing data is preserved.
 
 ## 📄 License
 
