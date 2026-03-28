@@ -1,24 +1,20 @@
-<p align="center">
-  <a href="https://myclaw.ai"><img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-blue?style=for-the-badge" alt="Powered by MyClaw.ai" /></a>
-  <a href="https://clawhub.ai/skills/openclaw-auto-dream"><img src="https://img.shields.io/badge/ClawHub-openclaw--auto--dream-orange?style=for-the-badge" alt="ClawHub" /></a>
-</p>
+# openclaw-auto-dream
 
-<p align="center">
-  <a href="README.md">English</a> ·
-  <a href="README.zh-CN.md">中文</a> ·
-  <a href="README.fr.md">Français</a> ·
-  <a href="README.de.md">Deutsch</a> ·
-  <a href="README.ru.md">Русский</a> ·
-  <a href="README.ja.md">日本語</a> ·
-  <a href="README.it.md">Italiano</a> ·
-  <a href="README.es.md">Español</a>
-</p>
+[![Powered by MyClaw.ai](https://img.shields.io/badge/Powered%20by-MyClaw.ai-gold?style=flat-square)](https://myclaw.ai)
+[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-# 🌀 OpenClaw Auto-Dream
+> **[MyClaw.ai](https://myclaw.ai)** — Your AI personal assistant with full server control. Every MyClaw instance runs on a dedicated server with complete code access, networking, and tool capabilities. This skill is part of the [MyClaw open skills ecosystem](https://clawhub.com).
 
 **Automatische Gedächtniskonsolidierung für OpenClaw-Agenten — wie Schlaf für Ihre KI.**
 
 Inspiriert von der Art und Weise, wie das menschliche Gehirn Erinnerungen im Schlaf konsolidiert, führt Auto-Dream regelmäßig einen „Traumzyklus" durch, der die täglichen Protokolle Ihres Agenten überprüft, wertvolle Erkenntnisse extrahiert und sie im Langzeitgedächtnis zusammenführt.
+
+---
+
+🌐 **Languages:** [English](README.md) · [中文](README.zh-CN.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Italiano](README.it.md) · [Español](README.es.md)
+
+---
 
 ## ✨ Funktionen
 
@@ -39,7 +35,3 @@ clawhub install openclaw-auto-dream
 MIT
 
 ---
-
-<p align="center">
-  <b>Powered by <a href="https://myclaw.ai">MyClaw.ai</a></b> — Die KI-Assistenzplattform, die jedem Benutzer einen vollständigen Server mit kompletter Code-Kontrolle bietet.
-</p>

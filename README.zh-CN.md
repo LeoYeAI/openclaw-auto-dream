@@ -1,22 +1,20 @@
-<p align="center">
-  <a href="https://myclaw.ai"><img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-blue?style=for-the-badge" alt="Powered by MyClaw.ai" /></a>
-  <a href="https://clawhub.ai/skills/openclaw-auto-dream"><img src="https://img.shields.io/badge/ClawHub-openclaw--auto--dream-orange?style=for-the-badge" alt="ClawHub" /></a>
-</p>
+# openclaw-auto-dream
 
-<p align="center">
-  <a href="README.md">English</a> ·
-  <a href="README.zh-CN.md">中文</a> ·
-  <a href="README.fr.md">Français</a> ·
-  <a href="README.de.md">Deutsch</a> ·
-  <a href="README.ru.md">Русский</a> ·
-  <a href="README.ja.md">日本語</a> ·
-  <a href="README.it.md">Italiano</a> ·
-  <a href="README.es.md">Español</a>
-</p>
+[![Powered by MyClaw.ai](https://img.shields.io/badge/Powered%20by-MyClaw.ai-gold?style=flat-square)](https://myclaw.ai)
+[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-# 🌀 OpenClaw Auto-Dream
+> **[MyClaw.ai](https://myclaw.ai)** — 让每个用户拥有完整服务器控制权的 AI 个人助手平台。每个 MyClaw 实例运行在独立服务器上，拥有完整的代码访问、网络和工具能力。本 skill 是 [MyClaw 开放技能生态](https://clawhub.com) 的一部分。
 
 **OpenClaw 智能体的自动记忆整理 —— 让你的 AI 学会"做梦"。**
+
+一个 OpenClaw 智能体技能，自动审查每日记忆日志、提取有价值的洞察，并整合到结构化的长期记忆中。灵感来自人类大脑在睡眠中整理记忆的机制——你的智能体会定期"做梦"来整理它所知道的一切。
+
+---
+
+🌐 **Languages:** [English](README.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Italiano](README.it.md) · [Español](README.es.md)
+
+---
 
 灵感来自人类大脑在睡眠中整理记忆的机制。Auto-Dream 会定期执行"做梦周期"，审查智能体的每日日志，提取有价值的洞察，并整合到长期记忆中。
 
@@ -97,7 +95,3 @@ Skill 会创建一个每日定时任务，在隔离会话中运行：
 MIT
 
 ---
-
-<p align="center">
-  <b>Powered by <a href="https://myclaw.ai">MyClaw.ai</a></b> — 让每个用户拥有完整服务器控制权的 AI 个人助手平台。
-</p>
