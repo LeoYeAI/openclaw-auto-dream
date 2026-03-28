@@ -138,7 +138,7 @@ Auto-Dream transforms your agent from a tool that executes commands into a partn
 
 | Layer | Storage | What Goes Here |
 |-------|---------|---------------|
-| **Working** | OpenClaw LCM (built-in) | Active conversation context |
+| **Working** | LCM plugin (auto-installed) | Real-time context compression & semantic recall |
 | **Episodic** | `memory/episodes/*.md` | Project narratives, event timelines, story arcs |
 | **Long-term** | `MEMORY.md` | Facts, decisions, people, milestones, strategy |
 | **Procedural** | `memory/procedures.md` | Workflows, preferences, tool patterns, shortcuts |

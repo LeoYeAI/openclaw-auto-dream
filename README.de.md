@@ -141,7 +141,7 @@ Auto-Dream verwandelt Ihren Agenten von einem Werkzeug, das Befehle ausführt, i
 
 | Schicht | Speicherung | Was hierhin gehört |
 |---------|-------------|-------------------|
-| **Arbeits-** | OpenClaw LCM (integriert) | Aktiver Gesprächskontext |
+| **Arbeits-** | LCM-Plugin (automatisch installiert) | Echtzeit-Kontextkompression und semantischer Abruf |
 | **Episodisch** | `memory/episodes/*.md` | Projektnarrative, Ereignischronologien, Handlungsbögen |
 | **Langzeit** | `MEMORY.md` | Fakten, Entscheidungen, Personen, Meilensteine, Strategie |
 | **Prozedural** | `memory/procedures.md` | Workflows, Präferenzen, Tool-Muster, Abkürzungen |

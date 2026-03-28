@@ -141,7 +141,7 @@ Auto-Dream transforma a tu agente de una herramienta que ejecuta comandos a un s
 
 | Capa | Almacenamiento | Qué contiene |
 |------|---------------|--------------|
-| **Trabajo** | OpenClaw LCM (integrado) | Contexto de conversación activo |
+| **Trabajo** | Plugin LCM (instalado automáticamente) | Compresión de contexto en tiempo real y búsqueda semántica |
 | **Episódica** | `memory/episodes/*.md` | Narrativas de proyectos, cronologías de eventos, arcos argumentales |
 | **Largo plazo** | `MEMORY.md` | Hechos, decisiones, personas, hitos, estrategia |
 | **Procedimental** | `memory/procedures.md` | Workflows, preferencias, patrones de herramientas, atajos |
