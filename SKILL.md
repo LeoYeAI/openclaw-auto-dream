@@ -79,7 +79,7 @@ Auto-Dream requires LCM for the Working Memory layer. Check and install automati
 ```
 Use the cron tool to create:
 - schedule: { kind: "cron", expr: "0 4 * * *", tz: "<user timezone>" }
-- payload: { kind: "agentTurn", message: <content of references/dream-prompt.md> }
+- payload: { kind: "agentTurn", message: "读取 skills/skills/openclaw-auto-dream/references/dream-prompt-lite.md，严格按指令执行。第一步是智能跳过检查。" }
 - sessionTarget: "isolated"
 - delivery: { mode: "announce" }
 - name: "auto-memory-dream"
@@ -339,7 +339,8 @@ This applies to:
 
 ## Reference Files
 
-- `references/dream-prompt.md` — Complete prompt for cron-triggered dream cycles
+- `references/dream-prompt-lite.md` — **Lite prompt for cron-triggered dream cycles** (97 lines, self-contained with inline scoring/templates — used by default)
+- `references/dream-prompt.md` — Full verbose prompt (311 lines — for manual deep runs or debugging)
 - `references/memory-template.md` — Templates for all memory files (MEMORY.md, procedures.md, episodes, index.json)
 - `references/scoring.md` — Importance scoring algorithm, forgetting curve, health score formula (5 metrics)
 - `references/dashboard-template.html` — HTML dashboard template (data injected at runtime)
