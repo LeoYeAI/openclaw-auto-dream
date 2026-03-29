@@ -1,97 +1,80 @@
-# Auto-Dream Cycle — Lite Prompt (v3.1)
+# Auto-Dream Lite — 快速记忆整理
 
-执行自动记忆整理。所有输出使用 USER.md 中记录的用户语言。
+所有输出用中文（读 USER.md 确认语言）。工作目录：/home/ubuntu/.openclaw/workspace
 
-## 0. 快速检查（智能跳过）
+## 第0步：智能跳过
 
 ```
-1. ls memory/????-??-??.md 找最近7天的 daily log
-2. 检查哪些文件末尾没有 <!-- consolidated --> 标记
-3. 如果全部已处理或无文件 → 回复"无新内容，跳过" → 结束
+ls memory/????-??-??.md → 找最近7天的文件
+检查每个文件末尾是否有 <!-- consolidated -->
+如果全部已处理或无文件 → 回复"🌙 无新内容，跳过本次整理" → 结束
 ```
 
-## 1. Collect
+## 第1步：收集
 
-读取所有未处理的 daily log，提取：决策、人物、事实、项目进展、教训、流程偏好、待办。跳过闲聊和已存在于 MEMORY.md 的内容。优先处理带 `⚠️` `🔥` `📌` `<!-- important -->` 标记的条目。
+读取所有未处理的 daily log。从中提取：
+- 决策（做了什么选择、方向变化）
+- 关键事实（数据更新、账号信息、技术细节）
+- 项目进展（里程碑、阻塞、完成）
+- 教训（失败、成功经验）
+- 待办（未完成的事）
 
-## 2. Consolidate
+跳过闲聊和 MEMORY.md 中已存在且未变化的内容。
 
-读取 MEMORY.md、memory/procedures.md、memory/index.json（不存在则按下方模板创建）。
+## 第2步：整合
 
-路由规则：
-- 流程/偏好/工具用法 → procedures.md
-- 多事件项目叙事 → memory/episodes/<name>.md
-- 其他（决策/事实/人物/里程碑/教训/待办） → MEMORY.md 对应章节
+读取 MEMORY.md，对比提取的内容：
 
-写入前做语义去重（比较含义非文字）。每条新记录分配 `mem_NNN` ID，写为 `<!-- mem_NNN -->` 注释。关联条目用 `related: [mem_xxx]` 记录。
+- **新内容** → 追加到 MEMORY.md 对应章节
+- **已有内容有更新** → 原地更新（如数据变化）
+- **重复内容** → 跳过
+- **流程/偏好** → 追加到 memory/procedures.md
 
-MEMORY.md 变动超 30% → 先备份为 MEMORY.md.bak。写完后在已处理的 daily log 末尾追加 `<!-- consolidated -->`。
+写入前做语义去重（比较含义不是文字）。
 
-## 3. Evaluate
+MEMORY.md 更新后修改 `_Last updated:` 日期。每个处理过的 daily log 末尾追加 `<!-- consolidated -->`。
 
-### 评分（每条记录）
-```
-⚠️ PERMANENT → importance = 1.0
-其他：raw = base(🔥=2.0, 默认1.0) × max(0.1, 1.0-天数/180) × max(1.0, log2(引用次数+1))
-importance = clamp(raw/8.0, 0, 1)
-```
+## 第3步：生成报告
 
-### 归档条件（全部满足才归档）
-- 90天未引用 + importance<0.3 + 非 ⚠️/📌 + 非 episode
-- 压缩为一行存入 memory/archive.md，原文删除，index 标记 archived=true
+统计本次变更，追加到 memory/dream-log.md：
 
-### 健康分（0-100）
-```
-health = (freshness×0.25 + coverage×0.25 + coherence×0.2 + efficiency×0.15 + reachability×0.15) × 100
-freshness = 30天内引用条目数/总条目数
-coverage = 14天内更新的MEMORY.md章节数/总章节数
-coherence = 有关联的条目数/总条目数
-efficiency = max(0, 1-MEMORY.md行数/500)
-reachability = Σ(组件大小²)/(总条目数²)  [连通分量]
-```
+```markdown
+## 🌙 记忆整理 — YYYY-MM-DD
 
-### 生成 1-3 条洞察（跨记忆的模式、时间趋势、知识空白、健康趋势）
+**扫描**: N 个文件 | **新增**: N 条 | **更新**: N 条
 
-### 更新 index.json（条目、分数、stats、healthHistory追加最新分数，保留最近90条）
+### 本次整合的内容
+- [新增/更新] 具体描述每一条变更
 
-### 追加 dream report 到 memory/dream-log.md：
-```
-## 🌀 Dream Report — YYYY-MM-DD HH:MM UTC
-### 📊 统计  扫描N文件 | 新增N | 更新N | 归档N
-### 🧠 健康: XX/100  各指标百分比
-### 🔮 洞察  1-3条
-### 📝 变更  [新增/更新/归档] 简述
-### 💡 建议  基于健康分的可行动建议
+### 洞察
+- 1-2条跨记忆的非显而易见的观察（模式、趋势、空白）
+
+### 建议
+- 基于当前记忆状态的可行动建议
 ```
 
-## 4. 通知
+## 第4步：通知
 
-读 index.json 的 config.notificationLevel（默认 summary）：
-- **silent**：不推送
-- **summary**：回复 3-5 行摘要（健康分+计数+顶部洞察+建议）
-- **full**：回复完整 dream report
+作为本次会话的最终回复，发送以下格式的中文消息（cron delivery 会自动推送）：
 
-直接回复即可，cron delivery 会自动推送到用户频道。
+```
+🌙 昨夜记忆整理完成
+
+📥 扫描了 N 天的记录（日期范围）
+   └ 提炼出 N 条新知识，更新了 N 条
+
+🧠 本次整合：
+   • 具体描述每条新增或更新（用 💡新决策 / 🔄更新 / 📦归档 分类）
+
+🔮 洞察：
+   一条最有价值的跨记忆观察
+
+💬 如有遗漏，告诉我补充
+```
+
+这个通知就是你的最终回复。简洁有力，让用户一眼看到价值。
 
 ## 安全规则
 - 永不删除 daily log 原文
 - 永不移除 ⚠️ PERMANENT 条目
-- 永不删除 episode 文件
-- 备份 index.json → index.json.bak（每次 dream 前）
-
-## 首次初始化模板
-
-如果 memory/index.json 不存在：
-```json
-{"version":"3.0","lastDream":null,"config":{"notificationLevel":"summary","instanceName":"default"},"entries":[],"stats":{"totalEntries":0,"avgImportance":0,"lastPruned":null,"healthScore":0,"healthMetrics":{"freshness":0,"coverage":0,"coherence":0,"efficiency":0,"reachability":0},"insights":[],"healthHistory":[]}}
-```
-
-如果 memory/procedures.md 不存在：
-```markdown
-# Procedures — How I Do Things
-_Last updated: YYYY-MM-DD_
-## 🎨 沟通偏好
-## 🔧 工具流程
-## 📝 格式偏好
-## ⚡ 快捷模式
-```
+- 备份：MEMORY.md 变动超 30% 先存 MEMORY.md.bak
