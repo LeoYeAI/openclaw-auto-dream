@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -316,6 +316,49 @@ The agent will:
 | Auto-backup on >30% change | Prevents accidental corruption |
 | Index backup every cycle | Always recoverable |
 | Secrets policy | Only consolidates secrets already present |
+
+## Release Notes
+
+### v3.2.0 — Performance Optimization (2026-03-29)
+
+⚡ **~90% token savings on idle days**
+
+- **Smart Skip**: Dream cycle now checks for unconsolidated daily logs first. If nothing new in 7 days → instant exit (~2K tokens vs ~150K)
+- **Lite Prompt**: Self-contained 97-line prompt replaces 928 lines across 3 files. Scoring formulas, templates, and all rules inlined
+- **Faster Execution**: Cron reads 1 file instead of 3. Timeout reduced 600s → 300s
+- **Full prompt preserved**: `dream-prompt.md` (311 lines) kept for manual deep runs and debugging
+
+### v3.1.1 — Language & Stability (2026-03-28)
+
+- **User language support**: Dream notifications/reports auto-detect language from `USER.md`
+- **Notification redesign**: Uses cron `delivery:announce` instead of direct message tool calls
+- **7 bug fixes**: Scoring normalization, health formula, dashboard compatibility, reference integrity
+
+### v3.0.0 — Cognitive Architecture (2026-03-28)
+
+🧠 **Major release — full cognitive memory system**
+
+- **Push Notifications**: 3 levels (silent/summary/full) auto-sent after dream cycle
+- **Memory Health Dashboard**: 18KB single-file HTML with Canvas charts and force-directed knowledge graph
+- **Cross-Instance Migration**: JSON bundle export/import with conflict resolution
+- **Dream Insights**: 1-3 non-obvious pattern observations per cycle
+- **Reachability Graph**: Union-find algorithm measuring memory connectivity
+- **5-metric health formula**: freshness × coverage × coherence × efficiency × reachability
+
+### v2.0.0 — Multi-Layer Memory (2026-03-28)
+
+- **Five memory layers**: Working (LCM) → Episodic → Long-term → Procedural → Index
+- **Three-phase dream cycle**: Collect → Consolidate → Evaluate
+- **Importance scoring**: base_weight × recency × reference_boost with forgetting curve
+- **Memory index**: `index.json` with IDs, timestamps, relations, reference counts
+- **User markers**: ⚠️ PERMANENT, 🔥 HIGH, 📌 PIN, `<!-- important -->`
+
+### v1.0.0 — Initial Release (2026-03-28)
+
+- Basic daily log scanning and MEMORY.md consolidation
+- Semantic deduplication
+- 90-day archival for unreferenced entries
+- Cron-triggered isolated session execution
 
 ## Upgrading
 

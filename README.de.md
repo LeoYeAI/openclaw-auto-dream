@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -319,6 +319,42 @@ Der Agent wird:
 | Auto-Backup bei >30% Änderung | Verhindert versehentliche Beschädigung |
 | Index-Backup bei jedem Zyklus | Immer wiederherstellbar |
 | Geheimnis-Richtlinie | Konsolidiert nur bereits vorhandene Geheimnisse |
+
+## Versionshinweise
+
+### v3.2.0 — Leistungsoptimierung (2026-03-29)
+⚡ ~90% Token-Einsparung an inaktiven Tagen
+- Smart Skip: prüft zuerst auf nicht konsolidierte Logs, sofortiger Abbruch wenn nichts Neues
+- Lite Prompt: 97-zeiliger eigenständiger Prompt ersetzt 928 Zeilen über 3 Dateien
+- Schnellere Ausführung: liest 1 Datei statt 3, Timeout 600s→300s
+- Vollständiger Prompt für manuelle Tiefenläufe erhalten
+
+### v3.1.1 — Sprache & Stabilität (2026-03-28)
+- Automatische Erkennung der Benutzersprache aus USER.md
+- Neugestaltung der Benachrichtigungen mit cron delivery:announce
+- 7 Fehlerbehebungen
+
+### v3.0.0 — Kognitive Architektur (2026-03-28)
+🧠 Hauptversion
+- Push-Benachrichtigungen (3 Stufen)
+- Gedächtnis-Gesundheits-Dashboard (18KB HTML)
+- Instanzübergreifende Migration
+- Traum-Insights (1–3 pro Zyklus)
+- Erreichbarkeitsgraph-Metrik
+- 5-Metriken-Gesundheitsformel
+
+### v2.0.0 — Mehrschichtiges Gedächtnis (2026-03-28)
+- Fünf Gedächtnisschichten
+- Dreiphasiger Traumzyklus
+- Wichtigkeitsbewertung mit Vergessenskurve
+- Gedächtnisindex mit IDs, Relationen
+- Benutzermarkierungen (⚠️ 🔥 📌)
+
+### v1.0.0 — Erstveröffentlichung (2026-03-28)
+- Grundlegende Tagesprotokoll-Überprüfung
+- Semantische Deduplizierung
+- 90-Tage-Archivierung
+- Cron-gesteuerte Ausführung
 
 ## Upgrade
 

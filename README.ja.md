@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -317,6 +317,42 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 | >30%変更時に自動バックアップ | 偶発的な破損を防止 |
 | 毎サイクルでインデックスバックアップ | 常に復旧可能 |
 | シークレットポリシー | すでに存在するシークレットのみ統合 |
+
+## リリースノート
+
+### v3.2.0 — パフォーマンス最適化 (2026-03-29)
+⚡ アイドル日にトークン消費を最大90%削減
+- スマートスキップ：未統合のログを最初にチェックし、新しいものがなければ即座に終了
+- ライトプロンプト：3ファイルにまたがる928行を97行の自己完結型プロンプトに置き換え
+- より高速な実行：3ファイルの代わりに1ファイルを読み取り、タイムアウト600秒→300秒
+- 手動ディープ実行用にフルプロンプトを保持
+
+### v3.1.1 — 言語とスタビリティ (2026-03-28)
+- USER.mdからのユーザー言語自動検出
+- cron delivery:announceを使用した通知リデザイン
+- 7件のバグ修正
+
+### v3.0.0 — 認知アーキテクチャ (2026-03-28)
+🧠 メジャーリリース
+- プッシュ通知（3レベル）
+- メモリヘルスダッシュボード（18KB HTML）
+- クロスインスタンス移行
+- ドリームインサイト（サイクルあたり1〜3件）
+- 到達可能性グラフメトリクス
+- 5指標ヘルス計算式
+
+### v2.0.0 — マルチレイヤーメモリ (2026-03-28)
+- 5つの記憶層
+- 3フェーズドリームサイクル
+- 忘却曲線付き重要度スコアリング
+- ID・関係付きメモリインデックス
+- ユーザーマーカー（⚠️ 🔥 📌）
+
+### v1.0.0 — 初回リリース (2026-03-28)
+- 基本的な日次ログスキャン
+- セマンティック重複排除
+- 90日アーカイブ
+- cronトリガー実行
 
 ## アップグレード
 

@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -319,6 +319,42 @@ L'agente:
 | Auto-backup su >30% di modifiche | Previene la corruzione accidentale |
 | Backup dell'indice ad ogni ciclo | Sempre recuperabile |
 | Politica dei segreti | Consolida solo i segreti già presenti |
+
+## Note di Rilascio
+
+### v3.2.0 — Ottimizzazione delle Prestazioni (2026-03-29)
+⚡ ~90% di risparmio di token nei giorni inattivi
+- Smart Skip: controlla prima i log non consolidati, uscita istantanea se non c'è nulla di nuovo
+- Lite Prompt: prompt autonomo di 97 righe sostituisce 928 righe su 3 file
+- Esecuzione più rapida: legge 1 file invece di 3, timeout 600s→300s
+- Prompt completo preservato per le esecuzioni manuali approfondite
+
+### v3.1.1 — Lingua e Stabilità (2026-03-28)
+- Rilevamento automatico della lingua utente da USER.md
+- Ridisegno delle notifiche con cron delivery:announce
+- 7 correzioni di bug
+
+### v3.0.0 — Architettura Cognitiva (2026-03-28)
+🧠 Rilascio maggiore
+- Notifiche Push (3 livelli)
+- Dashboard Salute Memoria (18KB HTML)
+- Migrazione Cross-Istanza
+- Insight del Sogno (1–3 per ciclo)
+- Metrica del Grafo di Raggiungibilità
+- Formula di salute a 5 metriche
+
+### v2.0.0 — Memoria Multi-Strato (2026-03-28)
+- Cinque strati di memoria
+- Ciclo di sogno a tre fasi
+- Punteggio di importanza con curva dell'oblio
+- Indice memoria con ID, relazioni
+- Marcatori utente (⚠️ 🔥 📌)
+
+### v1.0.0 — Rilascio Iniziale (2026-03-28)
+- Scansione base dei log giornalieri
+- Deduplicazione semantica
+- Archiviazione a 90 giorni
+- Esecuzione attivata da cron
 
 ## Aggiornamento
 

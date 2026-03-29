@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -310,6 +310,49 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 | 变更超过 30% 自动备份 | 防止意外损坏 |
 | 每次循环备份索引 | 始终可恢复 |
 | 密钥策略 | 仅整合已有密钥，不创建新条目 |
+
+## 版本记录
+
+### v3.2.0 — 性能优化 (2026-03-29)
+
+⚡ **空闲时 token 消耗降低 ~90%**
+
+- **智能跳过**：Dream cycle 先检查有没有未处理的 daily log，没有 → 瞬间退出（~2K tokens vs ~15万）
+- **精简 Prompt**：自包含 97 行 lite prompt 替代原来 3 个文件共 928 行。评分公式、模板、所有规则全部内联
+- **更快执行**：Cron 只读 1 个文件而非 3 个。超时从 600s 降至 300s
+- **完整版保留**：`dream-prompt.md`（311行）保留用于手动深度运行和调试
+
+### v3.1.1 — 语言支持与稳定性 (2026-03-28)
+
+- **用户语言自适应**：Dream 通知/报告自动检测 `USER.md` 中的语言偏好
+- **通知机制重设计**：使用 cron `delivery:announce` 替代直接 message 工具调用
+- **7 个 Bug 修复**：评分归一化、健康分公式、Dashboard 兼容性、引用完整性
+
+### v3.0.0 — 认知架构 (2026-03-28)
+
+🧠 **重大版本——完整认知记忆系统**
+
+- **推送通知**：3 档（静默/摘要/完整），dream cycle 后自动推送
+- **记忆健康仪表盘**：18KB 单文件 HTML，Canvas 图表 + 力导向知识图谱
+- **跨实例迁移**：JSON bundle 导出/导入，冲突时新版优先
+- **Dream 洞察**：每次 cycle 生成 1-3 条非显而易见的模式观察
+- **可达性图**：Union-Find 算法衡量记忆图连通性
+- **5 指标健康公式**：新鲜度 × 覆盖率 × 连贯性 × 效率 × 可达性
+
+### v2.0.0 — 多层记忆 (2026-03-28)
+
+- **五层记忆架构**：工作记忆 (LCM) → 情景记忆 → 长期记忆 → 程序记忆 → 索引
+- **三阶段 Dream Cycle**：收集 → 整合 → 评估
+- **重要性评分**：base_weight × 时间衰减 × 引用加成 + 遗忘曲线
+- **记忆索引**：`index.json` 含 ID、时间戳、关联、引用计数
+- **用户标记**：⚠️ PERMANENT、🔥 HIGH、📌 PIN、`<!-- important -->`
+
+### v1.0.0 — 初始版本 (2026-03-28)
+
+- 基础 daily log 扫描和 MEMORY.md 整合
+- 语义去重
+- 90 天未引用条目自动归档
+- Cron 触发隔离会话执行
 
 ## 升级指南
 

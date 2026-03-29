@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -319,6 +319,42 @@ El agente:
 | Auto-respaldo en >30% de cambios | Previene la corrupción accidental |
 | Respaldo del índice en cada ciclo | Siempre recuperable |
 | Política de secretos | Solo consolida secretos ya presentes |
+
+## Notas de Versión
+
+### v3.2.0 — Optimización de Rendimiento (2026-03-29)
+⚡ ~90% de ahorro de tokens en días inactivos
+- Smart Skip: verifica primero si hay logs no consolidados, salida instantánea si no hay nada nuevo
+- Lite Prompt: prompt autónomo de 97 líneas reemplaza 928 líneas en 3 archivos
+- Ejecución más rápida: lee 1 archivo en lugar de 3, timeout 600s→300s
+- Prompt completo preservado para ejecuciones manuales profundas
+
+### v3.1.1 — Idioma y Estabilidad (2026-03-28)
+- Detección automática del idioma del usuario desde USER.md
+- Rediseño de notificaciones usando cron delivery:announce
+- 7 correcciones de errores
+
+### v3.0.0 — Arquitectura Cognitiva (2026-03-28)
+🧠 Lanzamiento mayor
+- Notificaciones Push (3 niveles)
+- Dashboard de Salud de Memoria (18KB HTML)
+- Migración Cross-Instancia
+- Insights del Sueño (1–3 por ciclo)
+- Métrica de Grafo de Alcanzabilidad
+- Fórmula de salud de 5 métricas
+
+### v2.0.0 — Memoria Multi-Capa (2026-03-28)
+- Cinco capas de memoria
+- Ciclo de sueño de tres fases
+- Puntuación de importancia con curva de olvido
+- Índice de memoria con IDs, relaciones
+- Marcadores de usuario (⚠️ 🔥 📌)
+
+### v1.0.0 — Versión Inicial (2026-03-28)
+- Escaneo básico de logs diarios
+- Deduplicación semántica
+- Archivado a 90 días
+- Ejecución activada por cron
 
 ## Actualización
 

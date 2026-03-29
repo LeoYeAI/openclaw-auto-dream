@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -318,6 +318,42 @@ L'agent va :
 | Sauvegarde auto sur >30% de changements | Empêche la corruption accidentelle |
 | Sauvegarde de l'index à chaque cycle | Toujours récupérable |
 | Politique de secrets | Ne consolide que les secrets déjà présents |
+
+## Notes de Version
+
+### v3.2.0 — Optimisation des Performances (2026-03-29)
+⚡ ~90% d'économie de tokens les jours inactifs
+- Smart Skip : vérifie d'abord les logs non consolidés, sortie instantanée si rien de nouveau
+- Lite Prompt : prompt autonome de 97 lignes remplace 928 lignes réparties sur 3 fichiers
+- Exécution plus rapide : lit 1 fichier au lieu de 3, timeout 600s→300s
+- Prompt complet préservé pour les exécutions manuelles approfondies
+
+### v3.1.1 — Langue et Stabilité (2026-03-28)
+- Détection automatique de la langue utilisateur depuis USER.md
+- Refonte des notifications avec cron delivery:announce
+- 7 corrections de bugs
+
+### v3.0.0 — Architecture Cognitive (2026-03-28)
+🧠 Version majeure
+- Notifications Push (3 niveaux)
+- Tableau de Bord Santé Mémoire (18 Ko HTML)
+- Migration Inter-Instances
+- Insights de Rêve (1 à 3 par cycle)
+- Métrique de Graphe d'Accessibilité
+- Formule de santé à 5 métriques
+
+### v2.0.0 — Mémoire Multi-Couches (2026-03-28)
+- Cinq couches de mémoire
+- Cycle de rêve en trois phases
+- Scoring d'importance avec courbe d'oubli
+- Index mémoire avec IDs, relations
+- Marqueurs utilisateur (⚠️ 🔥 📌)
+
+### v1.0.0 — Version Initiale (2026-03-28)
+- Scan basique des logs quotidiens
+- Déduplication sémantique
+- Archivage à 90 jours
+- Exécution déclenchée par cron
 
 ## Mise à Niveau
 

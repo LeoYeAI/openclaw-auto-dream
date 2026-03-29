@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.0-8B5CF6?style=for-the-badge" alt="v3.0" />
+  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -318,6 +318,42 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 | Авто-бэкап при >30% изменений | Предотвращает случайное повреждение |
 | Бэкап индекса каждый цикл | Всегда восстановим |
 | Политика секретов | Консолидирует только уже существующие секреты |
+
+## Примечания к Релизам
+
+### v3.2.0 — Оптимизация Производительности (2026-03-29)
+⚡ ~90% экономии токенов в неактивные дни
+- Умный пропуск: сначала проверяет наличие неконсолидированных логов, мгновенный выход если нет ничего нового
+- Облегчённый промпт: автономный промпт из 97 строк заменяет 928 строк в 3 файлах
+- Более быстрое выполнение: читает 1 файл вместо 3, таймаут 600с→300с
+- Полный промпт сохранён для ручных глубоких запусков
+
+### v3.1.1 — Язык и Стабильность (2026-03-28)
+- Автоопределение языка пользователя из USER.md
+- Редизайн уведомлений с использованием cron delivery:announce
+- 7 исправлений ошибок
+
+### v3.0.0 — Когнитивная Архитектура (2026-03-28)
+🧠 Мажорный релиз
+- Push-уведомления (3 уровня)
+- Дашборд здоровья памяти (18КБ HTML)
+- Миграция между инстансами
+- Инсайты сновидений (1–3 за цикл)
+- Метрика графа достижимости
+- Формула здоровья из 5 метрик
+
+### v2.0.0 — Многослойная Память (2026-03-28)
+- Пять уровней памяти
+- Трёхфазный цикл сновидений
+- Оценка важности с кривой забывания
+- Индекс памяти с ID, связями
+- Пользовательские маркеры (⚠️ 🔥 📌)
+
+### v1.0.0 — Первый Релиз (2026-03-28)
+- Базовое сканирование дневных логов
+- Семантическая дедупликация
+- 90-дневная архивация
+- Выполнение по расписанию cron
 
 ## Обновление
 
