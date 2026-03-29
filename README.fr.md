@@ -140,7 +140,7 @@ Auto-Dream transforme votre agent d'un outil qui exécute des commandes en un pa
 
 | Couche | Stockage | Contenu |
 |--------|----------|---------|
-| **Travail** | Plugin LCM (auto-installé) | Compression de contexte en temps réel et rappel sémantique |
+| **Travail** | Plugin LCM (optionnel, détecté à l'installation) | Compression de contexte en temps réel et rappel sémantique |
 | **Épisodique** | `memory/episodes/*.md` | Récits de projets, chronologies d'événements, arcs narratifs |
 | **Long terme** | `MEMORY.md` | Faits, décisions, personnes, jalons, stratégie |
 | **Procédurale** | `memory/procedures.md` | Workflows, préférences, patterns d'outils, raccourcis |
