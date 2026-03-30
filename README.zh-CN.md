@@ -62,27 +62,6 @@
 
 这就是 Auto-Dream 存在的意义。当你的 AI 智能体拥有持久化的服务器、持久化的文件、以及与你之间持久化的关系时——**记忆不是锦上添花，而是智能的基石。**
 
-### MyClaw 开放技能生态
-
-Auto-Dream 是日益壮大的生态系统中的一个技能。每个技能都是一个可安装的包，教会你的智能体一种新能力：
-
-| 技能 | 功能 |
-|------|------|
-| 🌀 **[Auto-Dream](https://github.com/LeoYeAI/openclaw-auto-dream)** | 认知记忆 — 本项目 |
-| 🛡️ **[Guardian](https://github.com/LeoYeAI/openclaw-guardian)** | 自愈看门狗 — 自动监控、自动修复、自动回滚 |
-| 🕷️ **[Ultra Scraping](https://github.com/LeoYeAI/openclaw-ultra-scraping)** | 自适应爬虫，绕过反爬，扛得住网站改版 |
-| 🎬 **[Slides](https://github.com/LeoYeAI/openclaw-slides)** | 惊艳的 HTML 演示文稿，12 种风格预设 + 动画 |
-| 📦 **[Backup](https://github.com/LeoYeAI/openclaw-backup)** | 一键备份和恢复整个实例 |
-| 💬 **[Ask Lenny](https://github.com/LeoYeAI/ask-lenny)** | 289+ 真实创始人对话中的产品和增长智慧 |
-| 📚 **[Master Skills](https://github.com/LeoYeAI/openclaw-master-skills)** | 339+ 社区技能精选集 |
-| 📈 **[Marketing Skills](https://github.com/LeoYeAI/openclaw-marketing-skills)** | 33 个实战验证的营销技能 |
-
-一条命令安装任何技能：`clawhub install <skill-name>`
-
-或者直接告诉你的智能体：*"安装 Auto-Dream"* — 它会搞定一切。
-
-> 🌐 **立即开始：** [myclaw.ai](https://myclaw.ai) — Your OpenClaw, ready for you. 即刻运行，随时取消。
-
 ---
 
 ## 问题

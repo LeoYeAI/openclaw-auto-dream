@@ -62,27 +62,6 @@ Ogni istanza MyClaw esegue [OpenClaw](https://github.com/openclaw/openclaw) — 
 
 Ecco perché Auto-Dream esiste. Perché quando il tuo agente IA ha un server persistente, file persistenti e relazioni persistenti con te — **la memoria non è un optional. È il fondamento dell'intelligenza.**
 
-### L'Ecosistema Aperto di Skill MyClaw
-
-Auto-Dream è una skill in un ecosistema in crescita. Ogni skill è un pacchetto installabile che insegna al tuo agente una nuova capacità:
-
-| Skill | Cosa fa |
-|-------|---------|
-| 🌀 **[Auto-Dream](https://github.com/LeoYeAI/openclaw-auto-dream)** | Memoria cognitiva — questo progetto |
-| 🛡️ **[Guardian](https://github.com/LeoYeAI/openclaw-guardian)** | Watchdog auto-riparante — auto-monitoraggio, auto-riparazione, auto-rollback |
-| 🕷️ **[Ultra Scraping](https://github.com/LeoYeAI/openclaw-ultra-scraping)** | Scraping web adattivo che aggira l'anti-bot e sopravvive ai redesign |
-| 🎬 **[Slides](https://github.com/LeoYeAI/openclaw-slides)** | Presentazioni HTML straordinarie con 12 preset di stile e animazioni |
-| 📦 **[Backup](https://github.com/LeoYeAI/openclaw-backup)** | Backup e ripristino con un clic per intere istanze |
-| 💬 **[Ask Lenny](https://github.com/LeoYeAI/ask-lenny)** | Saggezza di prodotto e crescita da 289+ conversazioni reali con fondatori |
-| 📚 **[Master Skills](https://github.com/LeoYeAI/openclaw-master-skills)** | Collezione curata di 339+ skill della community |
-| 📈 **[Marketing Skills](https://github.com/LeoYeAI/openclaw-marketing-skills)** | 33 skill di marketing testate sul campo |
-
-Installa qualsiasi skill con un comando: `clawhub install <skill-name>`
-
-Oppure dì semplicemente al tuo agente: *"Installa Auto-Dream"* — e gestisce tutto lui.
-
-> 🌐 **Inizia:** [myclaw.ai](https://myclaw.ai) — Your OpenClaw, ready for you. Avvia subito. Annulla quando vuoi.
-
 ---
 
 ## Il Problema

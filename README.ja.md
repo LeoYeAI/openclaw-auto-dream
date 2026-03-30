@@ -62,27 +62,6 @@
 
 これがAuto-Dreamが存在する理由です。あなたのAIエージェントに永続的なサーバー、永続的なファイル、そしてあなたとの永続的な関係がある時 — **記憶はあったら便利なものではありません。知性の基盤なのです。**
 
-### MyClawオープンスキルエコシステム
-
-Auto-Dreamは成長するエコシステムの中の一つのスキルです。各スキルはエージェントに新しい能力を教えるインストール可能なパッケージです：
-
-| スキル | 機能 |
-|--------|------|
-| 🌀 **[Auto-Dream](https://github.com/LeoYeAI/openclaw-auto-dream)** | 認知記憶 — このプロジェクト |
-| 🛡️ **[Guardian](https://github.com/LeoYeAI/openclaw-guardian)** | 自己修復ウォッチドッグ — 自動監視、自動修復、自動ロールバック |
-| 🕷️ **[Ultra Scraping](https://github.com/LeoYeAI/openclaw-ultra-scraping)** | アンチボットを回避しリデザインに耐えるアダプティブWebスクレイピング |
-| 🎬 **[Slides](https://github.com/LeoYeAI/openclaw-slides)** | 12のスタイルプリセットとアニメーション付きの魅力的なHTMLプレゼンテーション |
-| 📦 **[Backup](https://github.com/LeoYeAI/openclaw-backup)** | インスタンス全体のワンクリックバックアップ＆リストア |
-| 💬 **[Ask Lenny](https://github.com/LeoYeAI/ask-lenny)** | 289以上の実際の創業者との会話からのプロダクト＆グロースの知恵 |
-| 📚 **[Master Skills](https://github.com/LeoYeAI/openclaw-master-skills)** | 339以上のコミュニティスキルのキュレーションコレクション |
-| 📈 **[Marketing Skills](https://github.com/LeoYeAI/openclaw-marketing-skills)** | 実戦で検証済みの33のマーケティングスキル |
-
-一つのコマンドで任意のスキルをインストール: `clawhub install <skill-name>`
-
-または、エージェントに伝えるだけ: *「Auto-Dreamをインストールして」* — あとはエージェントが処理します。
-
-> 🌐 **始めましょう:** [myclaw.ai](https://myclaw.ai) — Your OpenClaw, ready for you. すぐに起動。いつでもキャンセル。
-
 ---
 
 ## 問題
