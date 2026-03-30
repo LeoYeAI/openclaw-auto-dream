@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
+  <img src="https://img.shields.io/badge/Version-4.0-8B5CF6?style=for-the-badge" alt="v4.0" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -291,6 +291,50 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 | 密钥策略 | 仅整合已有密钥，不创建新条目 |
 
 ## 版本记录
+
+### v4.0.0 — 智能梦境体验 (2026-03-30)
+
+🌟 **让每次梦境都有价值**
+
+- **空闲回忆**：无新内容时，唤起一条旧记忆 + 连续梦境次数，而非空白跳过
+- **累积增长指标**：通知显示 "142 → 145 条 (+2.1%)" + 梦境连续天数
+- **停滞线程检测**：扫描 Open Threads 中超过 14 天未更新的条目，通知前 3 条
+- **里程碑庆祝**：第 1/7/30 次梦境、第 100/200/500 条记忆时触发
+- **每周摘要**：周日生成周环比增长和重要记忆回顾
+- **自动刷新看板**：每次梦境后自动重新生成 `dashboard.html`
+- **情感锚点（首次梦境）**：个性化反思段落，建立更深连接
+
+### v3.6.0 — 首次梦境 AHA 时刻 (2026-03-30)
+
+- **即时首次梦境**：安装后立即扫描，无需等 24 小时
+- **前后对比**：实时展示记忆状态变化
+- **空实例支持**：即使零日志也能运行
+- **新增参考文件**：`first-dream-prompt.md`
+
+### v3.5.0 — 英文化重写 (2026-03-30)
+
+- SKILL.md 全文改写为英文，面向国际社区
+
+### v3.4.0 — 看板重设计 (2026-03-29)
+
+- **中文原生看板**：全新 UI 设计，移动端自适应
+- **占位符系统**：模板使用 `__DREAM_DATA_PLACEHOLDER__` 动态注入数据
+
+### v3.3.0 — 框架修复 (2026-03-29)
+
+🔧 **首次成功完成梦境循环**
+
+- **初始化记忆基础设施**：创建所有缺失文件（index.json、dream-log.md、procedures.md、archive.md）
+- **精简梦境提示词**：`dream-prompt-lite.md` 压缩至 1188 字节，确保冷启动可靠性
+- **瘦身 SKILL.md**：去除过度工程，聚焦实际执行
+- **延长超时**：300s → 600s，应对复杂首次运行
+- **3 天扫描范围**：日常增量运行仅处理近期未整合日志
+
+### v3.2.1 — 安全与 LCM 修复 (2026-03-29)
+
+- **LCM 仅检测模式**：不再自动安装插件，改为提示用户手动安装
+- **ClawHub 安全标记解决**：移除触发扫描器的自动安装命令
+- **敏感数据策略**：重命名以避免误报
 
 ### v3.2.0 — 性能优化 (2026-03-29)
 

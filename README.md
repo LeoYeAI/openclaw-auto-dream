@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-3.2-8B5CF6?style=for-the-badge" alt="v3.2" />
+  <img src="https://img.shields.io/badge/Version-4.0-8B5CF6?style=for-the-badge" alt="v4.0" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -297,6 +297,50 @@ The agent will:
 | Secrets policy | Only consolidates secrets already present |
 
 ## Release Notes
+
+### v4.0.0 — Intelligent Dream UX (2026-03-30)
+
+🌟 **Dream cycles that feel alive**
+
+- **Skip-with-Recall**: When no new content, surfaces an old memory reminder + streak count instead of empty skip
+- **Cumulative Growth Metrics**: Notifications show "142 → 145 entries (+2.1%)" + dream streak
+- **Stale Thread Detection**: Scans Open Threads for items >14 days untouched, surfaces top 3 in notification
+- **Milestone Celebrations**: Triggers at 1st/7th/30th dream, 100/200/500 entries
+- **Weekly Summary**: On Sundays, generates week-over-week growth and biggest memories
+- **Auto-Refresh Dashboard**: Regenerates `dashboard.html` each dream cycle
+- **Emotional Anchor (First Dream)**: Personalized reflection paragraph for deeper connection
+
+### v3.6.0 — First Dream AHA Moment (2026-03-30)
+
+- **Instant First Dream**: Post-install scan runs immediately — no 24h wait
+- **Before/After Comparison**: Shows memory state change in real-time
+- **Empty instance handling**: Works even with zero daily logs
+- **New reference**: `first-dream-prompt.md` for post-install experience
+
+### v3.5.0 — English Rewrite (2026-03-30)
+
+- Full SKILL.md rewritten to English for international audience
+
+### v3.4.0 — Dashboard Redesign (2026-03-29)
+
+- **Chinese-native dashboard**: Complete UI redesign with mobile responsive layout
+- **Placeholder system**: Template uses `__DREAM_DATA_PLACEHOLDER__` for dynamic data injection
+
+### v3.3.0 — Framework Fix (2026-03-29)
+
+🔧 **First successful dream cycle**
+
+- **Initialized memory infrastructure**: Created all missing files (index.json, dream-log.md, procedures.md, archive.md)
+- **Simplified dream prompt**: `dream-prompt-lite.md` rewritten to 1188 bytes for reliable cold-start
+- **Slimmed SKILL.md**: Removed overengineering, focused on practical execution
+- **Increased timeout**: 300s → 600s for complex first runs
+- **3-day scan range**: Daily incremental runs process only recent unconsolidated logs
+
+### v3.2.1 — Security & LCM Fix (2026-03-29)
+
+- **LCM detect-only mode**: No longer auto-installs plugins; prompts user instead
+- **ClawHub security flag resolved**: Removed auto-install commands that triggered scanner
+- **Sensitive data policy**: Renamed from "Secrets policy" to avoid false positives
 
 ### v3.2.0 — Performance Optimization (2026-03-29)
 
