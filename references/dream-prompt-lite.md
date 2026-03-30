@@ -1,80 +1,100 @@
-# Auto-Dream Lite — 快速记忆整理
+# Auto-Dream Lite — Quick Memory Consolidation
 
-所有输出用中文（读 USER.md 确认语言）。工作目录：/home/ubuntu/.openclaw/workspace
+Read USER.md to determine user's language. All output in that language.
+Working directory: the workspace root.
 
-## 第0步：智能跳过
+## Step 0: Smart Skip
 
 ```
-ls memory/????-??-??.md → 找最近3天的文件
-检查每个文件末尾是否有 <!-- consolidated -->
-如果全部已处理或无文件 → 回复"🌙 无新内容，跳过本次整理" → 结束
+ls memory/????-??-??.md → find files from last 3 days
+Check each file's end for <!-- consolidated -->
+If all processed or no files → reply "🌙 No new content, skipping" → END
 ```
 
-## 第1步：收集
+## Step 0.5: Snapshot BEFORE
 
-读取所有未处理的 daily log。从中提取：
-- 决策（做了什么选择、方向变化）
-- 关键事实（数据更新、账号信息、技术细节）
-- 项目进展（里程碑、阻塞、完成）
-- 教训（失败、成功经验）
-- 待办（未完成的事）
+Before making any changes, count:
+```
+MEMORY_LINES = wc -l MEMORY.md
+DECISIONS = count items in Key Decisions section
+LESSONS = count items in Lessons Learned section
+OPEN_THREADS = count items in Open Threads section
+```
 
-跳过闲聊和 MEMORY.md 中已存在且未变化的内容。
+## Step 1: Collect
 
-## 第2步：整合
+Read all unconsolidated daily logs. Extract:
+- Decisions (choices, direction changes)
+- Key facts (data updates, account info, technical details)
+- Project progress (milestones, blockers, completions)
+- Lessons (failures, wins)
+- Todos (unfinished items)
 
-读取 MEMORY.md，对比提取的内容：
+Skip small talk and content already in MEMORY.md that hasn't changed.
 
-- **新内容** → 追加到 MEMORY.md 对应章节
-- **已有内容有更新** → 原地更新（如数据变化）
-- **重复内容** → 跳过
-- **流程/偏好** → 追加到 memory/procedures.md
+## Step 2: Consolidate
 
-写入前做语义去重（比较含义不是文字）。
+Read MEMORY.md, compare with extracted content:
 
-MEMORY.md 更新后修改 `_Last updated:` 日期。每个处理过的 daily log 末尾追加 `<!-- consolidated -->`。
+- **New** → append to MEMORY.md in the right section
+- **Updated** → update in place (e.g., newer data)
+- **Duplicate** → skip
+- **Procedures/preferences** → append to memory/procedures.md
 
-## 第3步：生成报告
+Semantic dedup (compare meaning, not exact text).
+Update `_Last updated:` date in MEMORY.md.
+Mark each processed daily log with `<!-- consolidated -->` at end of file.
 
-统计本次变更，追加到 memory/dream-log.md：
+## Step 2.5: Snapshot AFTER
+
+Count the same metrics again after changes.
+
+## Step 3: Generate Report
+
+Append to memory/dream-log.md:
 
 ```markdown
-## 🌙 记忆整理 — YYYY-MM-DD
+## 🌙 Memory Consolidation — YYYY-MM-DD
 
-**扫描**: N 个文件 | **新增**: N 条 | **更新**: N 条
+**Scanned**: N files | **New**: N | **Updated**: N
 
-### 本次整合的内容
-- [新增/更新] 具体描述每一条变更
+### Changes
+- [New/Updated] Describe each change
 
-### 洞察
-- 1-2条跨记忆的非显而易见的观察（模式、趋势、空白）
+### Insights
+- 1-2 non-obvious cross-memory observations (patterns, trends, gaps)
 
-### 建议
-- 基于当前记忆状态的可行动建议
+### Suggestions
+- Actionable suggestions based on current memory state
 ```
 
-## 第4步：通知
+## Step 4: Notify
 
-作为本次会话的最终回复，发送以下格式的中文消息（cron delivery 会自动推送）：
+Your final reply (cron delivery will push to user). Use user's language:
 
 ```
-🌙 昨夜记忆整理完成
+🌙 Memory consolidation complete
 
-📥 扫描了 N 天的记录（日期范围）
-   └ 提炼出 N 条新知识，更新了 N 条
+📥 Scanned N days of logs ({date_range})
+   └ Extracted N new, updated N
 
-🧠 本次整合：
-   • 具体描述每条新增或更新（用 💡新决策 / 🔄更新 / 📦归档 分类）
+📊 Before → After:
+   Memory: {B} → {A} lines
+   Decisions: {B} → {A}
+   Lessons: {B} → {A}
 
-🔮 洞察：
-   一条最有价值的跨记忆观察
+🧠 Changes:
+   • 💡/🔄/📦 Describe each change (max 5, summarize if more)
 
-💬 如有遗漏，告诉我补充
+🔮 Insight:
+   One most valuable cross-memory observation
+
+💬 Let me know if anything was missed
 ```
 
-这个通知就是你的最终回复。简洁有力，让用户一眼看到价值。
+This reply is your ONLY output. Concise and high-value.
 
-## 安全规则
-- 永不删除 daily log 原文
-- 永不移除 ⚠️ PERMANENT 条目
-- 备份：MEMORY.md 变动超 30% 先存 MEMORY.md.bak
+## Safety Rules
+- Never delete daily log originals
+- Never remove ⚠️ PERMANENT entries
+- Backup: MEMORY.md changes >30% → save MEMORY.md.bak first

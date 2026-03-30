@@ -25,6 +25,18 @@ Do not auto-install plugins or modify config.
 
 ## Setup
 
+### 0. First Dream (Run Immediately After Install)
+
+After setup is complete, DO NOT wait for the cron schedule. Immediately run the First Dream:
+
+1. Read `references/first-dream-prompt.md`
+2. Execute every step in the current session (not isolated — user should see it happen)
+3. This performs a full scan of ALL existing daily logs, consolidates them, and sends a before/after comparison report
+4. The report shows the user exactly what Auto-Dream found and organized — this is the Aha moment
+
+If the user has existing daily logs, they'll see their scattered knowledge consolidated instantly.
+If the instance is brand new, they'll see the memory architecture initialized and ready.
+
 ### 1. Initialize Files
 
 ```bash
@@ -117,7 +129,8 @@ All output uses the user's preferred language as recorded in USER.md.
 
 ## Reference Files
 
-- `references/dream-prompt-lite.md` — **Compact prompt for cron use** (default)
+- `references/first-dream-prompt.md` — **First Dream: post-install full scan with before/after report**
+- `references/dream-prompt-lite.md` — **Compact prompt for daily cron use** (default)
 - `references/dream-prompt.md` — Full prompt (for manual deep consolidation)
 - `references/scoring.md` — Importance scoring, forgetting curve, health score algorithms
 - `references/memory-template.md` — File templates (MEMORY.md, procedures, index.json, etc.)
