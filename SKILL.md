@@ -75,8 +75,8 @@ delivery: { mode: "announce" }
 
 Each dream runs in an isolated session (see `references/dream-prompt-lite.md`):
 
-### Step 0: Smart Skip
-Check if any unconsolidated daily logs exist in the last 7 days. All processed → skip and exit.
+### Step 0: Smart Skip + Recall
+Check if any unconsolidated daily logs exist in the last 7 days. All processed → still send a useful message: surface an old memory ("N days ago, you decided...") and show streak count. Never send a blank "nothing to do" message.
 
 ### Step 1: Collect
 Read unconsolidated daily logs. Extract decisions, facts, progress, lessons, and todos.
@@ -84,28 +84,26 @@ Read unconsolidated daily logs. Extract decisions, facts, progress, lessons, and
 ### Step 2: Consolidate
 Compare with MEMORY.md → append new content, update existing, skip duplicates. Write workflow preferences to procedures.md. Mark processed daily logs with `<!-- consolidated -->`.
 
-### Step 3: Generate Report
-Append to dream-log.md with change list + insights + suggestions.
+### Step 2.8: Stale Thread Detection
+Scan Open Threads for items stale >14 days. Include top 3 in notification with context.
 
-### Step 4: Notify
-Send a consolidation report in the user's preferred language (read from USER.md). Example format:
+### Step 3: Generate Report + Auto-Refresh Dashboard
+Append to dream-log.md with change list + insights + suggestions. If dashboard.html exists, regenerate with latest data.
 
-```
-🌙 Memory consolidation complete
+### Step 4: Notify with Growth Metrics
+Send a consolidation report showing:
+- Before → after comparison (entries, decisions, lessons)
+- Cumulative growth ("142 → 145 entries, +2.1%")
+- Dream streak count ("Dream #14")
+- Milestones when hit (first dream, 7-day streak, 100 entries, etc.)
+- Top 3 stale reminders (if any)
+- Weekly summary on Sundays (week-over-week growth, biggest memories)
 
-📥 Scanned 3 days of logs (3/26-3/28)
-   └ Extracted 5 new entries, updated 2
-
-🧠 Changes:
-   • 💡 New decision: Auto-Dream switched to detect+prompt mode
-   • 🔄 Updated: MyClaw instances 14,504 (+289)
-   • 📦 Archived: Early API test records from February
-
-🔮 Insight: Recent decisions cluster around "developer ecosystem",
-   but the 3/23 roadmap discussion was interrupted — suggest following up
-
-💬 Let me know if anything was missed
-```
+### Notification Principles
+1. **Every notification must deliver value** — never send empty "nothing happened" messages
+2. **Show growth, not just changes** — cumulative stats make the user feel the system is evolving
+3. **Surface forgotten context** — stale thread reminders and old memory recalls create surprise and utility
+4. **Celebrate milestones** — streak counts and entry milestones build habit and attachment
 
 ## Manual Triggers
 

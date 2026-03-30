@@ -108,6 +108,20 @@ Then compose and reply with the First Dream Report (this is your final reply, cr
 💬 Let me know if anything was missed.
 ```
 
+Then add a personalized reflection based on what you actually found in the logs:
+
+```
+💭 After reading through {days} days of your history:
+   {2-3 sentence personalized summary of what you observed — mention
+   specific projects by name, growth numbers, patterns you noticed.
+   End with one sentence about what Auto-Dream will do for them going forward.
+   Make it feel like the AI truly read and understood their journey,
+   not just counted files.}
+```
+
+This reflection is the emotional anchor — it makes users feel "this AI gets me."
+Write it naturally, not templated. Reference real content from their logs.
+
 IMPORTANT: Translate the entire report to the user's language (from USER.md) before sending.
 
 ## Phase 5: Fresh Instance Report
