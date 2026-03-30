@@ -101,7 +101,7 @@ An entry is eligible for archival when **ALL** of these are true:
 1. Compress entry to one-line summary
 2. Append to memory/archive.md:
    - [mem_NNN] (YYYY-MM-DD) One-line summary
-3. Remove full entry from source file (MEMORY.md or procedures.md)
+3. Move entry from source file to archive.md (original preserved in archive)
 4. Set entry.archived = true in index.json
 5. Keep the index entry (for relation tracking and reachability graph)
 ```

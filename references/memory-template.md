@@ -38,7 +38,7 @@ _Last updated: YYYY-MM-DD_
 <!-- Mistakes, insights, things that worked -->
 
 ## 🔧 Environment
-<!-- Technical setup, tools, credentials (only if already stored) -->
+<!-- Technical setup, tools, environment notes -->
 
 ## 🌊 Open Threads
 <!-- Pending tasks, unresolved items -->

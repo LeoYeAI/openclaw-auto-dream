@@ -27,10 +27,10 @@ If DAILY_LOGS == 0 AND MEMORY_LINES < 10:
 
 ## Phase 2: Collect
 
-Read ALL unconsolidated daily logs (not just last 3 days — this is the first run).
+Read unconsolidated daily logs (not just last 3 days — this is the first run).
 Extract:
 - Decisions (choices made, direction changes)
-- Key facts (data, metrics, account info, technical details)
+- Key facts (data, metrics, technical details)
 - Project progress (milestones, blockers, completions)
 - Lessons (failures, wins, things that worked)
 - Todos (unfinished items, pending follow-ups)
@@ -154,4 +154,4 @@ Translate to user's language before sending.
 ## Safety Rules
 - Never delete daily log originals — only mark <!-- consolidated -->
 - Never remove ⚠️ PERMANENT entries
-- Backup: if MEMORY.md changes >30%, save MEMORY.md.bak first
+- If MEMORY.md changes >30%, save .bak copy first

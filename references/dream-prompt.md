@@ -39,7 +39,7 @@ From each file, extract items in these categories:
 |----------|---------|
 | **Decisions** | Choices made, commitments, direction changes |
 | **People** | New contacts, relationship updates, preferences learned about others |
-| **Facts** | User preferences, technical details, account info |
+| **Facts** | User preferences, technical details, project context |
 | **Projects** | Progress, blockers, completions, milestones |
 | **Lessons** | Mistakes, insights, things that worked or failed |
 | **Procedures** | Workflows learned, tool usage patterns, communication preferences |

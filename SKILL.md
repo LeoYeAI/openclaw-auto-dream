@@ -11,12 +11,12 @@ Agent periodically "dreams" — scans daily logs, extracts key knowledge, consol
 
 | File | Purpose | Mutability |
 |------|---------|------------|
-| `MEMORY.md` | Structured long-term knowledge | Append, update, archive |
+| `MEMORY.md` | Structured long-term knowledge | Append, update |
 | `memory/procedures.md` | Workflow preferences, tool usage | Append, update |
 | `memory/episodes/*.md` | Project narratives | Append only |
 | `memory/index.json` | Metadata index (v3.0 schema) | Rebuilt each dream |
 | `memory/dream-log.md` | Dream report log | Append only |
-| `memory/archive.md` | Low-importance compressed archive | Append only |
+| `memory/archive.md` | Summarized older entries | Append only |
 
 Optional: LCM plugin (Working Memory layer). If not installed, prompt the user:
 > "Recommended: install the LCM plugin for working memory: `openclaw plugins install @martian-engineering/lossless-claw`"
@@ -31,7 +31,7 @@ After setup is complete, DO NOT wait for the cron schedule. Immediately run the 
 
 1. Read `references/first-dream-prompt.md`
 2. Execute every step in the current session (not isolated — user should see it happen)
-3. This performs a full scan of ALL existing daily logs, consolidates them, and sends a before/after comparison report
+3. This performs a scan of existing daily logs, consolidates them, and sends a before/after comparison report
 4. The report shows the user exactly what Auto-Dream found and organized — this is the Aha moment
 
 If the user has existing daily logs, they'll see their scattered knowledge consolidated instantly.
@@ -121,9 +121,9 @@ All output uses the user's preferred language as recorded in USER.md.
 
 1. **Never delete daily logs** — only mark with `<!-- consolidated -->`
 2. **Never remove ⚠️ PERMANENT items** — user-protected markers
-3. **Backup before major changes** — if MEMORY.md changes >30%, save .bak first
-4. **Index backup** — backup index.json → index.json.bak before each dream
-5. **Sensitive data policy** — only consolidate sensitive info already present in MEMORY.md
+3. **Safe changes** — if MEMORY.md changes >30%, save .bak copy first
+4. **Index safety** — save index.json.bak before each dream
+5. **Privacy** — follow user's existing MEMORY.md conventions for what to include
 
 ## Reference Files
 

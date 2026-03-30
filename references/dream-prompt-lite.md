@@ -53,7 +53,7 @@ Also read memory/dream-log.md to count total past dream entries → DREAM_COUNT.
 
 Read all unconsolidated daily logs. Extract:
 - Decisions (choices, direction changes)
-- Key facts (data updates, account info, technical details)
+- Key facts (data, metrics, technical details)
 - Project progress (milestones, blockers, completions)
 - Lessons (failures, wins)
 - Todos (unfinished items)
@@ -174,4 +174,4 @@ This reply is your ONLY output. Concise and high-value.
 ## Safety Rules
 - Never delete daily log originals
 - Never remove ⚠️ PERMANENT entries
-- Backup: MEMORY.md changes >30% → save MEMORY.md.bak first
+- If MEMORY.md changes >30% → save .bak copy first
