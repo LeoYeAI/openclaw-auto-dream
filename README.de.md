@@ -389,7 +389,7 @@ Keine externen Abhängigkeiten. Keine API-Schlüssel. Keine Datenbanken. Nur Dat
 
 **[MyClaw.ai](https://myclaw.ai)** ist die KI-Assistenzplattform, die jedem Benutzer einen dedizierten Server mit [OpenClaw](https://github.com/openclaw/openclaw) bietet — mit voller Code-Kontrolle, uneingeschränktem Internetzugang, Cron-Jobs und einem wachsenden Ökosystem installierbarer Skills.
 
-14,000+ laufende Instanzen. $40M+ ARR. Die am schnellsten wachsende KI-Agenten-Plattform.
+Die am schnellsten wachsende KI-Agenten-Plattform.
 
 Your OpenClaw, ready for you. Sofort starten. Jederzeit kündigen.
 

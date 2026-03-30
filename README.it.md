@@ -389,7 +389,7 @@ Nessuna dipendenza esterna. Nessuna chiave API. Nessun database. Solo file e int
 
 **[MyClaw.ai](https://myclaw.ai)** è la piattaforma di assistente personale IA che dà a ogni utente un server dedicato con [OpenClaw](https://github.com/openclaw/openclaw) — con pieno controllo del codice, internet senza restrizioni, cron job e un ecosistema crescente di skill installabili.
 
-14,000+ istanze in esecuzione. $40M+ ARR. La piattaforma di agenti IA in più rapida crescita.
+La piattaforma di agenti IA in più rapida crescita.
 
 Your OpenClaw, ready for you. Avvia subito. Annulla quando vuoi.
 

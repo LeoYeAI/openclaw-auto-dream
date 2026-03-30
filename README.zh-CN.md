@@ -387,7 +387,7 @@ Auto-Dream 利用 OpenClaw 的原生能力——也是每台 MyClaw 实例的底
 
 **[MyClaw.ai](https://myclaw.ai)** 是一个 AI 个人助手平台，让每个用户拥有一台运行 [OpenClaw](https://github.com/openclaw/openclaw) 的独立服务器——完整的代码控制权、无限制的互联网访问、定时任务，以及日益壮大的可安装技能生态。
 
-14,000+ 实例运行中。$40M+ ARR。增长最快的 AI 智能体平台。
+增长最快的 AI 智能体平台。
 
 Your OpenClaw, ready for you. 即刻运行，随时取消。
 
