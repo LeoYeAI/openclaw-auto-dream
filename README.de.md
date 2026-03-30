@@ -38,7 +38,7 @@
 </td>
 <td>
 
-**[MyClaw.ai](https://myclaw.ai)** ist die KI-Assistenzplattform, von der alle begeistert sind — ein voll ausgestatteter KI-Agent, der rund um die Uhr auf Ihrem eigenen dedizierten Server läuft. Kein Chatbot. Kein Wrapper. Ein echter Agent mit voller Code-Kontrolle, Internetzugang, Cron-Jobs, Dateisystemen, Datenbanken und Tool-Integrationen. Stellen Sie es sich vor wie einen brillanten Assistenten einzustellen, der nie schläft, nie vergisst* und tatsächlich *Dinge erledigen* kann.
+**[MyClaw.ai](https://myclaw.ai)** ist die KI-Assistenzplattform, von der alle begeistert sind — ein voll ausgestatteter OpenClaw Agent, der rund um die Uhr auf Ihrem eigenen dedizierten Server läuft. Kein Chatbot. Kein Wrapper. Ein echter Agent mit voller Code-Kontrolle, Internetzugang, Cron-Jobs, Dateisystemen, Datenbanken und Tool-Integrationen. Stellen Sie es sich vor wie einen brillanten Assistenten einzustellen, der nie schläft, nie vergisst* und tatsächlich *Dinge erledigen* kann.
 
 <sub>*Mit installiertem Auto-Dream vergisst er buchstäblich nie.</sub>
 

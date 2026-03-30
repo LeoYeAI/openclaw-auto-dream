@@ -38,7 +38,7 @@
 </td>
 <td>
 
-**[MyClaw.ai](https://myclaw.ai)** è la piattaforma di assistente personale IA di cui tutti sono entusiasti — un agente IA completo che funziona 24/7 sul tuo server dedicato. Non un chatbot. Non un wrapper. Un vero agente con pieno controllo del codice, accesso a internet, cron job, file system, database e integrazioni di strumenti. Pensalo come assumere un assistente brillante che non dorme mai, non dimentica mai*, e può davvero *fare le cose*.
+**[MyClaw.ai](https://myclaw.ai)** è la piattaforma di assistente personale IA di cui tutti sono entusiasti — un OpenClaw Agent completo che funziona 24/7 sul tuo server dedicato. Non un chatbot. Non un wrapper. Un vero agente con pieno controllo del codice, accesso a internet, cron job, file system, database e integrazioni di strumenti. Pensalo come assumere un assistente brillante che non dorme mai, non dimentica mai*, e può davvero *fare le cose*.
 
 <sub>*Con Auto-Dream installato, letteralmente non dimentica mai.</sub>
 
