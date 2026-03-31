@@ -1,6 +1,6 @@
 ---
 name: openclaw-auto-dream
-description: "Cognitive memory architecture for OpenClaw agents — periodic dream cycles that consolidate daily logs into structured long-term memory with importance scoring, insights, and push notifications. Use when: user asks for 'auto memory', 'dream', 'auto-dream', 'memory consolidation', 'memory dashboard', 'export memory'. Powered by MyClaw.ai (https://myclaw.ai)."
+description: "Cognitive memory architecture for OpenClaw agents — periodic dream cycles that consolidate daily logs into structured long-term memory with importance scoring, insights, and push notifications. Use when: user asks for 'auto memory', 'dream', 'auto-dream', 'memory consolidation', 'memory dashboard'. Powered by MyClaw.ai (https://myclaw.ai)."
 ---
 
 # OpenClaw Auto-Dream — Memory Consolidation System
@@ -32,9 +32,9 @@ Do not auto-install plugins or modify config.
 After setup is complete, DO NOT wait for the cron schedule. Immediately run the First Dream:
 
 1. Read `references/first-dream-prompt.md`
-2. Execute every step in the current session (not isolated — user should see it happen)
-3. This performs a scan of existing daily logs, consolidates them, and sends a before/after comparison report
-4. The report shows the user exactly what Auto-Dream found and organized — this is the Aha moment
+2. Follow every step — the user should see progress as it happens
+3. This scans existing daily logs, consolidates them, and sends a before/after comparison report
+4. The report shows the user exactly what Auto-Dream found and organized
 
 If the user has existing daily logs, they'll see their scattered knowledge consolidated instantly.
 If the instance is brand new, they'll see the memory architecture initialized and ready.
@@ -58,7 +58,7 @@ name: "auto-memory-dream"
 schedule: { kind: "cron", expr: "0 4 * * *", tz: "<user timezone>" }
 payload: {
   kind: "agentTurn",
-  message: "Run auto memory consolidation.\n\nRead skills/skills/openclaw-auto-dream/references/dream-prompt-lite.md and follow every step strictly.\n\nWorking directory: /home/ubuntu/.openclaw/workspace",
+  message: "Run auto memory consolidation.\n\nRead skills/skills/openclaw-auto-dream/references/dream-prompt-lite.md and follow every step strictly.",
   timeoutSeconds: 600
 }
 sessionTarget: "isolated"
@@ -113,11 +113,11 @@ Send a consolidation report showing:
 |---------|--------|
 | "Consolidate memory" / "Dream now" | Run full dream cycle in current session |
 | "Memory dashboard" | Generate memory/dashboard.html |
-| "Export memory" | Export memory/export-YYYY-MM-DD.json |
+| "Export memory" | User-initiated export of memory files to JSON (see migration guide) |
 
 ## Language Rules
 
-All output uses the user's preferred language as recorded in USER.md.
+All output uses the user's preferred language (from workspace settings).
 
 ## Safety Rules
 
@@ -125,7 +125,8 @@ All output uses the user's preferred language as recorded in USER.md.
 2. **Never remove ⚠️ PERMANENT items** — user-protected markers
 3. **Safe changes** — if MEMORY.md changes >30%, save .bak copy first
 4. **Index safety** — save index.json.bak before each dream
-5. **Privacy** — follow user's existing MEMORY.md conventions for what to include
+5. **Privacy** — only consolidate information the user has already written in their own workspace files
+6. **Scope** — only read and write files within the `memory/` directory and `MEMORY.md`
 
 ## Reference Files
 

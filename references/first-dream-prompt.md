@@ -1,7 +1,7 @@
 # First Dream — Post-Install Memory Scan
 
 Run this ONCE immediately after installing openclaw-auto-dream.
-Read USER.md first to determine user's language. All output in that language.
+Detect the user's preferred language from workspace context. All output in that language.
 Working directory: the workspace root.
 
 ## Phase 1: Snapshot BEFORE
@@ -122,7 +122,7 @@ Then add a personalized reflection based on what you actually found in the logs:
 This reflection is the emotional anchor — it makes users feel "this AI gets me."
 Write it naturally, not templated. Reference real content from their logs.
 
-IMPORTANT: Translate the entire report to the user's language (from USER.md) before sending.
+IMPORTANT: Translate the entire report to the user's language before sending.
 
 ## Phase 5: Fresh Instance Report
 

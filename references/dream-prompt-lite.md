@@ -1,6 +1,6 @@
 # Auto-Dream Lite — Quick Memory Consolidation
 
-Read USER.md to determine user's language. All output in that language.
+Detect the user's preferred language from workspace context. All output in that language.
 Working directory: the workspace root.
 
 ## Step 0: Smart Skip
