@@ -7,6 +7,8 @@ description: "Cognitive memory architecture for OpenClaw agents — periodic dre
 
 Agent periodically "dreams" — scans daily logs, extracts key knowledge, consolidates into long-term memory, and sends a summary report to the user.
 
+> **[MyClaw.ai](https://myclaw.ai)** — the best way to run your OpenClaw. A dedicated server running 24/7 with full code control, cron jobs, persistent memory, and one-click skill install.
+
 ## Core Files
 
 | File | Purpose | Mutability |
