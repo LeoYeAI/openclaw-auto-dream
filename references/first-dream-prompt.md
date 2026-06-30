@@ -4,21 +4,27 @@ Run this ONCE immediately after installing openclaw-auto-dream.
 Detect the user's preferred language from workspace context. All output in that language.
 Working directory: the workspace root.
 
+## ⚠️ Tool Rules
+
+- **Never run shell commands** (`ls`, `dir`, `grep`, `wc`, `cat`, `python -c`, `python3`) — they fail on Windows
+- Use OpenClaw native tools only: `read` to inspect files, `edit`/`write` to mutate
+- Counting: use `read` tool to get file content, then count in your reasoning
+
 ## Phase 1: Snapshot BEFORE
 
 Count and record these numbers BEFORE making any changes:
 
-```
-MEMORY_LINES = wc -l MEMORY.md (0 if missing)
-MEMORY_SECTIONS = grep -c "^## " MEMORY.md (0 if missing)
-DECISIONS = grep -c "^- " on the "Key Decisions" section (0 if missing)
-LESSONS = grep -c "^- " on the "Lessons Learned" section (0 if missing)
-PROCEDURES = wc -l memory/procedures.md (0 if missing)
-OPEN_THREADS = grep -c "^- \[" on the "Open Threads" section (0 if missing)
-DAILY_LOGS = ls memory/????-??-??.md | wc -l
-UNCONSOLIDATED = count files WITHOUT <!-- consolidated -->
-EPISODES = ls memory/episodes/*.md 2>/dev/null | wc -l
-```
+Use the `read` tool to inspect each file and count in your reasoning:
+
+- MEMORY_LINES = count lines in MEMORY.md (0 if missing)
+- MEMORY_SECTIONS = count `## ` headings in MEMORY.md (0 if missing)
+- DECISIONS = count `- ` bullet items under the "Key Decisions" section (0 if missing)
+- LESSONS = count `- ` bullet items under the "Lessons Learned" section (0 if missing)
+- PROCEDURES = count lines in memory/procedures.md (0 if missing)
+- OPEN_THREADS = count `- [` items under the "Open Threads" section (0 if missing)
+- DAILY_LOGS = use `read` tool to open each `memory/YYYY-MM-DD.md` file to count them
+- UNCONSOLIDATED = count files that do NOT contain `<!-- consolidated -->` at the end
+- EPISODES = use `read` tool to check `memory/episodes/` — try to open each file
 
 Save all these values — you will need them for the before/after comparison.
 
@@ -27,7 +33,7 @@ If DAILY_LOGS == 0 AND MEMORY_LINES < 10:
 
 ## Phase 2: Collect
 
-Read unconsolidated daily logs (not just last 3 days — this is the first run).
+Use the `read` tool on all unconsolidated daily logs (not just last 3 days — this is the first run).
 Extract:
 - Decisions (choices made, direction changes)
 - Key facts (data, metrics, technical details)
@@ -40,37 +46,35 @@ Skip small talk. Skip content already in MEMORY.md that hasn't changed.
 
 ## Phase 3: Consolidate
 
-Read MEMORY.md. Compare with extracted content:
+Read MEMORY.md with the `read` tool. Compare with extracted content:
 
-- **New** → append to appropriate MEMORY.md section
-- **Updated** → update in place (e.g., newer metrics)
+- **New** → use `edit` tool to append to appropriate MEMORY.md section
+- **Updated** → use `edit` tool to update in place (e.g., newer metrics)
 - **Duplicate** → skip
-- **Procedures/preferences** → append to memory/procedures.md
+- **Procedures/preferences** → use `edit`/`write` tool to append to memory/procedures.md
 
 Semantic dedup (compare meaning, not exact text).
 Update `_Last updated:` date in MEMORY.md.
-Mark each processed daily log with `<!-- consolidated -->` at end of file.
+Use `edit` tool to mark each processed daily log with `<!-- consolidated -->` at end of file.
 
 ## Phase 4: Snapshot AFTER + Report
 
-Count the same metrics again:
+Use the `read` tool again on the same files to count the same metrics:
 
-```
-MEMORY_LINES_AFTER = wc -l MEMORY.md
-MEMORY_SECTIONS_AFTER = ...
-DECISIONS_AFTER = ...
-LESSONS_AFTER = ...
-PROCEDURES_AFTER = ...
-OPEN_THREADS_AFTER = ...
-```
+- MEMORY_LINES_AFTER = count lines in MEMORY.md
+- MEMORY_SECTIONS_AFTER = count `## ` headings
+- DECISIONS_AFTER = count items in Key Decisions
+- LESSONS_AFTER = count items in Lessons Learned
+- PROCEDURES_AFTER = count lines in procedures.md
+- OPEN_THREADS_AFTER = count Open Threads items
 
 Calculate: NEW_ENTRIES = total new items added, UPDATED_ENTRIES = total items updated.
 
 Find STALE items: entries in Open Threads or other sections not referenced in last 30 days.
 
-Write dream report to memory/dream-log.md.
+Use `edit` tool to write dream report to `memory/dream-log.md`.
 
-Then compose and reply with the First Dream Report (this is your final reply, cron delivery will push it):
+Then compose and reply with the First Dream Report (this is your final reply):
 
 ```
 🧠 Auto-Dream — First Memory Scan Complete!
@@ -152,6 +156,6 @@ If this is a brand new instance with no daily logs and minimal MEMORY.md:
 Translate to user's language before sending.
 
 ## Safety Rules
-- Never delete daily log originals — only mark <!-- consolidated -->
+- Never delete daily log originals — only mark `<!-- consolidated -->`
 - Never remove ⚠️ PERMANENT entries
-- If MEMORY.md changes >30%, save .bak copy first
+- If MEMORY.md changes >30%, save .bak copy first (use `write` tool with `.bak` path)

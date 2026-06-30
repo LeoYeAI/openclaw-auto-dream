@@ -3,17 +3,23 @@
 Detect the user's preferred language from workspace context. All output in that language.
 Working directory: the workspace root.
 
+## ⚠️ Tool Rules
+
+- **Never run shell commands** (`ls`, `dir`, `grep`, `wc`, `cat`, `python -c`, `python3`) — they fail on Windows
+- Use OpenClaw native tools only: `read` to inspect files, `edit`/`write` to mutate
+- Counting entries: use `read` tool to get file content, then count in your reasoning — no shell scripts needed
+
 ## Step 0: Smart Skip
 
 ```
-ls memory/????-??-??.md → find files from last 3 days
-Check each file's end for <!-- consolidated -->
-If all processed or no files → go to Step 0-B (Skip With Recall)
+Use `read` tool to open `memory/????-??-??.md` files from the last 3 days.
+Check the end of each file for `<!-- consolidated -->`.
+If all processed or no files exist → go to Step 0-B (Skip With Recall).
 ```
 
 ## Step 0-B: Skip With Recall
 
-Even when skipping, send a useful message. Read memory/dream-log.md to count past dream entries (this is the dream streak count). Then scan MEMORY.md for Open Threads not marked [x] — find the oldest one with context.
+Even when skipping, send a useful message. Use `read` tool to inspect `memory/dream-log.md` — count past dream entries in your reasoning (this is the dream streak count). Then use `read` to scan `MEMORY.md` for Open Threads not marked `[x]` — find the oldest one with context.
 
 Also check: are there any daily logs from 14+ days ago that mention topics matching current Open Threads? If so, pick one as a "memory from N days ago".
 
@@ -38,20 +44,19 @@ END here. Do not proceed to Step 1.
 
 ## Step 0.5: Snapshot BEFORE
 
-Before making any changes, count:
-```
-MEMORY_LINES = wc -l MEMORY.md
-DECISIONS = count items in Key Decisions section
-LESSONS = count items in Lessons Learned section
-OPEN_THREADS = count items in Open Threads section
-TOTAL_ENTRIES = count all bullet items across MEMORY.md
-```
+Before making any changes, read `MEMORY.md` with the `read` tool and count in your reasoning:
 
-Also read memory/dream-log.md to count total past dream entries → DREAM_COUNT.
+- MEMORY_LINES = count lines in MEMORY.md
+- DECISIONS = count items in Key Decisions section
+- LESSONS = count items in Lessons Learned section
+- OPEN_THREADS = count items in Open Threads section
+- TOTAL_ENTRIES = count all bullet items across MEMORY.md
+
+Also read `memory/dream-log.md` with the `read` tool and count past dream entries → DREAM_COUNT.
 
 ## Step 1: Collect
 
-Read all unconsolidated daily logs. Extract:
+Read all unconsolidated daily logs with the `read` tool. Extract:
 - Decisions (choices, direction changes)
 - Key facts (data, metrics, technical details)
 - Project progress (milestones, blockers, completions)
@@ -62,24 +67,24 @@ Skip small talk and content already in MEMORY.md that hasn't changed.
 
 ## Step 2: Consolidate
 
-Read MEMORY.md, compare with extracted content:
+Read MEMORY.md with the `read` tool, compare with extracted content:
 
-- **New** → append to MEMORY.md in the right section
-- **Updated** → update in place (e.g., newer data)
+- **New** → use `edit` tool to append to MEMORY.md in the right section
+- **Updated** → use `edit` tool to update in place (e.g., newer data)
 - **Duplicate** → skip
-- **Procedures/preferences** → append to memory/procedures.md
+- **Procedures/preferences** → use `edit`/`write` tool to append to memory/procedures.md
 
 Semantic dedup (compare meaning, not exact text).
 Update `_Last updated:` date in MEMORY.md.
-Mark each processed daily log with `<!-- consolidated -->` at end of file.
+Use `edit` tool to mark each processed daily log with `<!-- consolidated -->` at end of file.
 
 ## Step 2.5: Snapshot AFTER
 
-Count the same metrics again after changes. Calculate deltas.
+Read MEMORY.md again with the `read` tool and count the same metrics. Calculate deltas in your reasoning.
 
 ## Step 2.8: Stale Thread Detection
 
-Scan MEMORY.md Open Threads section. For each uncompleted item (not marked [x]):
+Scan MEMORY.md Open Threads section (use `read` tool). For each uncompleted item (not marked [x]):
 - Estimate when it was last mentioned (from daily logs or MEMORY.md dates)
 - If stale >14 days, flag it
 
@@ -87,7 +92,7 @@ Collect top 3 oldest stale items for the notification.
 
 ## Step 3: Generate Report
 
-Append to memory/dream-log.md:
+Use `edit` tool (or `write` if starting fresh) to append to `memory/dream-log.md`:
 
 ```markdown
 ## 🌙 Dream #{DREAM_COUNT+1} — YYYY-MM-DD
@@ -109,7 +114,7 @@ Append to memory/dream-log.md:
 
 ## Step 3.5: Auto-Refresh Dashboard
 
-If memory/dashboard.html exists, regenerate it with latest data from MEMORY.md and dream-log.md. Use references/dashboard-template.html as the base, inject real data replacing __DREAM_DATA_PLACEHOLDER__.
+If `memory/dashboard.html` exists, regenerate it with latest data from MEMORY.md and dream-log.md. Use `read` tool to get `references/dashboard-template.html`, inject real data replacing `__DREAM_DATA_PLACEHOLDER__`, and use `write` tool to write the result to `memory/dashboard.html`.
 
 If dashboard.html does not exist, skip this step.
 
@@ -174,4 +179,4 @@ This reply is your ONLY output. Concise and high-value.
 ## Safety Rules
 - Never delete daily log originals
 - Never remove ⚠️ PERMANENT entries
-- If MEMORY.md changes >30% → save .bak copy first
+- If MEMORY.md changes >30% → save .bak copy first (use `write` tool with a new `.bak` path)
