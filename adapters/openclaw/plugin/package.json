@@ -1,0 +1,10 @@
+{
+  "name": "@leo/talewell-plugin",
+  "version": "0.1.0",
+  "description": "Talewell memory auto-injection for OpenClaw",
+  "type": "module",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": ["./index.mjs"]
+  }
+}

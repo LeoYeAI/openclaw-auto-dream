@@ -1,0 +1,35 @@
+{
+  "id": "talewell",
+  "name": "Talewell Memory",
+  "description": "Injects the Talewell long-term memory index into the prompt, so the agent starts every turn already knowing what it knows. Companion to the talewell MCP server.",
+  "activation": {
+    "onCapabilities": ["hook"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "repoPath": {
+        "type": "string",
+        "description": "Path to the Talewell memory repo."
+      },
+      "inject": {
+        "type": "string",
+        "enum": ["index", "recall", "both", "off"],
+        "description": "What to inject: a compact index (default), ranked recall for the current prompt, both, or nothing."
+      },
+      "maxIndexEntries": {
+        "type": "integer",
+        "description": "Cap on index entries injected per turn."
+      },
+      "recallLimit": {
+        "type": "integer",
+        "description": "Max recall hits when inject=recall or both."
+      },
+      "cacheTtlMs": {
+        "type": "integer",
+        "description": "How long a built index is reused before re-reading the repo."
+      }
+    }
+  }
+}
