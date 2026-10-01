@@ -87,6 +87,12 @@ or commit it for the whole project in `.mcp.json`:
   "env": { "TALEWELL_REPO": "/path/to/talewell-memory" } } } }
 ```
 
+> **Verified end to end.** With the `.mcp.json` above committed, Claude Code
+> (2.1.62) reports `talewell: node …/serve-mcp - ✓ Connected` from
+> `claude mcp list`. That is a live connection to this server, not a config echo.
+> It does not by itself prove the tool list — check that with your own
+> `tools` view once connected.
+
 **Cursor** — same shape, in `mcp.json`. Cursor supports `stdio`, `SSE`, and
 Streamable HTTP; `stdio` is what you want locally.
 
