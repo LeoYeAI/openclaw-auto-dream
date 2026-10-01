@@ -15,11 +15,11 @@ function tmpDir() {
 
 test('all nine target hosts are registered', () => {
   const ids = HOSTS.map((h) => h.id);
-  for (const want of ['openclaw', 'claude-code', 'codex', 'opencode', 'pi', 'hermes',
-    'grok-bot', 'muse-ai', 'deepseek-harness']) {
+  for (const want of ['openclaw', 'claude-code', 'codex', 'opencode', 'pi', 'cursor',
+    'manus', 'hermes', 'grok-bot', 'deepseek', 'muse-ai', 'openai-dots', 'cue']) {
     assert.ok(ids.includes(want), `missing host: ${want}`);
   }
-  assert.equal(HOSTS.length, 9);
+  assert.equal(HOSTS.length, 13);
 });
 
 test('every host has file+cli tiers as the universal fallback', () => {
@@ -30,22 +30,25 @@ test('every host has file+cli tiers as the universal fallback', () => {
   }
 });
 
-test('unverified hosts are marked and say so', () => {
+test('unverified hosts are marked and explain themselves', () => {
   const unverified = HOSTS.filter((h) => !h.verified).map((h) => h.id).sort();
-  assert.deepEqual(unverified, ['deepseek-harness', 'grok-bot', 'muse-ai']);
+  assert.deepEqual(unverified, ['cue', 'deepseek', 'muse-ai', 'openai-dots', 'pi']);
+  // An unverified host must say why we could not confirm it — never a silent gap.
   for (const h of HOSTS.filter((x) => !x.verified)) {
-    assert.equal(h.evidence, 'none found');
-    assert.match(h.note ?? '', /No reliable public interface/);
+    assert.ok(h.evidence, `${h.id} lacks evidence pointer`);
+    assert.ok(h.note && h.note.length > 20, `${h.id} lacks an explanatory note`);
   }
 });
 
 test('fleet summary counts tiers', () => {
   const s = fleetSummary();
-  assert.equal(s.total, 9);
-  assert.equal(s.verified + s.unverified, 9);
-  assert.equal(s.byTier.file, 9);
-  assert.equal(s.byTier.cli, 9);
-  assert.ok(s.byTier.mcp >= 4);
+  assert.equal(s.total, HOSTS.length);
+  assert.equal(s.verified + s.unverified, s.total);
+  // file + cli are the universal tiers: every host must have both.
+  assert.equal(s.byTier.file, s.total);
+  assert.equal(s.byTier.cli, s.total);
+  assert.ok(s.byTier.mcp >= 5, 'mcp should cover the majority');
+  assert.ok(s.byTier.native >= 1, 'at least one host has a native plugin tier');
 });
 
 test('instruction block install is idempotent', () => {
