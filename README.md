@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJMMiAyMmgyMEwxMiAyeiIgZmlsbD0iI0Q0QUYzNyIvPjwvc3ZnPg==" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-4.0-8B5CF6?style=for-the-badge" alt="v4.0" />
+  <img src="https://img.shields.io/badge/Version-4.1-8B5CF6?style=for-the-badge" alt="v4.1" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -297,6 +297,12 @@ The agent will:
 | Secrets policy | Only consolidates secrets already present |
 
 ## Release Notes
+
+### v4.1.0 — Cross-Platform Tooling (2026-10-01)
+
+- **Windows compatibility**: dream prompts now use OpenClaw native tools (`read`/`edit`/`write`) instead of Unix shell commands (`ls`, `wc`, `grep`, `cat`), so consolidation runs on any platform
+- **No more silent failures**: counting and file discovery happen in the agent's reasoning instead of shelling out
+- **Community contribution**: merged PR #4 by @labsclaw
 
 ### v4.0.0 — Intelligent Dream UX (2026-03-30)
 

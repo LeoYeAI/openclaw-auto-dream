@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Powered%20by-MyClaw.ai-D4AF37?style=for-the-badge" alt="Powered by MyClaw.ai" />
   <img src="https://img.shields.io/badge/OpenClaw-Skill-2563EB?style=for-the-badge" alt="OpenClaw Skill" />
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/Version-4.0-8B5CF6?style=for-the-badge" alt="v4.0" />
+  <img src="https://img.shields.io/badge/Version-4.1-8B5CF6?style=for-the-badge" alt="v4.1" />
 </p>
 
 <h1 align="center">🌀 OpenClaw Auto-Dream</h1>
@@ -291,6 +291,12 @@ git clone https://github.com/LeoYeAI/openclaw-auto-dream.git \
 | 密钥策略 | 仅整合已有密钥，不创建新条目 |
 
 ## 版本记录
+
+### v4.1.0 — 跨平台工具化 (2026-10-01)
+
+- **Windows 兼容**：dream prompt 全面改用 OpenClaw 原生工具（`read`/`edit`/`write`），不再依赖 Unix shell 命令（`ls`/`wc`/`grep`/`cat`），任意平台都能跑整合
+- **不再静默失败**：文件发现与计数改在 agent reasoning 内完成，不再调 shell
+- **社区贡献**：合并了 @labsclaw 的 PR #4
 
 ### v4.0.0 — 智能梦境体验 (2026-03-30)
 
