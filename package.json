@@ -1,20 +1,36 @@
 {
   "name": "talewell",
-  "version": "0.1.0",
-  "description": "Talewell — Agent Memory Protocol. A portable, git-backed, auditable long-term memory layer for any agent host.",
+  "version": "5.0.0",
+  "description": "Talewell — plugin-first long-term memory for agent platforms. Reference implementation of AMP (Agent Memory Protocol).",
   "type": "module",
   "license": "MIT",
-  "bin": { "talewell": "./bin/talewell.mjs" },
+  "bin": {
+    "talewell": "./bin/talewell.mjs"
+  },
   "exports": {
     ".": "./src/index.mjs",
     "./store": "./src/store.mjs",
     "./mcp": "./adapters/mcp/server.mjs"
   },
-  "engines": { "node": ">=22.22.3" },
+  "engines": {
+    "node": ">=22.22.3"
+  },
   "scripts": {
     "test": "node --test tests/",
     "talewell": "node bin/talewell.mjs"
   },
-  "keywords": ["agent", "memory", "mcp", "openclaw", "long-term-memory", "git"],
-  "files": ["src/", "bin/", "adapters/", "docs/"]
+  "keywords": [
+    "agent",
+    "memory",
+    "mcp",
+    "openclaw",
+    "long-term-memory",
+    "git"
+  ],
+  "files": [
+    "src/",
+    "bin/",
+    "adapters/",
+    "docs/"
+  ]
 }
