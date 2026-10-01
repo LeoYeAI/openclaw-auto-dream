@@ -20,6 +20,7 @@
   <a href="#hosts">Hosts</a> ·
   <a href="#the-protocol">Protocol</a> ·
   <a href="#cli">CLI</a> ·
+  <a href="docs/HOSTS.md">Host guide</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a>
 </p>
 
@@ -112,6 +113,8 @@ Any host that reads a project instruction file can use Talewell with no plugin a
 | DeepSeek harness | file, cli | `AGENTS.md` | **no** |
 
 Run `talewell hosts` for the registry with evidence pointers. Unverified hosts use safe defaults rather than guessed config paths.
+
+Per-platform setup recipes — including the general method for any host not listed — are in **[docs/HOSTS.md](docs/HOSTS.md)**.
 
 ## CLI
 

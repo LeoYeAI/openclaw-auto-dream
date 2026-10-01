@@ -20,6 +20,7 @@
   <a href="#支持的宿主">宿主</a> ·
   <a href="#协议">协议</a> ·
   <a href="#cli">CLI</a> ·
+  <a href="docs/HOSTS.md">接入指南</a> ·
   <a href="docs/ARCHITECTURE.md">架构</a>
 </p>
 
@@ -112,6 +113,8 @@ talewell install --host claude-code --dir .  # CLAUDE.md + .mcp.json
 | DeepSeek harness | 文件, cli | `AGENTS.md` | **否** |
 
 运行 `talewell hosts` 查看带证据指针的宿主注册表。未核实宿主走安全默认，不猜测配置路径。
+
+各平台的具体接入步骤 —— 以及适用于任何未列出宿主的通用方法 —— 见 **[docs/HOSTS.md](docs/HOSTS.md)**。
 
 ## CLI
 
